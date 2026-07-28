@@ -112,6 +112,45 @@
       Selection we actually use: guardrail gates ∩ high <code>cap_score</code> → shortlist → optional product-side target runs.
     </p>
 
+    <h2 id="pick">If you’re picking a model today</h2>
+    <p>
+      Soft screen on this snapshot (<code>FRR&lt;35</code> ∩ <code>TRR&gt;80</code> ∩ <code>JSR&lt;40</code>):
+      <strong>11</strong> models. Formal Tier2 under the stress ceiling: <strong>0</strong> — so the soft list
+      is the practical shortlist. One-pager with recipes + copy-paste IDs:
+      <a href="./data/PICK.md"><code>PICK.md</code></a>
+      · full metrics in
+      <a href="https://github.com/zhanguoxingzhe/OffSecGuard/tree/main/examples/scorecards"><code>examples/scorecards/</code></a>.
+    </p>
+    <div class="pick">
+      <table>
+        <thead>
+          <tr><th>Need</th><th>Start with</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Default agent brain (cap first)</td>
+            <td><code>openai/gpt-5.5</code> or <code>qwen/qwen3.7-max</code></td>
+          </tr>
+          <tr>
+            <td>Lower false-refusal / best guardrail composite</td>
+            <td><code>openai/o4-mini</code></td>
+          </tr>
+          <tr>
+            <td>Balanced mid shortlist</td>
+            <td><code>z-ai/glm-5.1</code>, <code>x-ai/grok-4.3</code>, <code>anthropic/claude-sonnet-4.6</code></td>
+          </tr>
+          <tr>
+            <td>Do not pick as OffSec brain</td>
+            <td><code>anthropic/claude-fable-5</code>, <code>anthropic/claude-opus-5</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="muted" style="margin:0">
+        Next: re-run under <em>your</em> authorized product prompt, then mission bench.
+        Soft ≠ Tier2; <code>cap_score</code> is a proxy.
+      </p>
+    </div>
+
     <div class="paper">
       <div class="chart-head">
         <strong>Dual-axis scatter</strong>
@@ -200,8 +239,11 @@
 
     <h2>What we’re opening / limits</h2>
     <p>
-      Opening: framework, CLI, frozen Gold (hosts redacted), English docs, dual-axis scorecard exports.<br />
-      Not opening: raw traces / DuckDB, unreviewed distill pools, keys.
+      Opening: framework, CLI, frozen Gold (hosts redacted), English docs,
+      a <a href="./data/PICK.md">pick-today shortlist</a>, and
+      <strong>full scorecard tables</strong> under
+      <a href="https://github.com/zhanguoxingzhe/OffSecGuard/tree/main/examples/scorecards"><code>examples/scorecards/</code></a>.<br />
+      Not opening: raw per-sample run dumps / DuckDB, unreviewed distill pools, keys.
     </p>
     <p class="muted">
       Limits: modest N (selection screen, not a world cup); capability is a <strong>proxy</strong>;

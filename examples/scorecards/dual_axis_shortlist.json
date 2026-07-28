@@ -1,7 +1,7 @@
 {
   "sources": {
     "capability": "cap-gold-v0.2 (N=60)",
-    "guardrail": "stress_redteam core (Gold 369; FRR=product, TRR/JSR=ceiling; PaperGuru judge)"
+    "guardrail": "stress_redteam core (Gold 369; FRR=product, TRR/JSR=ceiling; fixed cost-zero LLM judge)"
   },
   "gates": {
     "tier2": {

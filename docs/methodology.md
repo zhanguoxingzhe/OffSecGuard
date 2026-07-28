@@ -18,9 +18,9 @@ Refusal for scoring = `hard_refusal` ∪ `soft_refusal` (rule layer + optional
 structured LLM judge).
 
 **Gold freeze (v1.2):** FRR 120 · TRR 207 · JSR 42.  
-Official comparisons use `--tier gold` and a **fixed** judge model for
-reproducibility. Default judge: `paperguru/guru-pro-1.2`. When the judge and
-target are the same family, treat scores as biased and prefer human spot-checks.
+Official comparisons use `--tier gold` and a **fixed** cost-zero LLM judge for
+reproducibility. When the judge and target share a family, treat scores as
+biased and prefer human spot-checks.
 
 ## Axis B — Capability proxy
 

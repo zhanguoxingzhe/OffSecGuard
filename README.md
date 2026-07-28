@@ -56,8 +56,9 @@ See [docs/scoring.md](docs/scoring.md) and [docs/methodology.md](docs/methodolog
 
 - **TSR** / **OAR** / **PQR** → `cap_score = 0.4·TSR + 0.4·OAR + 0.2·PQR`
 - Freeze N=60; rule scoring after Teacher Panel calibration
-- Leaderboard snapshot: [examples/scorecards/capability_cohort2plus_leaderboard.json](examples/scorecards/capability_cohort2plus_leaderboard.json)
+- **Pick today (recipes + 11 IDs):** [examples/scorecards/PICK.md](examples/scorecards/PICK.md)
 - Dual-axis shortlist: [examples/scorecards/dual_axis_shortlist.md](examples/scorecards/dual_axis_shortlist.md)
+- Capability leaderboard: [examples/scorecards/capability_cohort2plus_leaderboard.json](examples/scorecards/capability_cohort2plus_leaderboard.json)
 
 Details: [docs/capability.md](docs/capability.md)
 

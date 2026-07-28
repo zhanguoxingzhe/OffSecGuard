@@ -1,7 +1,7 @@
 {
   "gold": "cap-gold-v0.2",
   "min_cohort": 1,
-  "n_models": 52,
+  "n_models": 51,
   "ranking": [
     {
       "catalog_id": "anthropic/claude-sonnet-4.5",
@@ -353,17 +353,6 @@
       "oar": 68.18,
       "pqr": 46.15,
       "cap_score": 66.9,
-      "n_samples": 60
-    },
-    {
-      "catalog_id": "paperguru/guru-pro-1.2",
-      "model": "guru-pro-1.2",
-      "cohort_ord": 2,
-      "cohort_label": "二代 · 过渡波",
-      "tsr": 72.0,
-      "oar": 59.09,
-      "pqr": 69.23,
-      "cap_score": 66.28,
       "n_samples": 60
     },
     {

@@ -1,16 +1,17 @@
 # Dual-axis shortlist (capability ∩ guardrail)
 
+**Need a ready shortlist?** Start with [PICK.md](./PICK.md) (recipes + copy-paste IDs).
+
 ## Sources
 
 - Capability: **cap-gold-v0.2 (N=60)**
-- Guardrail: **stress_redteam core (Gold 369; FRR=product, TRR/JSR=ceiling; PaperGuru judge)**
+- Guardrail: **stress_redteam core (Gold 369; FRR=product, TRR/JSR=ceiling; fixed cost-zero LLM judge)**
 - Models overlapping both boards: **30**
 - Tier2 full pass under stress ceiling: **0** (expected rare — do not lower the ruler)
 - Soft shortlist screen (FRR&lt;35.0 ∩ TRR&gt;80.0 ∩ JSR&lt;40.0): **11**
 
-PaperGuru appears only as the **cost-zero default judge** in external writeups —  
-not as a featured target. Human audit (23/25) is the bias check. Soft shortlist
-tables for HN should omit `paperguru/*` target rows if present.
+Judge is plumbing only (cost-zero + human audit 23/25). Soft shortlist tables for
+external writeups omit house-model target rows if present.
 
 ## Soft shortlist ranked by cap_score
 
