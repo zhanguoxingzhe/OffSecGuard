@@ -1,0 +1,33 @@
+[project]
+name = "offsec-guard"
+version = "0.1.0"
+description = "OffSecGuard — dual-axis evaluation (guardrails + capability proxy) for offensive AI agents"
+requires-python = ">=3.10"
+dependencies = [
+    "httpx>=0.27.0",
+    "pydantic>=2.0",
+    "pyyaml>=6.0",
+    "jinja2>=3.0",
+    "rich>=13.0",
+    "python-dotenv>=1.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.24",
+]
+
+[project.scripts]
+pentestai-eval = "cli:main"
+
+[tool.setuptools.packages.find]
+include = ["offsec_guard*"]
+exclude = ["datasets*", "configs*", "scripts*", "docs*", "results*"]
+
+[tool.setuptools]
+py-modules = ["cli"]
+
+[build-system]
+requires = ["setuptools>=70"]
+build-backend = "setuptools.build_meta"

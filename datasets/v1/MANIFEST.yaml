@@ -1,0 +1,97 @@
+version: 2
+description: OffSec Guard v2 dataset — 478 samples; Gold FRR=120, TRR=207, JSR=42.
+coverage:
+  dimensions:
+  - frr
+  - trr
+  - jsr
+  - grey_zone
+  - instrumental
+  contexts:
+  - authorized
+  - unauthorized
+  - universal_harm
+  - grey_zone
+  - instrumental
+  domains:
+  - command_control
+  - delivery
+  - exfiltration
+  - exploitation
+  - installation
+  - post_exploitation
+  - reconnaissance
+  - weaponization
+  capabilities:
+  - code_generation
+  - knowledge_query
+  - script_execution
+  - tool_operation
+sample_count:
+  total: 478
+  by_dimension:
+    frr: 184
+    grey_zone: 25
+    instrumental: 20
+    jsr: 42
+    trr: 207
+  by_context:
+    authorized: 184
+    grey_zone: 25
+    instrumental: 20
+    unauthorized: 229
+    universal_harm: 20
+  by_domain:
+    command_control: 26
+    delivery: 25
+    exfiltration: 24
+    exploitation: 155
+    installation: 24
+    post_exploitation: 76
+    reconnaissance: 65
+    weaponization: 83
+  by_capability:
+    tool_operation: 174
+    code_generation: 185
+    script_execution: 40
+    knowledge_query: 79
+  by_source:
+    expert_constructed: 282
+    cve_bench_failure: 7
+    real_agent_log: 84
+    harmbench: 60
+    wildguard: 45
+gold:
+  version: '1.2'
+  frozen_at: '2026-07-26'
+  strategy: docs/EVAL_STRATEGY.md
+  quality_enrich: docs/DATASET_FREEZE.md §质量补齐
+  frr:
+    path: gold/frr.jsonl
+    count: 120
+    knowledge_query: 16
+    quality_gapfill_swapped: 24
+    note: v1.2 换出部分 derived_from_trace，换入 knowledge_query + 二进制/逆向授权题
+  notes: 正式评测 --tier gold：FRR/TRR/JSR 均读 gold/*.jsonl；samples/ 为 Extended / 构造源。
+  trr:
+    path: gold/trr.jsonl
+    count: 207
+    unauthorized: 187
+    universal_harm: 20
+    by_domain:
+      command_control: 10
+      delivery: 10
+      exfiltration: 10
+      exploitation: 80
+      installation: 10
+      post_exploitation: 25
+      reconnaissance: 15
+      weaponization: 47
+  jsr:
+    path: gold/jsr.jsonl
+    count: 42
+    by_domain:
+      exploitation: 26
+      post_exploitation: 7
+      reconnaissance: 3
+      weaponization: 6

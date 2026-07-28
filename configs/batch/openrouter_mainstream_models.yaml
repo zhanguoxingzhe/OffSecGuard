@@ -1,0 +1,4065 @@
+generated_at: '2026-07-26T14:42:24.402690+00:00'
+source: https://openrouter.ai/api/v1/models
+openrouter_total_models: 345
+notes:
+- OpenRouter 无裸 openai/gpt-5.6；最新代为 gpt-5.6-{luna,sol,terra}[+pro]
+- batch_select_core = 正式选型主跑（含 paperguru/guru-pro-1.2）；batch_select_extended = 扩展代际/P1厂
+- discovered_extras = 自动发现，默认不进主跑
+- 跨厂比同 role；同厂比 gen 梯队
+vendors:
+  openai:
+    vendor: OpenAI
+    families_by_role:
+      previous:
+      - openai/gpt-4o
+      - openai/gpt-5
+      - openai/gpt-5.1
+      - openai/gpt-5.2
+      flagship:
+      - openai/gpt-5.4
+      - openai/gpt-5.4-pro
+      - openai/gpt-5.5
+      - openai/gpt-5.5-pro
+      - openai/gpt-5.6-sol
+      - openai/gpt-5.6-sol-pro
+      lite:
+      - openai/gpt-5.4-nano
+      - openai/gpt-5.6-luna
+      - openai/gpt-5.6-luna-pro
+      mid:
+      - openai/gpt-5.4-mini
+      - openai/gpt-5.6-terra
+      - openai/gpt-5.6-terra-pro
+      reasoning:
+      - openai/o3
+      - openai/o3-mini
+      - openai/o3-mini-high
+      - openai/o3-pro
+      - openai/o4-mini
+      - openai/o4-mini-high
+    ladder:
+    - id: openai/gpt-4o
+      role: previous
+      gen: 4o
+      note: GPT-4o 对照
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: GPT-4o'
+      context_length: 128000
+      price_prompt_per_m: 2.5
+      price_completion_per_m: 10.0
+    - id: openai/gpt-5
+      role: previous
+      gen: '5.0'
+      note: GPT-5
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: GPT-5'
+      context_length: 400000
+      price_prompt_per_m: 1.25
+      price_completion_per_m: 10.0
+    - id: openai/gpt-5.1
+      role: previous
+      gen: '5.1'
+      note: '5.1'
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: GPT-5.1'
+      context_length: 400000
+      price_prompt_per_m: 1.25
+      price_completion_per_m: 10.0
+    - id: openai/gpt-5.2
+      role: previous
+      gen: '5.2'
+      note: '5.2'
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: GPT-5.2'
+      context_length: 400000
+      price_prompt_per_m: 1.75
+      price_completion_per_m: 14.0
+    - id: openai/gpt-5.4
+      role: flagship
+      gen: '5.4'
+      note: 基线旗舰
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: GPT-5.4'
+      context_length: 1050000
+      price_prompt_per_m: 2.5
+      price_completion_per_m: 15.0
+    - id: openai/gpt-5.4-pro
+      role: flagship
+      gen: '5.4'
+      note: 5.4 Pro
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: GPT-5.4 Pro'
+      context_length: 1050000
+      price_prompt_per_m: 30.0
+      price_completion_per_m: 180.0
+    - id: openai/gpt-5.4-nano
+      role: lite
+      gen: '5.4'
+      note: 5.4 Nano
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: GPT-5.4 Nano'
+      context_length: 400000
+      price_prompt_per_m: 0.2
+      price_completion_per_m: 1.25
+    - id: openai/gpt-5.4-mini
+      role: mid
+      gen: '5.4'
+      note: 5.4 Mini
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: GPT-5.4 Mini'
+      context_length: 400000
+      price_prompt_per_m: 0.75
+      price_completion_per_m: 4.5
+    - id: openai/gpt-5.5
+      role: flagship
+      gen: '5.5'
+      note: '5.5'
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: GPT-5.5'
+      context_length: 1050000
+      price_prompt_per_m: 5.0
+      price_completion_per_m: 30.0
+    - id: openai/gpt-5.5-pro
+      role: flagship
+      gen: '5.5'
+      note: 5.5 Pro
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: GPT-5.5 Pro'
+      context_length: 1050000
+      price_prompt_per_m: 30.0
+      price_completion_per_m: 180.0
+    - id: openai/gpt-5.6-luna
+      role: lite
+      gen: 5.6-luna
+      note: 5.6 Luna
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: GPT-5.6 Luna'
+      context_length: 1050000
+      price_prompt_per_m: 1.0
+      price_completion_per_m: 6.0
+    - id: openai/gpt-5.6-luna-pro
+      role: lite
+      gen: 5.6-luna
+      note: 5.6 Luna Pro
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: GPT-5.6 Luna Pro'
+      context_length: 1050000
+      price_prompt_per_m: 1.0
+      price_completion_per_m: 6.0
+    - id: openai/gpt-5.6-sol
+      role: flagship
+      gen: 5.6-sol
+      note: 5.6 Sol
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: GPT-5.6 Sol'
+      context_length: 1050000
+      price_prompt_per_m: 5.0
+      price_completion_per_m: 30.0
+    - id: openai/gpt-5.6-sol-pro
+      role: flagship
+      gen: 5.6-sol
+      note: 5.6 Sol Pro
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: GPT-5.6 Sol Pro'
+      context_length: 1050000
+      price_prompt_per_m: 5.0
+      price_completion_per_m: 30.0
+    - id: openai/gpt-5.6-terra
+      role: mid
+      gen: 5.6-terra
+      note: 5.6 Terra
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: GPT-5.6 Terra'
+      context_length: 1050000
+      price_prompt_per_m: 2.5
+      price_completion_per_m: 15.0
+    - id: openai/gpt-5.6-terra-pro
+      role: mid
+      gen: 5.6-terra
+      note: 5.6 Terra Pro
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: GPT-5.6 Terra Pro'
+      context_length: 1050000
+      price_prompt_per_m: 2.5
+      price_completion_per_m: 15.0
+    - id: openai/o3
+      role: reasoning
+      gen: o3
+      note: o3
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: o3'
+      context_length: 200000
+      price_prompt_per_m: 2.0
+      price_completion_per_m: 8.0
+    - id: openai/o3-mini
+      role: reasoning
+      gen: o3
+      note: o3 Mini
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: o3 Mini'
+      context_length: 200000
+      price_prompt_per_m: 1.1
+      price_completion_per_m: 4.4
+    - id: openai/o3-mini-high
+      role: reasoning
+      gen: o3
+      note: o3 Mini High
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: o3 Mini High'
+      context_length: 200000
+      price_prompt_per_m: 1.1
+      price_completion_per_m: 4.4
+    - id: openai/o3-pro
+      role: reasoning
+      gen: o3
+      note: o3 Pro
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: o3 Pro'
+      context_length: 200000
+      price_prompt_per_m: 20.0
+      price_completion_per_m: 80.0
+    - id: openai/o4-mini
+      role: reasoning
+      gen: o4
+      note: o4 Mini
+      auto: false
+      select: true
+      batch: core
+      name: 'OpenAI: o4 Mini'
+      context_length: 200000
+      price_prompt_per_m: 1.1
+      price_completion_per_m: 4.4
+    - id: openai/o4-mini-high
+      role: reasoning
+      gen: o4
+      note: o4 Mini High
+      auto: false
+      select: true
+      batch: extended
+      name: 'OpenAI: o4 Mini High'
+      context_length: 200000
+      price_prompt_per_m: 1.1
+      price_completion_per_m: 4.4
+    ladder_archive:
+    - id: openai/gpt-5-mini
+      role: lite
+      gen: '5.0'
+      note: GPT-5 Mini
+      auto: false
+      select: false
+      batch: archive
+      name: 'OpenAI: GPT-5 Mini'
+      context_length: 400000
+      price_prompt_per_m: 0.25
+      price_completion_per_m: 2.0
+    - id: openai/gpt-5-nano
+      role: lite
+      gen: '5.0'
+      note: GPT-5 Nano
+      auto: false
+      select: false
+      batch: archive
+      name: 'OpenAI: GPT-5 Nano'
+      context_length: 400000
+      price_prompt_per_m: 0.05
+      price_completion_per_m: 0.4
+    - id: openai/gpt-5-pro
+      role: previous
+      gen: '5.0'
+      note: GPT-5 Pro
+      auto: false
+      select: false
+      batch: archive
+      name: 'OpenAI: GPT-5 Pro'
+      context_length: 400000
+      price_prompt_per_m: 15.0
+      price_completion_per_m: 120.0
+    - id: openai/gpt-5.2-pro
+      role: previous
+      gen: '5.2'
+      note: 5.2 Pro
+      auto: false
+      select: false
+      batch: archive
+      name: 'OpenAI: GPT-5.2 Pro'
+      context_length: 400000
+      price_prompt_per_m: 21.0
+      price_completion_per_m: 168.0
+    - id: openai/gpt-5.3-chat
+      role: previous
+      gen: '5.3'
+      note: 5.3 Chat
+      auto: false
+      select: false
+      batch: archive
+      name: 'OpenAI: GPT-5.3 Chat'
+      context_length: 128000
+      price_prompt_per_m: 1.75
+      price_completion_per_m: 14.0
+    - id: openai/o1
+      role: reasoning
+      gen: o1
+      note: o1
+      auto: false
+      select: false
+      batch: archive
+      name: 'OpenAI: o1'
+      context_length: 200000
+      price_prompt_per_m: 15.0
+      price_completion_per_m: 60.0
+    - id: openai/o1-pro
+      role: reasoning
+      gen: o1
+      note: o1 Pro
+      auto: false
+      select: false
+      batch: archive
+      name: 'OpenAI: o1-pro'
+      context_length: 200000
+      price_prompt_per_m: 150.0
+      price_completion_per_m: 600.0
+  anthropic:
+    vendor: Anthropic
+    families_by_role:
+      flagship:
+      - anthropic/claude-fable-5
+      - anthropic/claude-opus-4.6
+      - anthropic/claude-opus-4.7
+      - anthropic/claude-opus-4.7-fast
+      - anthropic/claude-opus-4.8
+      - anthropic/claude-opus-4.8-fast
+      - anthropic/claude-opus-5
+      - anthropic/claude-opus-5-fast
+      lite:
+      - anthropic/claude-haiku-4.5
+      previous:
+      - anthropic/claude-opus-4.5
+      - anthropic/claude-sonnet-4
+      - anthropic/claude-sonnet-4.5
+      mid:
+      - anthropic/claude-sonnet-4.6
+      - anthropic/claude-sonnet-5
+    ladder:
+    - id: anthropic/claude-fable-5
+      role: flagship
+      gen: fable-5
+      note: Fable 5
+      auto: false
+      select: true
+      batch: core
+      name: 'Anthropic: Claude Fable 5'
+      context_length: 1000000
+      price_prompt_per_m: 10.0
+      price_completion_per_m: 50.0
+    - id: anthropic/claude-haiku-4.5
+      role: lite
+      gen: haiku-4.5
+      note: Haiku 4.5
+      auto: false
+      select: true
+      batch: core
+      name: 'Anthropic: Claude Haiku 4.5'
+      context_length: 200000
+      price_prompt_per_m: 1.0
+      price_completion_per_m: 5.0
+    - id: anthropic/claude-opus-4.5
+      role: previous
+      gen: opus-4.5
+      note: Opus 4.5
+      auto: false
+      select: true
+      batch: extended
+      name: 'Anthropic: Claude Opus 4.5'
+      context_length: 200000
+      price_prompt_per_m: 5.0
+      price_completion_per_m: 25.0
+    - id: anthropic/claude-opus-4.6
+      role: flagship
+      gen: opus-4.6
+      note: Opus 4.6
+      auto: false
+      select: true
+      batch: core
+      name: 'Anthropic: Claude Opus 4.6'
+      context_length: 1000000
+      price_prompt_per_m: 5.0
+      price_completion_per_m: 25.0
+    - id: anthropic/claude-opus-4.7
+      role: flagship
+      gen: opus-4.7
+      note: Opus 4.7
+      auto: false
+      select: true
+      batch: extended
+      name: 'Anthropic: Claude Opus 4.7'
+      context_length: 1000000
+      price_prompt_per_m: 5.0
+      price_completion_per_m: 25.0
+    - id: anthropic/claude-opus-4.7-fast
+      role: flagship
+      gen: opus-4.7
+      note: Opus 4.7 Fast
+      auto: false
+      select: true
+      batch: extended
+      name: 'Anthropic: Claude Opus 4.7 (Fast)'
+      context_length: 1000000
+      price_prompt_per_m: 30.0
+      price_completion_per_m: 150.0
+    - id: anthropic/claude-opus-4.8
+      role: flagship
+      gen: opus-4.8
+      note: Opus 4.8
+      auto: false
+      select: true
+      batch: core
+      name: 'Anthropic: Claude Opus 4.8'
+      context_length: 1000000
+      price_prompt_per_m: 5.0
+      price_completion_per_m: 25.0
+    - id: anthropic/claude-opus-4.8-fast
+      role: flagship
+      gen: opus-4.8
+      note: Opus 4.8 Fast
+      auto: false
+      select: true
+      batch: extended
+      name: 'Anthropic: Claude Opus 4.8 (Fast)'
+      context_length: 1000000
+      price_prompt_per_m: 10.0
+      price_completion_per_m: 50.0
+    - id: anthropic/claude-opus-5
+      role: flagship
+      gen: opus-5
+      note: Opus 5
+      auto: false
+      select: true
+      batch: core
+      name: Claude Opus 5
+      context_length: 1000000
+      price_prompt_per_m: 5.0
+      price_completion_per_m: 25.0
+    - id: anthropic/claude-opus-5-fast
+      role: flagship
+      gen: opus-5
+      note: Opus 5 Fast
+      auto: false
+      select: true
+      batch: extended
+      name: Claude Opus 5 (Fast)
+      context_length: 1000000
+      price_prompt_per_m: 10.0
+      price_completion_per_m: 50.0
+    - id: anthropic/claude-sonnet-4
+      role: previous
+      gen: sonnet-4
+      note: Sonnet 4
+      auto: false
+      select: true
+      batch: extended
+      name: 'Anthropic: Claude Sonnet 4'
+      context_length: 1000000
+      price_prompt_per_m: 3.0
+      price_completion_per_m: 15.0
+    - id: anthropic/claude-sonnet-4.5
+      role: previous
+      gen: sonnet-4.5
+      note: Sonnet 4.5
+      auto: false
+      select: true
+      batch: core
+      name: 'Anthropic: Claude Sonnet 4.5'
+      context_length: 1000000
+      price_prompt_per_m: 3.0
+      price_completion_per_m: 15.0
+    - id: anthropic/claude-sonnet-4.6
+      role: mid
+      gen: sonnet-4.6
+      note: Sonnet 4.6
+      auto: false
+      select: true
+      batch: core
+      name: 'Anthropic: Claude Sonnet 4.6'
+      context_length: 1000000
+      price_prompt_per_m: 3.0
+      price_completion_per_m: 15.0
+    - id: anthropic/claude-sonnet-5
+      role: mid
+      gen: sonnet-5
+      note: Sonnet 5
+      auto: false
+      select: true
+      batch: core
+      name: 'Anthropic: Claude Sonnet 5'
+      context_length: 1000000
+      price_prompt_per_m: 2.0
+      price_completion_per_m: 10.0
+    ladder_archive:
+    - id: anthropic/claude-3-haiku
+      role: lite
+      gen: haiku-3
+      note: Claude 3 Haiku
+      auto: false
+      select: false
+      batch: archive
+      name: 'Anthropic: Claude 3 Haiku'
+      context_length: 200000
+      price_prompt_per_m: 0.25
+      price_completion_per_m: 1.25
+    - id: anthropic/claude-opus-4
+      role: previous
+      gen: opus-4
+      note: Opus 4
+      auto: false
+      select: false
+      batch: archive
+      name: 'Anthropic: Claude Opus 4'
+      context_length: 200000
+      price_prompt_per_m: 15.0
+      price_completion_per_m: 75.0
+    - id: anthropic/claude-opus-4.1
+      role: previous
+      gen: opus-4.1
+      note: Opus 4.1
+      auto: false
+      select: false
+      batch: archive
+      name: 'Anthropic: Claude Opus 4.1'
+      context_length: 200000
+      price_prompt_per_m: 15.0
+      price_completion_per_m: 75.0
+  google:
+    vendor: Google
+    families_by_role:
+      flagship:
+      - google/gemini-2.5-pro
+      - google/gemini-3.1-pro-preview
+      lite:
+      - google/gemini-2.5-flash-lite
+      - google/gemini-3.1-flash-lite
+      - google/gemini-3.5-flash-lite
+      mid:
+      - google/gemini-2.5-flash
+      - google/gemini-3-flash-preview
+      - google/gemini-3.5-flash
+      - google/gemini-3.6-flash
+      - google/gemma-4-31b-it
+    ladder:
+    - id: google/gemini-2.5-pro
+      role: flagship
+      gen: '2.5'
+      note: 2.5 Pro
+      auto: false
+      select: true
+      batch: core
+      name: 'Google: Gemini 2.5 Pro'
+      context_length: 1048576
+      price_prompt_per_m: 1.25
+      price_completion_per_m: 10.0
+    - id: google/gemini-2.5-flash-lite
+      role: lite
+      gen: '2.5'
+      note: 2.5 Lite
+      auto: false
+      select: true
+      batch: core
+      name: 'Google: Gemini 2.5 Flash Lite'
+      context_length: 1048576
+      price_prompt_per_m: 0.1
+      price_completion_per_m: 0.4
+    - id: google/gemini-2.5-flash
+      role: mid
+      gen: '2.5'
+      note: 2.5 Flash
+      auto: false
+      select: true
+      batch: core
+      name: 'Google: Gemini 2.5 Flash'
+      context_length: 1048576
+      price_prompt_per_m: 0.3
+      price_completion_per_m: 2.5
+    - id: google/gemini-3-flash-preview
+      role: mid
+      gen: '3.0'
+      note: 3 Flash Preview
+      auto: false
+      select: true
+      batch: extended
+      name: 'Google: Gemini 3 Flash Preview'
+      context_length: 1048576
+      price_prompt_per_m: 0.5
+      price_completion_per_m: 3.0
+    - id: google/gemini-3.1-pro-preview
+      role: flagship
+      gen: '3.1'
+      note: 3.1 Pro
+      auto: false
+      select: true
+      batch: core
+      name: 'Google: Gemini 3.1 Pro Preview'
+      context_length: 1048576
+      price_prompt_per_m: 2.0
+      price_completion_per_m: 12.0
+    - id: google/gemini-3.1-flash-lite
+      role: lite
+      gen: '3.1'
+      note: 3.1 Lite
+      auto: false
+      select: true
+      batch: extended
+      name: 'Google: Gemini 3.1 Flash Lite'
+      context_length: 1048576
+      price_prompt_per_m: 0.25
+      price_completion_per_m: 1.5
+    - id: google/gemini-3.5-flash-lite
+      role: lite
+      gen: '3.5'
+      note: 3.5 Lite
+      auto: false
+      select: true
+      batch: core
+      name: 'Google: Gemini 3.5 Flash Lite'
+      context_length: 1048576
+      price_prompt_per_m: 0.3
+      price_completion_per_m: 2.5
+    - id: google/gemini-3.5-flash
+      role: mid
+      gen: '3.5'
+      note: 3.5 Flash
+      auto: false
+      select: true
+      batch: core
+      name: 'Google: Gemini 3.5 Flash'
+      context_length: 1048576
+      price_prompt_per_m: 1.5
+      price_completion_per_m: 9.0
+    - id: google/gemini-3.6-flash
+      role: mid
+      gen: '3.6'
+      note: 3.6 Flash 最新
+      auto: false
+      select: true
+      batch: core
+      name: 'Google: Gemini 3.6 Flash'
+      context_length: 1048576
+      price_prompt_per_m: 1.5
+      price_completion_per_m: 7.5
+    - id: google/gemma-4-31b-it
+      role: mid
+      gen: gemma-4
+      note: Gemma 4 31B
+      auto: false
+      select: true
+      batch: extended
+      name: 'Google: Gemma 4 31B'
+      context_length: 262144
+      price_prompt_per_m: 0.14
+      price_completion_per_m: 0.4
+    ladder_archive:
+    - id: google/gemini-3.1-pro-preview-customtools
+      role: flagship
+      gen: '3.1'
+      note: 3.1 Pro CustomTools
+      auto: false
+      select: false
+      batch: archive
+      name: 'Google: Gemini 3.1 Pro Preview Custom Tools'
+      context_length: 1048576
+      price_prompt_per_m: 2.0
+      price_completion_per_m: 12.0
+    - id: google/gemma-4-26b-a4b-it
+      role: lite
+      gen: gemma-4
+      note: Gemma 4 26B
+      auto: false
+      select: false
+      batch: archive
+      name: 'Google: Gemma 4 26B A4B '
+      context_length: 262144
+      price_prompt_per_m: 0.12
+      price_completion_per_m: 0.35
+  deepseek:
+    vendor: DeepSeek
+    families_by_role:
+      reasoning:
+      - deepseek/deepseek-r1
+      - deepseek/deepseek-r1-0528
+      previous:
+      - deepseek/deepseek-chat-v3.1
+      mid:
+      - deepseek/deepseek-v3.2
+      flagship:
+      - deepseek/deepseek-v4-pro
+      lite:
+      - deepseek/deepseek-v4-flash
+    ladder:
+    - id: deepseek/deepseek-r1
+      role: reasoning
+      gen: r1
+      note: R1
+      auto: false
+      select: true
+      batch: core
+      name: 'DeepSeek: R1'
+      context_length: 163840
+      price_prompt_per_m: 0.7
+      price_completion_per_m: 2.5
+    - id: deepseek/deepseek-r1-0528
+      role: reasoning
+      gen: r1
+      note: R1-0528
+      auto: false
+      select: true
+      batch: core
+      name: 'DeepSeek: R1 0528'
+      context_length: 163840
+      price_prompt_per_m: 0.5
+      price_completion_per_m: 2.15
+    - id: deepseek/deepseek-chat-v3.1
+      role: previous
+      gen: v3.1
+      note: V3.1
+      auto: false
+      select: true
+      batch: extended
+      name: 'DeepSeek: DeepSeek V3.1'
+      context_length: 163840
+      price_prompt_per_m: 0.25
+      price_completion_per_m: 0.95
+    - id: deepseek/deepseek-v3.2
+      role: mid
+      gen: v3.2
+      note: V3.2
+      auto: false
+      select: true
+      batch: core
+      name: 'DeepSeek: DeepSeek V3.2'
+      context_length: 163840
+      price_prompt_per_m: 0.269
+      price_completion_per_m: 0.4
+    - id: deepseek/deepseek-v4-pro
+      role: flagship
+      gen: v4
+      note: V4 Pro
+      auto: false
+      select: true
+      batch: core
+      name: 'DeepSeek: DeepSeek V4 Pro'
+      context_length: 1048576
+      price_prompt_per_m: 0.435
+      price_completion_per_m: 0.87
+    - id: deepseek/deepseek-v4-flash
+      role: lite
+      gen: v4
+      note: V4 Flash
+      auto: false
+      select: true
+      batch: core
+      name: 'DeepSeek: DeepSeek V4 Flash'
+      context_length: 1048576
+      price_prompt_per_m: 0.14
+      price_completion_per_m: 0.28
+    ladder_archive:
+    - id: deepseek/deepseek-chat
+      role: previous
+      gen: v3
+      note: deepseek-chat
+      auto: false
+      select: false
+      batch: archive
+      name: 'DeepSeek: DeepSeek V3'
+      context_length: 163840
+      price_prompt_per_m: 0.2002
+      price_completion_per_m: 0.8001
+    - id: deepseek/deepseek-v3.1-terminus
+      role: previous
+      gen: v3.1
+      note: V3.1 Terminus
+      auto: false
+      select: false
+      batch: archive
+      name: 'DeepSeek: DeepSeek V3.1 Terminus'
+      context_length: 163840
+      price_prompt_per_m: 0.27
+      price_completion_per_m: 1.0
+    - id: deepseek/deepseek-v3.2-exp
+      role: mid
+      gen: v3.2
+      note: V3.2 Exp
+      auto: false
+      select: false
+      batch: archive
+      name: 'DeepSeek: DeepSeek V3.2 Exp'
+      context_length: 163840
+      price_prompt_per_m: 0.27
+      price_completion_per_m: 0.41
+  qwen:
+    vendor: Alibaba Qwen
+    families_by_role:
+      reasoning:
+      - qwen/qwen3-max-thinking
+      mid:
+      - qwen/qwen3.5-397b-a17b
+      - qwen/qwen3.6-plus
+      - qwen/qwen3.7-plus
+      flagship:
+      - qwen/qwen3.6-max-preview
+      - qwen/qwen3.7-max
+      lite:
+      - qwen/qwen3.6-flash
+    ladder:
+    - id: qwen/qwen3-max-thinking
+      role: reasoning
+      gen: 3-max
+      note: Max Thinking
+      auto: false
+      select: true
+      batch: extended
+      name: 'Qwen: Qwen3 Max Thinking'
+      context_length: 262144
+      price_prompt_per_m: 0.78
+      price_completion_per_m: 3.9
+    - id: qwen/qwen3.5-397b-a17b
+      role: mid
+      gen: 3.5-open
+      note: 397B MoE
+      auto: false
+      select: true
+      batch: core
+      name: 'Qwen: Qwen3.5 397B A17B'
+      context_length: 262144
+      price_prompt_per_m: 0.39
+      price_completion_per_m: 2.34
+    - id: qwen/qwen3.6-max-preview
+      role: flagship
+      gen: '3.6'
+      note: 3.6 Max Preview
+      auto: false
+      select: true
+      batch: extended
+      name: 'Qwen: Qwen3.6 Max Preview'
+      context_length: 262144
+      price_prompt_per_m: 1.04
+      price_completion_per_m: 6.24
+    - id: qwen/qwen3.6-flash
+      role: lite
+      gen: '3.6'
+      note: 3.6 Flash
+      auto: false
+      select: true
+      batch: core
+      name: 'Qwen: Qwen3.6 Flash'
+      context_length: 1000000
+      price_prompt_per_m: 0.1875
+      price_completion_per_m: 1.125
+    - id: qwen/qwen3.6-plus
+      role: mid
+      gen: '3.6'
+      note: 3.6 Plus
+      auto: false
+      select: true
+      batch: core
+      name: 'Qwen: Qwen3.6 Plus'
+      context_length: 1000000
+      price_prompt_per_m: 0.325
+      price_completion_per_m: 1.95
+    - id: qwen/qwen3.7-max
+      role: flagship
+      gen: '3.7'
+      note: 3.7 Max
+      auto: false
+      select: true
+      batch: core
+      name: 'Qwen: Qwen3.7 Max'
+      context_length: 1000000
+      price_prompt_per_m: 1.475
+      price_completion_per_m: 4.425
+    - id: qwen/qwen3.7-plus
+      role: mid
+      gen: '3.7'
+      note: 3.7 Plus
+      auto: false
+      select: true
+      batch: core
+      name: 'Qwen: Qwen3.7 Plus'
+      context_length: 1000000
+      price_prompt_per_m: 0.32
+      price_completion_per_m: 1.28
+    ladder_archive:
+    - id: qwen/qwen3-max
+      role: previous
+      gen: 3-max
+      note: Qwen3 Max
+      auto: false
+      select: false
+      batch: archive
+      name: 'Qwen: Qwen3 Max'
+      context_length: 262144
+      price_prompt_per_m: 0.78
+      price_completion_per_m: 3.9
+    - id: qwen/qwen3.5-flash-02-23
+      role: lite
+      gen: '3.5'
+      note: 3.5 Flash
+      auto: false
+      select: false
+      batch: archive
+      name: 'Qwen: Qwen3.5-Flash'
+      context_length: 1000000
+      price_prompt_per_m: 0.065
+      price_completion_per_m: 0.26
+    - id: qwen/qwen3.5-plus-20260420
+      role: previous
+      gen: '3.5'
+      note: 3.5 Plus
+      auto: false
+      select: false
+      batch: archive
+      name: 'Qwen: Qwen3.5 Plus 2026-04-20'
+      context_length: 1000000
+      price_prompt_per_m: 0.3
+      price_completion_per_m: 1.8
+    - id: qwen/qwen3.5-27b
+      role: lite
+      gen: 3.5-open
+      note: 27B
+      auto: false
+      select: false
+      batch: archive
+      name: 'Qwen: Qwen3.5-27B'
+      context_length: 262144
+      price_prompt_per_m: 0.195
+      price_completion_per_m: 1.56
+    - id: qwen/qwen3.5-122b-a10b
+      role: mid
+      gen: 3.5-open
+      note: 122B
+      auto: false
+      select: false
+      batch: archive
+      name: 'Qwen: Qwen3.5-122B-A10B'
+      context_length: 262144
+      price_prompt_per_m: 0.26
+      price_completion_per_m: 2.08
+    - id: qwen/qwen3.6-27b
+      role: lite
+      gen: 3.6-open
+      note: 3.6 27B
+      auto: false
+      select: false
+      batch: archive
+      name: 'Qwen: Qwen3.6 27B'
+      context_length: 262144
+      price_prompt_per_m: 0.3
+      price_completion_per_m: 2.0
+    - id: qwen/qwen-plus
+      role: mid
+      gen: plus
+      note: Qwen-Plus
+      auto: false
+      select: false
+      batch: archive
+      name: 'Qwen: Qwen-Plus'
+      context_length: 1000000
+      price_prompt_per_m: 0.26
+      price_completion_per_m: 0.78
+  meta-llama:
+    vendor: Meta
+    families_by_role:
+      lite:
+      - meta-llama/llama-3.1-8b-instruct
+      previous:
+      - meta-llama/llama-3.3-70b-instruct
+      flagship:
+      - meta-llama/llama-4-maverick
+      mid:
+      - meta-llama/llama-4-scout
+    ladder:
+    - id: meta-llama/llama-3.1-8b-instruct
+      role: lite
+      gen: '3.1'
+      note: 3.1 8B
+      auto: false
+      select: true
+      batch: extended
+      name: 'Meta: Llama 3.1 8B Instruct'
+      context_length: 131072
+      price_prompt_per_m: 0.05
+      price_completion_per_m: 0.08
+    - id: meta-llama/llama-3.3-70b-instruct
+      role: previous
+      gen: '3.3'
+      note: 3.3 70B
+      auto: false
+      select: true
+      batch: core
+      name: 'Meta: Llama 3.3 70B Instruct'
+      context_length: 131072
+      price_prompt_per_m: 0.13
+      price_completion_per_m: 0.4
+    - id: meta-llama/llama-4-maverick
+      role: flagship
+      gen: '4'
+      note: Maverick
+      auto: false
+      select: true
+      batch: core
+      name: 'Meta: Llama 4 Maverick'
+      context_length: 1048576
+      price_prompt_per_m: 0.2
+      price_completion_per_m: 0.8
+    - id: meta-llama/llama-4-scout
+      role: mid
+      gen: '4'
+      note: Scout
+      auto: false
+      select: true
+      batch: core
+      name: 'Meta: Llama 4 Scout'
+      context_length: 1310720
+      price_prompt_per_m: 0.1
+      price_completion_per_m: 0.3
+    ladder_archive:
+    - id: meta-llama/llama-3.1-70b-instruct
+      role: previous
+      gen: '3.1'
+      note: 3.1 70B
+      auto: false
+      select: false
+      batch: archive
+      name: 'Meta: Llama 3.1 70B Instruct'
+      context_length: 131072
+      price_prompt_per_m: 0.4
+      price_completion_per_m: 0.4
+    - id: meta-llama/llama-3.2-3b-instruct
+      role: lite
+      gen: '3.2'
+      note: 3.2 3B
+      auto: false
+      select: false
+      batch: archive
+      name: 'Meta: Llama 3.2 3B Instruct'
+      context_length: 131072
+      price_prompt_per_m: 0.05
+      price_completion_per_m: 0.33
+  mistralai:
+    vendor: Mistral
+    families_by_role:
+      mid:
+      - mistralai/devstral-2512
+      - mistralai/mistral-medium-3.1
+      flagship:
+      - mistralai/mistral-large-2512
+      previous:
+      - mistralai/mistral-medium-3
+      lite:
+      - mistralai/mistral-small-2603
+    ladder:
+    - id: mistralai/devstral-2512
+      role: mid
+      gen: devstral
+      note: Devstral
+      auto: false
+      select: true
+      batch: extended
+      name: 'Mistral: Devstral 2 2512'
+      context_length: 262144
+      price_prompt_per_m: 0.4
+      price_completion_per_m: 2.0
+    - id: mistralai/mistral-large-2512
+      role: flagship
+      gen: large-3
+      note: Large 2512
+      auto: false
+      select: true
+      batch: core
+      name: 'Mistral: Mistral Large 3 2512'
+      context_length: 262144
+      price_prompt_per_m: 0.5
+      price_completion_per_m: 1.5
+    - id: mistralai/mistral-medium-3.1
+      role: mid
+      gen: medium-3
+      note: Medium 3.1
+      auto: false
+      select: true
+      batch: core
+      name: 'Mistral: Mistral Medium 3.1'
+      context_length: 131072
+      price_prompt_per_m: 0.4
+      price_completion_per_m: 2.0
+    - id: mistralai/mistral-medium-3
+      role: previous
+      gen: medium-3
+      note: Medium 3
+      auto: false
+      select: true
+      batch: extended
+      name: 'Mistral: Mistral Medium 3'
+      context_length: 131072
+      price_prompt_per_m: 0.4
+      price_completion_per_m: 2.0
+    - id: mistralai/mistral-small-2603
+      role: lite
+      gen: small-4
+      note: Small 2603
+      auto: false
+      select: true
+      batch: core
+      name: 'Mistral: Mistral Small 4'
+      context_length: 262144
+      price_prompt_per_m: 0.15
+      price_completion_per_m: 0.6
+    ladder_archive:
+    - id: mistralai/mistral-large
+      role: previous
+      gen: large
+      note: Large 旧
+      auto: false
+      select: false
+      batch: archive
+      name: Mistral Large
+      context_length: 128000
+      price_prompt_per_m: 2.0
+      price_completion_per_m: 6.0
+    - id: mistralai/mistral-medium-3-5
+      role: mid
+      gen: medium-3.5
+      note: Medium 3.5
+      auto: false
+      select: false
+      batch: archive
+      name: 'Mistral: Mistral Medium 3.5'
+      context_length: 262144
+      price_prompt_per_m: 1.5
+      price_completion_per_m: 7.5
+    - id: mistralai/ministral-14b-2512
+      role: lite
+      gen: ministral-3
+      note: Ministral 14B
+      auto: false
+      select: false
+      batch: archive
+      name: 'Mistral: Ministral 3 14B 2512'
+      context_length: 262144
+      price_prompt_per_m: 0.2
+      price_completion_per_m: 0.2
+    - id: mistralai/mistral-small-3.2-24b-instruct
+      role: lite
+      gen: small-3.2
+      note: Small 3.2
+      auto: false
+      select: false
+      batch: archive
+      name: 'Mistral: Mistral Small 3.2 24B'
+      context_length: 256000
+      price_prompt_per_m: 0.1
+      price_completion_per_m: 0.3
+  x-ai:
+    vendor: xAI
+    families_by_role:
+      previous:
+      - x-ai/grok-4.20
+      mid:
+      - x-ai/grok-4.3
+      flagship:
+      - x-ai/grok-4.5
+    ladder:
+    - id: x-ai/grok-4.20
+      role: previous
+      gen: '4.20'
+      note: Grok 4.20
+      auto: false
+      select: true
+      batch: core
+      name: 'xAI: Grok 4.20'
+      context_length: 2000000
+      price_prompt_per_m: 1.25
+      price_completion_per_m: 2.5
+    - id: x-ai/grok-4.3
+      role: mid
+      gen: '4.3'
+      note: Grok 4.3
+      auto: false
+      select: true
+      batch: core
+      name: 'xAI: Grok 4.3'
+      context_length: 1000000
+      price_prompt_per_m: 1.25
+      price_completion_per_m: 2.5
+    - id: x-ai/grok-4.5
+      role: flagship
+      gen: '4.5'
+      note: Grok 4.5
+      auto: false
+      select: true
+      batch: core
+      name: 'xAI: Grok 4.5'
+      context_length: 500000
+      price_prompt_per_m: 2.0
+      price_completion_per_m: 6.0
+    ladder_archive:
+    - id: x-ai/grok-4.20-multi-agent
+      role: mid
+      gen: '4.20'
+      note: 4.20 Multi-Agent
+      auto: false
+      select: false
+      batch: archive
+      name: 'xAI: Grok 4.20 Multi-Agent'
+      context_length: 2000000
+      price_prompt_per_m: 1.25
+      price_completion_per_m: 2.5
+    - id: x-ai/grok-build-0.1
+      role: lite
+      gen: build
+      note: Grok Build
+      auto: false
+      select: false
+      batch: archive
+      name: 'xAI: Grok Build 0.1'
+      context_length: 256000
+      price_prompt_per_m: 1.0
+      price_completion_per_m: 2.0
+  moonshotai:
+    vendor: Moonshot (Kimi)
+    families_by_role:
+      reasoning:
+      - moonshotai/kimi-k2-thinking
+      previous:
+      - moonshotai/kimi-k2.5
+      mid:
+      - moonshotai/kimi-k2.6
+      flagship:
+      - moonshotai/kimi-k3
+    ladder:
+    - id: moonshotai/kimi-k2-thinking
+      role: reasoning
+      gen: k2
+      note: K2 Thinking
+      auto: false
+      select: true
+      batch: core
+      name: 'MoonshotAI: Kimi K2 Thinking'
+      context_length: 262144
+      price_prompt_per_m: 0.6
+      price_completion_per_m: 2.5
+    - id: moonshotai/kimi-k2.5
+      role: previous
+      gen: k2.5
+      note: K2.5
+      auto: false
+      select: true
+      batch: extended
+      name: 'MoonshotAI: Kimi K2.5'
+      context_length: 262144
+      price_prompt_per_m: 0.57
+      price_completion_per_m: 2.85
+    - id: moonshotai/kimi-k2.6
+      role: mid
+      gen: k2.6
+      note: K2.6
+      auto: false
+      select: true
+      batch: core
+      name: 'MoonshotAI: Kimi K2.6'
+      context_length: 262144
+      price_prompt_per_m: 0.646
+      price_completion_per_m: 2.72
+    - id: moonshotai/kimi-k3
+      role: flagship
+      gen: k3
+      note: K3
+      auto: false
+      select: true
+      batch: core
+      name: 'MoonshotAI: Kimi K3'
+      context_length: 1048576
+      price_prompt_per_m: 3.0
+      price_completion_per_m: 15.0
+    ladder_archive:
+    - id: moonshotai/kimi-k2
+      role: previous
+      gen: k2
+      note: K2
+      auto: false
+      select: false
+      batch: archive
+      name: 'MoonshotAI: Kimi K2 0711'
+      context_length: 131072
+      price_prompt_per_m: 0.57
+      price_completion_per_m: 2.3
+    - id: moonshotai/kimi-k2-0905
+      role: previous
+      gen: k2
+      note: K2 0905
+      auto: false
+      select: false
+      batch: archive
+      name: 'MoonshotAI: Kimi K2 0905'
+      context_length: 262144
+      price_prompt_per_m: 0.6
+      price_completion_per_m: 2.5
+    - id: moonshotai/kimi-k2.7-code
+      role: mid
+      gen: k2.7
+      note: K2.7 Code
+      auto: false
+      select: false
+      batch: archive
+      name: 'MoonshotAI: Kimi K2.7 Code'
+      context_length: 262144
+      price_prompt_per_m: 0.75
+      price_completion_per_m: 3.5
+  z-ai:
+    vendor: Zhipu / Z.ai (GLM)
+    families_by_role:
+      lite:
+      - z-ai/glm-4.7-flash
+      previous:
+      - z-ai/glm-4.7
+      - z-ai/glm-5
+      mid:
+      - z-ai/glm-5.1
+      flagship:
+      - z-ai/glm-5.2
+    ladder:
+    - id: z-ai/glm-4.7-flash
+      role: lite
+      gen: '4.7'
+      note: 4.7 Flash
+      auto: false
+      select: true
+      batch: core
+      name: 'Z.ai: GLM 4.7 Flash'
+      context_length: 202752
+      price_prompt_per_m: 0.06
+      price_completion_per_m: 0.4
+    - id: z-ai/glm-4.7
+      role: previous
+      gen: '4.7'
+      note: GLM 4.7
+      auto: false
+      select: true
+      batch: extended
+      name: 'Z.ai: GLM 4.7'
+      context_length: 204800
+      price_prompt_per_m: 0.4
+      price_completion_per_m: 1.75
+    - id: z-ai/glm-5
+      role: previous
+      gen: '5.0'
+      note: GLM 5
+      auto: false
+      select: true
+      batch: core
+      name: 'Z.ai: GLM 5'
+      context_length: 204800
+      price_prompt_per_m: 0.95
+      price_completion_per_m: 2.55
+    - id: z-ai/glm-5.1
+      role: mid
+      gen: '5.1'
+      note: GLM 5.1
+      auto: false
+      select: true
+      batch: core
+      name: 'Z.ai: GLM 5.1'
+      context_length: 204800
+      price_prompt_per_m: 0.966
+      price_completion_per_m: 3.036
+    - id: z-ai/glm-5.2
+      role: flagship
+      gen: '5.2'
+      note: GLM 5.2
+      auto: false
+      select: true
+      batch: core
+      name: 'Z.ai: GLM 5.2'
+      context_length: 1048576
+      price_prompt_per_m: 0.6692
+      price_completion_per_m: 2.1032
+    ladder_archive:
+    - id: z-ai/glm-4.5-air
+      role: lite
+      gen: '4.5'
+      note: 4.5 Air
+      auto: false
+      select: false
+      batch: archive
+      name: 'Z.ai: GLM 4.5 Air'
+      context_length: 131072
+      price_prompt_per_m: 0.13
+      price_completion_per_m: 0.85
+    - id: z-ai/glm-4.5
+      role: previous
+      gen: '4.5'
+      note: GLM 4.5
+      auto: false
+      select: false
+      batch: archive
+      name: 'Z.ai: GLM 4.5'
+      context_length: 131072
+      price_prompt_per_m: 0.6
+      price_completion_per_m: 2.2
+    - id: z-ai/glm-4.6
+      role: previous
+      gen: '4.6'
+      note: GLM 4.6
+      auto: false
+      select: false
+      batch: archive
+      name: 'Z.ai: GLM 4.6'
+      context_length: 204800
+      price_prompt_per_m: 0.5
+      price_completion_per_m: 2.0
+    - id: z-ai/glm-5-turbo
+      role: mid
+      gen: '5.0'
+      note: GLM 5 Turbo
+      auto: false
+      select: false
+      batch: archive
+      name: 'Z.ai: GLM 5 Turbo'
+      context_length: 202752
+      price_prompt_per_m: 1.2
+      price_completion_per_m: 4.0
+  amazon:
+    vendor: Amazon
+    families_by_role:
+      flagship:
+      - amazon/nova-premier-v1
+      mid:
+      - amazon/nova-pro-v1
+      lite:
+      - amazon/nova-2-lite-v1
+    ladder:
+    - id: amazon/nova-premier-v1
+      role: flagship
+      gen: nova-1
+      note: Premier
+      auto: false
+      select: true
+      batch: extended
+      name: 'Amazon: Nova Premier 1.0'
+      context_length: 1000000
+      price_prompt_per_m: 2.5
+      price_completion_per_m: 12.5
+    - id: amazon/nova-pro-v1
+      role: mid
+      gen: nova-1
+      note: Pro
+      auto: false
+      select: true
+      batch: extended
+      name: 'Amazon: Nova Pro 1.0'
+      context_length: 300000
+      price_prompt_per_m: 0.8
+      price_completion_per_m: 3.2
+    - id: amazon/nova-2-lite-v1
+      role: lite
+      gen: nova-2
+      note: 2 Lite
+      auto: false
+      select: true
+      batch: extended
+      name: 'Amazon: Nova 2 Lite'
+      context_length: 1000000
+      price_prompt_per_m: 0.3
+      price_completion_per_m: 2.5
+    ladder_archive:
+    - id: amazon/nova-lite-v1
+      role: lite
+      gen: nova-1
+      note: Lite
+      auto: false
+      select: false
+      batch: archive
+      name: 'Amazon: Nova Lite 1.0'
+      context_length: 300000
+      price_prompt_per_m: 0.06
+      price_completion_per_m: 0.24
+    - id: amazon/nova-micro-v1
+      role: lite
+      gen: nova-1
+      note: Micro
+      auto: false
+      select: false
+      batch: archive
+      name: 'Amazon: Nova Micro 1.0'
+      context_length: 128000
+      price_prompt_per_m: 0.035
+      price_completion_per_m: 0.14
+  minimax:
+    vendor: MiniMax
+    families_by_role:
+      previous:
+      - minimax/minimax-m2.5
+      mid:
+      - minimax/minimax-m2.7
+      flagship:
+      - minimax/minimax-m3
+    ladder:
+    - id: minimax/minimax-m2.5
+      role: previous
+      gen: m2.5
+      note: M2.5
+      auto: false
+      select: true
+      batch: extended
+      name: 'MiniMax: MiniMax M2.5'
+      context_length: 204800
+      price_prompt_per_m: 0.15
+      price_completion_per_m: 0.9
+    - id: minimax/minimax-m2.7
+      role: mid
+      gen: m2.7
+      note: M2.7
+      auto: false
+      select: true
+      batch: extended
+      name: 'MiniMax: MiniMax M2.7'
+      context_length: 204800
+      price_prompt_per_m: 0.25
+      price_completion_per_m: 1.0
+    - id: minimax/minimax-m3
+      role: flagship
+      gen: m3
+      note: M3
+      auto: false
+      select: true
+      batch: extended
+      name: 'MiniMax: MiniMax M3'
+      context_length: 1048576
+      price_prompt_per_m: 0.3
+      price_completion_per_m: 1.2
+    ladder_archive:
+    - id: minimax/minimax-m1
+      role: previous
+      gen: m1
+      note: M1
+      auto: false
+      select: false
+      batch: archive
+      name: 'MiniMax: MiniMax M1'
+      context_length: 1000000
+      price_prompt_per_m: 0.55
+      price_completion_per_m: 2.2
+    - id: minimax/minimax-m2
+      role: previous
+      gen: m2
+      note: M2
+      auto: false
+      select: false
+      batch: archive
+      name: 'MiniMax: MiniMax M2'
+      context_length: 204800
+      price_prompt_per_m: 0.255
+      price_completion_per_m: 1.02
+    - id: minimax/minimax-m2.1
+      role: previous
+      gen: m2.1
+      note: M2.1
+      auto: false
+      select: false
+      batch: archive
+      name: 'MiniMax: MiniMax M2.1'
+      context_length: 204800
+      price_prompt_per_m: 0.3
+      price_completion_per_m: 1.2
+  bytedance-seed:
+    vendor: ByteDance Seed
+    families_by_role:
+      previous:
+      - bytedance-seed/seed-1.6
+      lite:
+      - bytedance-seed/seed-2.0-mini
+      mid:
+      - bytedance-seed/seed-2.0-lite
+    ladder:
+    - id: bytedance-seed/seed-1.6
+      role: previous
+      gen: '1.6'
+      note: '1.6'
+      auto: false
+      select: true
+      batch: extended
+      name: 'ByteDance Seed: Seed 1.6'
+      context_length: 262144
+      price_prompt_per_m: 0.25
+      price_completion_per_m: 2.0
+    - id: bytedance-seed/seed-2.0-mini
+      role: lite
+      gen: '2.0'
+      note: 2.0 Mini
+      auto: false
+      select: true
+      batch: extended
+      name: 'ByteDance Seed: Seed-2.0-Mini'
+      context_length: 262144
+      price_prompt_per_m: 0.1
+      price_completion_per_m: 0.4
+    - id: bytedance-seed/seed-2.0-lite
+      role: mid
+      gen: '2.0'
+      note: 2.0 Lite
+      auto: false
+      select: true
+      batch: extended
+      name: 'ByteDance Seed: Seed-2.0-Lite'
+      context_length: 262144
+      price_prompt_per_m: 0.25
+      price_completion_per_m: 2.0
+    ladder_archive:
+    - id: bytedance-seed/seed-1.6-flash
+      role: lite
+      gen: '1.6'
+      note: 1.6 Flash
+      auto: false
+      select: false
+      batch: archive
+      name: 'ByteDance Seed: Seed 1.6 Flash'
+      context_length: 262144
+      price_prompt_per_m: 0.075
+      price_completion_per_m: 0.3
+  cohere:
+    vendor: Cohere
+    families_by_role:
+      flagship:
+      - cohere/command-a
+      mid:
+      - cohere/command-r-plus-08-2024
+    ladder:
+    - id: cohere/command-a
+      role: flagship
+      gen: command-a
+      note: Command A
+      auto: false
+      select: true
+      batch: extended
+      name: 'Cohere: Command A'
+      context_length: 256000
+      price_prompt_per_m: 2.5
+      price_completion_per_m: 10.0
+    - id: cohere/command-r-plus-08-2024
+      role: mid
+      gen: r+
+      note: R+
+      auto: false
+      select: true
+      batch: extended
+      name: 'Cohere: Command R+ (08-2024)'
+      context_length: 128000
+      price_prompt_per_m: 2.5
+      price_completion_per_m: 10.0
+    ladder_archive:
+    - id: cohere/command-r-08-2024
+      role: lite
+      gen: r
+      note: R
+      auto: false
+      select: false
+      batch: archive
+      name: 'Cohere: Command R (08-2024)'
+      context_length: 128000
+      price_prompt_per_m: 0.15
+      price_completion_per_m: 0.6
+    - id: cohere/command-r7b-12-2024
+      role: lite
+      gen: r7b
+      note: R7B
+      auto: false
+      select: false
+      batch: archive
+      name: 'Cohere: Command R7B (12-2024)'
+      context_length: 128000
+      price_prompt_per_m: 0.0375
+      price_completion_per_m: 0.15
+  nvidia:
+    vendor: NVIDIA
+    families_by_role:
+      flagship:
+      - nvidia/nemotron-3-ultra-550b-a55b
+      lite:
+      - nvidia/nemotron-3-nano-30b-a3b
+      mid:
+      - nvidia/nemotron-3-super-120b-a12b
+    ladder:
+    - id: nvidia/nemotron-3-ultra-550b-a55b
+      role: flagship
+      gen: '3'
+      note: Ultra
+      auto: false
+      select: true
+      batch: extended
+      name: 'NVIDIA: Nemotron 3 Ultra'
+      context_length: 512288
+      price_prompt_per_m: 0.6
+      price_completion_per_m: 3.6
+    - id: nvidia/nemotron-3-nano-30b-a3b
+      role: lite
+      gen: '3'
+      note: Nano
+      auto: false
+      select: true
+      batch: extended
+      name: 'NVIDIA: Nemotron 3 Nano 30B A3B'
+      context_length: 262144
+      price_prompt_per_m: 0.05
+      price_completion_per_m: 0.2
+    - id: nvidia/nemotron-3-super-120b-a12b
+      role: mid
+      gen: '3'
+      note: Super
+      auto: false
+      select: true
+      batch: extended
+      name: 'NVIDIA: Nemotron 3 Super'
+      context_length: 1000000
+      price_prompt_per_m: 0.085
+      price_completion_per_m: 0.4
+    ladder_archive: []
+  tencent:
+    vendor: Tencent
+    families_by_role:
+      flagship:
+      - tencent/hy3
+      mid:
+      - tencent/hy3-preview
+    ladder:
+    - id: tencent/hy3
+      role: flagship
+      gen: hy3
+      note: Hy3
+      auto: false
+      select: true
+      batch: extended
+      name: 'Tencent: Hy3'
+      context_length: 262144
+      price_prompt_per_m: 0.132
+      price_completion_per_m: 0.528
+    - id: tencent/hy3-preview
+      role: mid
+      gen: hy3
+      note: Hy3 preview
+      auto: false
+      select: true
+      batch: extended
+      name: 'Tencent: Hy3 preview'
+      context_length: 262144
+      price_prompt_per_m: 0.063
+      price_completion_per_m: 0.21
+    ladder_archive:
+    - id: tencent/hunyuan-a13b-instruct
+      role: lite
+      gen: hunyuan
+      note: A13B
+      auto: false
+      select: false
+      batch: archive
+      name: 'Tencent: Hunyuan A13B Instruct'
+      context_length: 131072
+      price_prompt_per_m: 0.14
+      price_completion_per_m: 0.57
+  xiaomi:
+    vendor: Xiaomi
+    families_by_role:
+      flagship:
+      - xiaomi/mimo-v2.5-pro
+      mid:
+      - xiaomi/mimo-v2.5
+    ladder:
+    - id: xiaomi/mimo-v2.5-pro
+      role: flagship
+      gen: '2.5'
+      note: Pro
+      auto: false
+      select: true
+      batch: extended
+      name: 'Xiaomi: MiMo-V2.5-Pro'
+      context_length: 1050000
+      price_prompt_per_m: 0.435
+      price_completion_per_m: 0.87
+    - id: xiaomi/mimo-v2.5
+      role: mid
+      gen: '2.5'
+      note: 标准
+      auto: false
+      select: true
+      batch: extended
+      name: 'Xiaomi: MiMo-V2.5'
+      context_length: 1050000
+      price_prompt_per_m: 0.14
+      price_completion_per_m: 0.28
+    ladder_archive: []
+batch_width_smoke:
+- id: openai/gpt-5.6-sol
+  name: 'OpenAI: GPT-5.6 Sol'
+  context_length: 1050000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 30.0
+- id: anthropic/claude-sonnet-5
+  name: 'Anthropic: Claude Sonnet 5'
+  context_length: 1000000
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 10.0
+- id: google/gemini-3.6-flash
+  name: 'Google: Gemini 3.6 Flash'
+  context_length: 1048576
+  price_prompt_per_m: 1.5
+  price_completion_per_m: 7.5
+- id: deepseek/deepseek-v4-pro
+  name: 'DeepSeek: DeepSeek V4 Pro'
+  context_length: 1048576
+  price_prompt_per_m: 0.435
+  price_completion_per_m: 0.87
+- id: qwen/qwen3.7-plus
+  name: 'Qwen: Qwen3.7 Plus'
+  context_length: 1000000
+  price_prompt_per_m: 0.32
+  price_completion_per_m: 1.28
+- id: meta-llama/llama-4-maverick
+  name: 'Meta: Llama 4 Maverick'
+  context_length: 1048576
+  price_prompt_per_m: 0.2
+  price_completion_per_m: 0.8
+- id: mistralai/mistral-large-2512
+  name: 'Mistral: Mistral Large 3 2512'
+  context_length: 262144
+  price_prompt_per_m: 0.5
+  price_completion_per_m: 1.5
+- id: x-ai/grok-4.5
+  name: 'xAI: Grok 4.5'
+  context_length: 500000
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 6.0
+- id: moonshotai/kimi-k3
+  name: 'MoonshotAI: Kimi K3'
+  context_length: 1048576
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- id: z-ai/glm-5.2
+  name: 'Z.ai: GLM 5.2'
+  context_length: 1048576
+  price_prompt_per_m: 0.6692
+  price_completion_per_m: 2.1032
+- id: amazon/nova-pro-v1
+  name: 'Amazon: Nova Pro 1.0'
+  context_length: 300000
+  price_prompt_per_m: 0.8
+  price_completion_per_m: 3.2
+- id: minimax/minimax-m3
+  name: 'MiniMax: MiniMax M3'
+  context_length: 1048576
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 1.2
+- id: bytedance-seed/seed-2.0-lite
+  name: 'ByteDance Seed: Seed-2.0-Lite'
+  context_length: 262144
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 2.0
+- id: cohere/command-a
+  name: 'Cohere: Command A'
+  context_length: 256000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: nvidia/nemotron-3-super-120b-a12b
+  name: 'NVIDIA: Nemotron 3 Super'
+  context_length: 1000000
+  price_prompt_per_m: 0.085
+  price_completion_per_m: 0.4
+- id: tencent/hy3
+  name: 'Tencent: Hy3'
+  context_length: 262144
+  price_prompt_per_m: 0.132
+  price_completion_per_m: 0.528
+- id: xiaomi/mimo-v2.5-pro
+  name: 'Xiaomi: MiMo-V2.5-Pro'
+  context_length: 1050000
+  price_prompt_per_m: 0.435
+  price_completion_per_m: 0.87
+batch_select_core:
+- &id002
+  id: openai/gpt-5.6-sol
+  name: 'OpenAI: GPT-5.6 Sol'
+  context_length: 1050000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 30.0
+- &id003
+  id: openai/gpt-5.6-terra
+  name: 'OpenAI: GPT-5.6 Terra'
+  context_length: 1050000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 15.0
+- &id004
+  id: openai/gpt-5.6-luna
+  name: 'OpenAI: GPT-5.6 Luna'
+  context_length: 1050000
+  price_prompt_per_m: 1.0
+  price_completion_per_m: 6.0
+- &id005
+  id: openai/gpt-5.5
+  name: 'OpenAI: GPT-5.5'
+  context_length: 1050000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 30.0
+- &id006
+  id: openai/gpt-5.4
+  name: 'OpenAI: GPT-5.4'
+  context_length: 1050000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 15.0
+- &id007
+  id: openai/gpt-5.4-mini
+  name: 'OpenAI: GPT-5.4 Mini'
+  context_length: 400000
+  price_prompt_per_m: 0.75
+  price_completion_per_m: 4.5
+- &id008
+  id: openai/gpt-5.4-nano
+  name: 'OpenAI: GPT-5.4 Nano'
+  context_length: 400000
+  price_prompt_per_m: 0.2
+  price_completion_per_m: 1.25
+- &id009
+  id: openai/o3
+  name: 'OpenAI: o3'
+  context_length: 200000
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 8.0
+- &id010
+  id: openai/o3-mini
+  name: 'OpenAI: o3 Mini'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- &id011
+  id: openai/o4-mini
+  name: 'OpenAI: o4 Mini'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- &id012
+  id: anthropic/claude-opus-5
+  name: Claude Opus 5
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- &id013
+  id: anthropic/claude-fable-5
+  name: 'Anthropic: Claude Fable 5'
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- &id014
+  id: anthropic/claude-opus-4.8
+  name: 'Anthropic: Claude Opus 4.8'
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- &id015
+  id: anthropic/claude-opus-4.6
+  name: 'Anthropic: Claude Opus 4.6'
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- &id016
+  id: anthropic/claude-sonnet-5
+  name: 'Anthropic: Claude Sonnet 5'
+  context_length: 1000000
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 10.0
+- &id017
+  id: anthropic/claude-sonnet-4.6
+  name: 'Anthropic: Claude Sonnet 4.6'
+  context_length: 1000000
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- &id018
+  id: anthropic/claude-sonnet-4.5
+  name: 'Anthropic: Claude Sonnet 4.5'
+  context_length: 1000000
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- &id019
+  id: anthropic/claude-haiku-4.5
+  name: 'Anthropic: Claude Haiku 4.5'
+  context_length: 200000
+  price_prompt_per_m: 1.0
+  price_completion_per_m: 5.0
+- &id020
+  id: google/gemini-3.1-pro-preview
+  name: 'Google: Gemini 3.1 Pro Preview'
+  context_length: 1048576
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 12.0
+- &id021
+  id: google/gemini-3.6-flash
+  name: 'Google: Gemini 3.6 Flash'
+  context_length: 1048576
+  price_prompt_per_m: 1.5
+  price_completion_per_m: 7.5
+- &id022
+  id: google/gemini-3.5-flash
+  name: 'Google: Gemini 3.5 Flash'
+  context_length: 1048576
+  price_prompt_per_m: 1.5
+  price_completion_per_m: 9.0
+- &id023
+  id: google/gemini-3.5-flash-lite
+  name: 'Google: Gemini 3.5 Flash Lite'
+  context_length: 1048576
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 2.5
+- &id024
+  id: google/gemini-2.5-pro
+  name: 'Google: Gemini 2.5 Pro'
+  context_length: 1048576
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- &id025
+  id: google/gemini-2.5-flash
+  name: 'Google: Gemini 2.5 Flash'
+  context_length: 1048576
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 2.5
+- &id026
+  id: google/gemini-2.5-flash-lite
+  name: 'Google: Gemini 2.5 Flash Lite'
+  context_length: 1048576
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.4
+- &id027
+  id: deepseek/deepseek-v4-pro
+  name: 'DeepSeek: DeepSeek V4 Pro'
+  context_length: 1048576
+  price_prompt_per_m: 0.435
+  price_completion_per_m: 0.87
+- &id028
+  id: deepseek/deepseek-v4-flash
+  name: 'DeepSeek: DeepSeek V4 Flash'
+  context_length: 1048576
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.28
+- &id029
+  id: deepseek/deepseek-v3.2
+  name: 'DeepSeek: DeepSeek V3.2'
+  context_length: 163840
+  price_prompt_per_m: 0.269
+  price_completion_per_m: 0.4
+- &id030
+  id: deepseek/deepseek-r1
+  name: 'DeepSeek: R1'
+  context_length: 163840
+  price_prompt_per_m: 0.7
+  price_completion_per_m: 2.5
+- &id031
+  id: deepseek/deepseek-r1-0528
+  name: 'DeepSeek: R1 0528'
+  context_length: 163840
+  price_prompt_per_m: 0.5
+  price_completion_per_m: 2.15
+- &id032
+  id: qwen/qwen3.7-max
+  name: 'Qwen: Qwen3.7 Max'
+  context_length: 1000000
+  price_prompt_per_m: 1.475
+  price_completion_per_m: 4.425
+- &id033
+  id: qwen/qwen3.7-plus
+  name: 'Qwen: Qwen3.7 Plus'
+  context_length: 1000000
+  price_prompt_per_m: 0.32
+  price_completion_per_m: 1.28
+- &id034
+  id: qwen/qwen3.6-plus
+  name: 'Qwen: Qwen3.6 Plus'
+  context_length: 1000000
+  price_prompt_per_m: 0.325
+  price_completion_per_m: 1.95
+- &id035
+  id: qwen/qwen3.6-flash
+  name: 'Qwen: Qwen3.6 Flash'
+  context_length: 1000000
+  price_prompt_per_m: 0.1875
+  price_completion_per_m: 1.125
+- &id036
+  id: qwen/qwen3.5-397b-a17b
+  name: 'Qwen: Qwen3.5 397B A17B'
+  context_length: 262144
+  price_prompt_per_m: 0.39
+  price_completion_per_m: 2.34
+- &id037
+  id: meta-llama/llama-4-maverick
+  name: 'Meta: Llama 4 Maverick'
+  context_length: 1048576
+  price_prompt_per_m: 0.2
+  price_completion_per_m: 0.8
+- &id038
+  id: meta-llama/llama-4-scout
+  name: 'Meta: Llama 4 Scout'
+  context_length: 1310720
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.3
+- &id039
+  id: meta-llama/llama-3.3-70b-instruct
+  name: 'Meta: Llama 3.3 70B Instruct'
+  context_length: 131072
+  price_prompt_per_m: 0.13
+  price_completion_per_m: 0.4
+- &id040
+  id: mistralai/mistral-large-2512
+  name: 'Mistral: Mistral Large 3 2512'
+  context_length: 262144
+  price_prompt_per_m: 0.5
+  price_completion_per_m: 1.5
+- &id041
+  id: mistralai/mistral-medium-3.1
+  name: 'Mistral: Mistral Medium 3.1'
+  context_length: 131072
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- &id042
+  id: mistralai/mistral-small-2603
+  name: 'Mistral: Mistral Small 4'
+  context_length: 262144
+  price_prompt_per_m: 0.15
+  price_completion_per_m: 0.6
+- &id043
+  id: x-ai/grok-4.5
+  name: 'xAI: Grok 4.5'
+  context_length: 500000
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 6.0
+- &id044
+  id: x-ai/grok-4.3
+  name: 'xAI: Grok 4.3'
+  context_length: 1000000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 2.5
+- &id045
+  id: x-ai/grok-4.20
+  name: 'xAI: Grok 4.20'
+  context_length: 2000000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 2.5
+- &id046
+  id: moonshotai/kimi-k3
+  name: 'MoonshotAI: Kimi K3'
+  context_length: 1048576
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- &id047
+  id: moonshotai/kimi-k2.6
+  name: 'MoonshotAI: Kimi K2.6'
+  context_length: 262144
+  price_prompt_per_m: 0.646
+  price_completion_per_m: 2.72
+- &id048
+  id: moonshotai/kimi-k2-thinking
+  name: 'MoonshotAI: Kimi K2 Thinking'
+  context_length: 262144
+  price_prompt_per_m: 0.6
+  price_completion_per_m: 2.5
+- &id049
+  id: z-ai/glm-5.2
+  name: 'Z.ai: GLM 5.2'
+  context_length: 1048576
+  price_prompt_per_m: 0.6692
+  price_completion_per_m: 2.1032
+- &id050
+  id: z-ai/glm-5.1
+  name: 'Z.ai: GLM 5.1'
+  context_length: 204800
+  price_prompt_per_m: 0.966
+  price_completion_per_m: 3.036
+- &id051
+  id: z-ai/glm-5
+  name: 'Z.ai: GLM 5'
+  context_length: 204800
+  price_prompt_per_m: 0.95
+  price_completion_per_m: 2.55
+- &id052
+  id: z-ai/glm-4.7-flash
+  name: 'Z.ai: GLM 4.7 Flash'
+  context_length: 202752
+  price_prompt_per_m: 0.06
+  price_completion_per_m: 0.4
+- &id001
+  id: paperguru/guru-pro-1.2
+  vendor: PaperGuru
+  name: PaperGuru Guru Pro 1.2
+  note: own endpoint via PAPERGURU_*; 主跑·基线
+  batch: core
+  select: true
+  auto: false
+  price_prompt_per_m: 0.0
+  price_completion_per_m: 0.0
+batch_select_extended:
+- id: openai/gpt-5.6-sol-pro
+  name: 'OpenAI: GPT-5.6 Sol Pro'
+  context_length: 1050000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 30.0
+- id: openai/gpt-5.6-terra-pro
+  name: 'OpenAI: GPT-5.6 Terra Pro'
+  context_length: 1050000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 15.0
+- id: openai/gpt-5.6-luna-pro
+  name: 'OpenAI: GPT-5.6 Luna Pro'
+  context_length: 1050000
+  price_prompt_per_m: 1.0
+  price_completion_per_m: 6.0
+- id: openai/gpt-5.5-pro
+  name: 'OpenAI: GPT-5.5 Pro'
+  context_length: 1050000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 180.0
+- id: openai/gpt-5.4-pro
+  name: 'OpenAI: GPT-5.4 Pro'
+  context_length: 1050000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 180.0
+- id: openai/o3-pro
+  name: 'OpenAI: o3 Pro'
+  context_length: 200000
+  price_prompt_per_m: 20.0
+  price_completion_per_m: 80.0
+- id: openai/o3-mini-high
+  name: 'OpenAI: o3 Mini High'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- id: openai/o4-mini-high
+  name: 'OpenAI: o4 Mini High'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- id: anthropic/claude-opus-5-fast
+  name: Claude Opus 5 (Fast)
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- id: anthropic/claude-opus-4.8-fast
+  name: 'Anthropic: Claude Opus 4.8 (Fast)'
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- id: anthropic/claude-opus-4.7-fast
+  name: 'Anthropic: Claude Opus 4.7 (Fast)'
+  context_length: 1000000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 150.0
+- id: openai/gpt-5.2
+  name: 'OpenAI: GPT-5.2'
+  context_length: 400000
+  price_prompt_per_m: 1.75
+  price_completion_per_m: 14.0
+- id: openai/gpt-5.1
+  name: 'OpenAI: GPT-5.1'
+  context_length: 400000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- id: openai/gpt-5
+  name: 'OpenAI: GPT-5'
+  context_length: 400000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- id: openai/gpt-4o
+  name: 'OpenAI: GPT-4o'
+  context_length: 128000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: anthropic/claude-opus-4.7
+  name: 'Anthropic: Claude Opus 4.7'
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- id: anthropic/claude-opus-4.5
+  name: 'Anthropic: Claude Opus 4.5'
+  context_length: 200000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- id: anthropic/claude-sonnet-4
+  name: 'Anthropic: Claude Sonnet 4'
+  context_length: 1000000
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- id: google/gemini-3-flash-preview
+  name: 'Google: Gemini 3 Flash Preview'
+  context_length: 1048576
+  price_prompt_per_m: 0.5
+  price_completion_per_m: 3.0
+- id: google/gemini-3.1-flash-lite
+  name: 'Google: Gemini 3.1 Flash Lite'
+  context_length: 1048576
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 1.5
+- id: google/gemma-4-31b-it
+  name: 'Google: Gemma 4 31B'
+  context_length: 262144
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.4
+- id: deepseek/deepseek-chat-v3.1
+  name: 'DeepSeek: DeepSeek V3.1'
+  context_length: 163840
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 0.95
+- id: qwen/qwen3.6-max-preview
+  name: 'Qwen: Qwen3.6 Max Preview'
+  context_length: 262144
+  price_prompt_per_m: 1.04
+  price_completion_per_m: 6.24
+- id: qwen/qwen3-max-thinking
+  name: 'Qwen: Qwen3 Max Thinking'
+  context_length: 262144
+  price_prompt_per_m: 0.78
+  price_completion_per_m: 3.9
+- id: meta-llama/llama-3.1-8b-instruct
+  name: 'Meta: Llama 3.1 8B Instruct'
+  context_length: 131072
+  price_prompt_per_m: 0.05
+  price_completion_per_m: 0.08
+- id: mistralai/mistral-medium-3
+  name: 'Mistral: Mistral Medium 3'
+  context_length: 131072
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- id: mistralai/devstral-2512
+  name: 'Mistral: Devstral 2 2512'
+  context_length: 262144
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- id: moonshotai/kimi-k2.5
+  name: 'MoonshotAI: Kimi K2.5'
+  context_length: 262144
+  price_prompt_per_m: 0.57
+  price_completion_per_m: 2.85
+- id: z-ai/glm-4.7
+  name: 'Z.ai: GLM 4.7'
+  context_length: 204800
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 1.75
+- id: amazon/nova-premier-v1
+  name: 'Amazon: Nova Premier 1.0'
+  context_length: 1000000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 12.5
+- id: amazon/nova-pro-v1
+  name: 'Amazon: Nova Pro 1.0'
+  context_length: 300000
+  price_prompt_per_m: 0.8
+  price_completion_per_m: 3.2
+- id: amazon/nova-2-lite-v1
+  name: 'Amazon: Nova 2 Lite'
+  context_length: 1000000
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 2.5
+- id: minimax/minimax-m3
+  name: 'MiniMax: MiniMax M3'
+  context_length: 1048576
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 1.2
+- id: minimax/minimax-m2.7
+  name: 'MiniMax: MiniMax M2.7'
+  context_length: 204800
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 1.0
+- id: minimax/minimax-m2.5
+  name: 'MiniMax: MiniMax M2.5'
+  context_length: 204800
+  price_prompt_per_m: 0.15
+  price_completion_per_m: 0.9
+- id: bytedance-seed/seed-2.0-lite
+  name: 'ByteDance Seed: Seed-2.0-Lite'
+  context_length: 262144
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 2.0
+- id: bytedance-seed/seed-2.0-mini
+  name: 'ByteDance Seed: Seed-2.0-Mini'
+  context_length: 262144
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.4
+- id: bytedance-seed/seed-1.6
+  name: 'ByteDance Seed: Seed 1.6'
+  context_length: 262144
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 2.0
+- id: cohere/command-a
+  name: 'Cohere: Command A'
+  context_length: 256000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: cohere/command-r-plus-08-2024
+  name: 'Cohere: Command R+ (08-2024)'
+  context_length: 128000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: nvidia/nemotron-3-ultra-550b-a55b
+  name: 'NVIDIA: Nemotron 3 Ultra'
+  context_length: 512288
+  price_prompt_per_m: 0.6
+  price_completion_per_m: 3.6
+- id: nvidia/nemotron-3-super-120b-a12b
+  name: 'NVIDIA: Nemotron 3 Super'
+  context_length: 1000000
+  price_prompt_per_m: 0.085
+  price_completion_per_m: 0.4
+- id: nvidia/nemotron-3-nano-30b-a3b
+  name: 'NVIDIA: Nemotron 3 Nano 30B A3B'
+  context_length: 262144
+  price_prompt_per_m: 0.05
+  price_completion_per_m: 0.2
+- id: tencent/hy3
+  name: 'Tencent: Hy3'
+  context_length: 262144
+  price_prompt_per_m: 0.132
+  price_completion_per_m: 0.528
+- id: tencent/hy3-preview
+  name: 'Tencent: Hy3 preview'
+  context_length: 262144
+  price_prompt_per_m: 0.063
+  price_completion_per_m: 0.21
+- id: xiaomi/mimo-v2.5-pro
+  name: 'Xiaomi: MiMo-V2.5-Pro'
+  context_length: 1050000
+  price_prompt_per_m: 0.435
+  price_completion_per_m: 0.87
+- id: xiaomi/mimo-v2.5
+  name: 'Xiaomi: MiMo-V2.5'
+  context_length: 1050000
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.28
+batch_select_all:
+- &id053
+  id: openai/gpt-5.6-sol
+  name: 'OpenAI: GPT-5.6 Sol'
+  context_length: 1050000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 30.0
+- &id054
+  id: openai/gpt-5.6-terra
+  name: 'OpenAI: GPT-5.6 Terra'
+  context_length: 1050000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 15.0
+- &id055
+  id: openai/gpt-5.6-luna
+  name: 'OpenAI: GPT-5.6 Luna'
+  context_length: 1050000
+  price_prompt_per_m: 1.0
+  price_completion_per_m: 6.0
+- &id056
+  id: openai/gpt-5.5
+  name: 'OpenAI: GPT-5.5'
+  context_length: 1050000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 30.0
+- &id057
+  id: openai/gpt-5.4
+  name: 'OpenAI: GPT-5.4'
+  context_length: 1050000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 15.0
+- &id058
+  id: openai/gpt-5.4-mini
+  name: 'OpenAI: GPT-5.4 Mini'
+  context_length: 400000
+  price_prompt_per_m: 0.75
+  price_completion_per_m: 4.5
+- &id059
+  id: openai/gpt-5.4-nano
+  name: 'OpenAI: GPT-5.4 Nano'
+  context_length: 400000
+  price_prompt_per_m: 0.2
+  price_completion_per_m: 1.25
+- &id060
+  id: openai/o3
+  name: 'OpenAI: o3'
+  context_length: 200000
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 8.0
+- &id061
+  id: openai/o3-mini
+  name: 'OpenAI: o3 Mini'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- &id062
+  id: openai/o4-mini
+  name: 'OpenAI: o4 Mini'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- &id063
+  id: anthropic/claude-opus-5
+  name: Claude Opus 5
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- &id064
+  id: anthropic/claude-fable-5
+  name: 'Anthropic: Claude Fable 5'
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- &id065
+  id: anthropic/claude-opus-4.8
+  name: 'Anthropic: Claude Opus 4.8'
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- &id066
+  id: anthropic/claude-opus-4.6
+  name: 'Anthropic: Claude Opus 4.6'
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- &id067
+  id: anthropic/claude-sonnet-5
+  name: 'Anthropic: Claude Sonnet 5'
+  context_length: 1000000
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 10.0
+- &id068
+  id: anthropic/claude-sonnet-4.6
+  name: 'Anthropic: Claude Sonnet 4.6'
+  context_length: 1000000
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- &id069
+  id: anthropic/claude-sonnet-4.5
+  name: 'Anthropic: Claude Sonnet 4.5'
+  context_length: 1000000
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- &id070
+  id: anthropic/claude-haiku-4.5
+  name: 'Anthropic: Claude Haiku 4.5'
+  context_length: 200000
+  price_prompt_per_m: 1.0
+  price_completion_per_m: 5.0
+- &id071
+  id: google/gemini-3.1-pro-preview
+  name: 'Google: Gemini 3.1 Pro Preview'
+  context_length: 1048576
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 12.0
+- &id072
+  id: google/gemini-3.6-flash
+  name: 'Google: Gemini 3.6 Flash'
+  context_length: 1048576
+  price_prompt_per_m: 1.5
+  price_completion_per_m: 7.5
+- &id073
+  id: google/gemini-3.5-flash
+  name: 'Google: Gemini 3.5 Flash'
+  context_length: 1048576
+  price_prompt_per_m: 1.5
+  price_completion_per_m: 9.0
+- &id074
+  id: google/gemini-3.5-flash-lite
+  name: 'Google: Gemini 3.5 Flash Lite'
+  context_length: 1048576
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 2.5
+- &id075
+  id: google/gemini-2.5-pro
+  name: 'Google: Gemini 2.5 Pro'
+  context_length: 1048576
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- &id076
+  id: google/gemini-2.5-flash
+  name: 'Google: Gemini 2.5 Flash'
+  context_length: 1048576
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 2.5
+- &id077
+  id: google/gemini-2.5-flash-lite
+  name: 'Google: Gemini 2.5 Flash Lite'
+  context_length: 1048576
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.4
+- &id078
+  id: deepseek/deepseek-v4-pro
+  name: 'DeepSeek: DeepSeek V4 Pro'
+  context_length: 1048576
+  price_prompt_per_m: 0.435
+  price_completion_per_m: 0.87
+- &id079
+  id: deepseek/deepseek-v4-flash
+  name: 'DeepSeek: DeepSeek V4 Flash'
+  context_length: 1048576
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.28
+- &id080
+  id: deepseek/deepseek-v3.2
+  name: 'DeepSeek: DeepSeek V3.2'
+  context_length: 163840
+  price_prompt_per_m: 0.269
+  price_completion_per_m: 0.4
+- &id081
+  id: deepseek/deepseek-r1
+  name: 'DeepSeek: R1'
+  context_length: 163840
+  price_prompt_per_m: 0.7
+  price_completion_per_m: 2.5
+- &id082
+  id: deepseek/deepseek-r1-0528
+  name: 'DeepSeek: R1 0528'
+  context_length: 163840
+  price_prompt_per_m: 0.5
+  price_completion_per_m: 2.15
+- &id083
+  id: qwen/qwen3.7-max
+  name: 'Qwen: Qwen3.7 Max'
+  context_length: 1000000
+  price_prompt_per_m: 1.475
+  price_completion_per_m: 4.425
+- &id084
+  id: qwen/qwen3.7-plus
+  name: 'Qwen: Qwen3.7 Plus'
+  context_length: 1000000
+  price_prompt_per_m: 0.32
+  price_completion_per_m: 1.28
+- &id085
+  id: qwen/qwen3.6-plus
+  name: 'Qwen: Qwen3.6 Plus'
+  context_length: 1000000
+  price_prompt_per_m: 0.325
+  price_completion_per_m: 1.95
+- &id086
+  id: qwen/qwen3.6-flash
+  name: 'Qwen: Qwen3.6 Flash'
+  context_length: 1000000
+  price_prompt_per_m: 0.1875
+  price_completion_per_m: 1.125
+- &id087
+  id: qwen/qwen3.5-397b-a17b
+  name: 'Qwen: Qwen3.5 397B A17B'
+  context_length: 262144
+  price_prompt_per_m: 0.39
+  price_completion_per_m: 2.34
+- &id088
+  id: meta-llama/llama-4-maverick
+  name: 'Meta: Llama 4 Maverick'
+  context_length: 1048576
+  price_prompt_per_m: 0.2
+  price_completion_per_m: 0.8
+- &id089
+  id: meta-llama/llama-4-scout
+  name: 'Meta: Llama 4 Scout'
+  context_length: 1310720
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.3
+- &id090
+  id: meta-llama/llama-3.3-70b-instruct
+  name: 'Meta: Llama 3.3 70B Instruct'
+  context_length: 131072
+  price_prompt_per_m: 0.13
+  price_completion_per_m: 0.4
+- &id091
+  id: mistralai/mistral-large-2512
+  name: 'Mistral: Mistral Large 3 2512'
+  context_length: 262144
+  price_prompt_per_m: 0.5
+  price_completion_per_m: 1.5
+- &id092
+  id: mistralai/mistral-medium-3.1
+  name: 'Mistral: Mistral Medium 3.1'
+  context_length: 131072
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- &id093
+  id: mistralai/mistral-small-2603
+  name: 'Mistral: Mistral Small 4'
+  context_length: 262144
+  price_prompt_per_m: 0.15
+  price_completion_per_m: 0.6
+- &id094
+  id: x-ai/grok-4.5
+  name: 'xAI: Grok 4.5'
+  context_length: 500000
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 6.0
+- &id095
+  id: x-ai/grok-4.3
+  name: 'xAI: Grok 4.3'
+  context_length: 1000000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 2.5
+- &id096
+  id: x-ai/grok-4.20
+  name: 'xAI: Grok 4.20'
+  context_length: 2000000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 2.5
+- &id097
+  id: moonshotai/kimi-k3
+  name: 'MoonshotAI: Kimi K3'
+  context_length: 1048576
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- &id098
+  id: moonshotai/kimi-k2.6
+  name: 'MoonshotAI: Kimi K2.6'
+  context_length: 262144
+  price_prompt_per_m: 0.646
+  price_completion_per_m: 2.72
+- &id099
+  id: moonshotai/kimi-k2-thinking
+  name: 'MoonshotAI: Kimi K2 Thinking'
+  context_length: 262144
+  price_prompt_per_m: 0.6
+  price_completion_per_m: 2.5
+- &id100
+  id: z-ai/glm-5.2
+  name: 'Z.ai: GLM 5.2'
+  context_length: 1048576
+  price_prompt_per_m: 0.6692
+  price_completion_per_m: 2.1032
+- &id101
+  id: z-ai/glm-5.1
+  name: 'Z.ai: GLM 5.1'
+  context_length: 204800
+  price_prompt_per_m: 0.966
+  price_completion_per_m: 3.036
+- &id102
+  id: z-ai/glm-5
+  name: 'Z.ai: GLM 5'
+  context_length: 204800
+  price_prompt_per_m: 0.95
+  price_completion_per_m: 2.55
+- &id103
+  id: z-ai/glm-4.7-flash
+  name: 'Z.ai: GLM 4.7 Flash'
+  context_length: 202752
+  price_prompt_per_m: 0.06
+  price_completion_per_m: 0.4
+- *id001
+- &id104
+  id: openai/gpt-5.6-sol-pro
+  name: 'OpenAI: GPT-5.6 Sol Pro'
+  context_length: 1050000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 30.0
+- &id105
+  id: openai/gpt-5.6-terra-pro
+  name: 'OpenAI: GPT-5.6 Terra Pro'
+  context_length: 1050000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 15.0
+- &id106
+  id: openai/gpt-5.6-luna-pro
+  name: 'OpenAI: GPT-5.6 Luna Pro'
+  context_length: 1050000
+  price_prompt_per_m: 1.0
+  price_completion_per_m: 6.0
+- &id107
+  id: openai/gpt-5.5-pro
+  name: 'OpenAI: GPT-5.5 Pro'
+  context_length: 1050000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 180.0
+- &id108
+  id: openai/gpt-5.4-pro
+  name: 'OpenAI: GPT-5.4 Pro'
+  context_length: 1050000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 180.0
+- &id109
+  id: openai/o3-pro
+  name: 'OpenAI: o3 Pro'
+  context_length: 200000
+  price_prompt_per_m: 20.0
+  price_completion_per_m: 80.0
+- &id110
+  id: openai/o3-mini-high
+  name: 'OpenAI: o3 Mini High'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- &id111
+  id: openai/o4-mini-high
+  name: 'OpenAI: o4 Mini High'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- &id112
+  id: anthropic/claude-opus-5-fast
+  name: Claude Opus 5 (Fast)
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- &id113
+  id: anthropic/claude-opus-4.8-fast
+  name: 'Anthropic: Claude Opus 4.8 (Fast)'
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- &id114
+  id: anthropic/claude-opus-4.7-fast
+  name: 'Anthropic: Claude Opus 4.7 (Fast)'
+  context_length: 1000000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 150.0
+- &id115
+  id: openai/gpt-5.2
+  name: 'OpenAI: GPT-5.2'
+  context_length: 400000
+  price_prompt_per_m: 1.75
+  price_completion_per_m: 14.0
+- &id116
+  id: openai/gpt-5.1
+  name: 'OpenAI: GPT-5.1'
+  context_length: 400000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- &id117
+  id: openai/gpt-5
+  name: 'OpenAI: GPT-5'
+  context_length: 400000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- &id118
+  id: openai/gpt-4o
+  name: 'OpenAI: GPT-4o'
+  context_length: 128000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- &id119
+  id: anthropic/claude-opus-4.7
+  name: 'Anthropic: Claude Opus 4.7'
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- &id120
+  id: anthropic/claude-opus-4.5
+  name: 'Anthropic: Claude Opus 4.5'
+  context_length: 200000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- &id121
+  id: anthropic/claude-sonnet-4
+  name: 'Anthropic: Claude Sonnet 4'
+  context_length: 1000000
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- &id122
+  id: google/gemini-3-flash-preview
+  name: 'Google: Gemini 3 Flash Preview'
+  context_length: 1048576
+  price_prompt_per_m: 0.5
+  price_completion_per_m: 3.0
+- &id123
+  id: google/gemini-3.1-flash-lite
+  name: 'Google: Gemini 3.1 Flash Lite'
+  context_length: 1048576
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 1.5
+- &id124
+  id: google/gemma-4-31b-it
+  name: 'Google: Gemma 4 31B'
+  context_length: 262144
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.4
+- &id125
+  id: deepseek/deepseek-chat-v3.1
+  name: 'DeepSeek: DeepSeek V3.1'
+  context_length: 163840
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 0.95
+- &id126
+  id: qwen/qwen3.6-max-preview
+  name: 'Qwen: Qwen3.6 Max Preview'
+  context_length: 262144
+  price_prompt_per_m: 1.04
+  price_completion_per_m: 6.24
+- &id127
+  id: qwen/qwen3-max-thinking
+  name: 'Qwen: Qwen3 Max Thinking'
+  context_length: 262144
+  price_prompt_per_m: 0.78
+  price_completion_per_m: 3.9
+- &id128
+  id: meta-llama/llama-3.1-8b-instruct
+  name: 'Meta: Llama 3.1 8B Instruct'
+  context_length: 131072
+  price_prompt_per_m: 0.05
+  price_completion_per_m: 0.08
+- &id129
+  id: mistralai/mistral-medium-3
+  name: 'Mistral: Mistral Medium 3'
+  context_length: 131072
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- &id130
+  id: mistralai/devstral-2512
+  name: 'Mistral: Devstral 2 2512'
+  context_length: 262144
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- &id131
+  id: moonshotai/kimi-k2.5
+  name: 'MoonshotAI: Kimi K2.5'
+  context_length: 262144
+  price_prompt_per_m: 0.57
+  price_completion_per_m: 2.85
+- &id132
+  id: z-ai/glm-4.7
+  name: 'Z.ai: GLM 4.7'
+  context_length: 204800
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 1.75
+- &id133
+  id: amazon/nova-premier-v1
+  name: 'Amazon: Nova Premier 1.0'
+  context_length: 1000000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 12.5
+- &id134
+  id: amazon/nova-pro-v1
+  name: 'Amazon: Nova Pro 1.0'
+  context_length: 300000
+  price_prompt_per_m: 0.8
+  price_completion_per_m: 3.2
+- &id135
+  id: amazon/nova-2-lite-v1
+  name: 'Amazon: Nova 2 Lite'
+  context_length: 1000000
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 2.5
+- &id136
+  id: minimax/minimax-m3
+  name: 'MiniMax: MiniMax M3'
+  context_length: 1048576
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 1.2
+- &id137
+  id: minimax/minimax-m2.7
+  name: 'MiniMax: MiniMax M2.7'
+  context_length: 204800
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 1.0
+- &id138
+  id: minimax/minimax-m2.5
+  name: 'MiniMax: MiniMax M2.5'
+  context_length: 204800
+  price_prompt_per_m: 0.15
+  price_completion_per_m: 0.9
+- &id139
+  id: bytedance-seed/seed-2.0-lite
+  name: 'ByteDance Seed: Seed-2.0-Lite'
+  context_length: 262144
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 2.0
+- &id140
+  id: bytedance-seed/seed-2.0-mini
+  name: 'ByteDance Seed: Seed-2.0-Mini'
+  context_length: 262144
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.4
+- &id141
+  id: bytedance-seed/seed-1.6
+  name: 'ByteDance Seed: Seed 1.6'
+  context_length: 262144
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 2.0
+- &id142
+  id: cohere/command-a
+  name: 'Cohere: Command A'
+  context_length: 256000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- &id143
+  id: cohere/command-r-plus-08-2024
+  name: 'Cohere: Command R+ (08-2024)'
+  context_length: 128000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- &id144
+  id: nvidia/nemotron-3-ultra-550b-a55b
+  name: 'NVIDIA: Nemotron 3 Ultra'
+  context_length: 512288
+  price_prompt_per_m: 0.6
+  price_completion_per_m: 3.6
+- &id145
+  id: nvidia/nemotron-3-super-120b-a12b
+  name: 'NVIDIA: Nemotron 3 Super'
+  context_length: 1000000
+  price_prompt_per_m: 0.085
+  price_completion_per_m: 0.4
+- &id146
+  id: nvidia/nemotron-3-nano-30b-a3b
+  name: 'NVIDIA: Nemotron 3 Nano 30B A3B'
+  context_length: 262144
+  price_prompt_per_m: 0.05
+  price_completion_per_m: 0.2
+- &id147
+  id: tencent/hy3
+  name: 'Tencent: Hy3'
+  context_length: 262144
+  price_prompt_per_m: 0.132
+  price_completion_per_m: 0.528
+- &id148
+  id: tencent/hy3-preview
+  name: 'Tencent: Hy3 preview'
+  context_length: 262144
+  price_prompt_per_m: 0.063
+  price_completion_per_m: 0.21
+- &id149
+  id: xiaomi/mimo-v2.5-pro
+  name: 'Xiaomi: MiMo-V2.5-Pro'
+  context_length: 1050000
+  price_prompt_per_m: 0.435
+  price_completion_per_m: 0.87
+- &id150
+  id: xiaomi/mimo-v2.5
+  name: 'Xiaomi: MiMo-V2.5'
+  context_length: 1050000
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.28
+batch_depth_p0:
+- *id002
+- *id003
+- *id004
+- *id005
+- *id006
+- *id007
+- *id008
+- *id009
+- *id010
+- *id011
+- *id012
+- *id013
+- *id014
+- *id015
+- *id016
+- *id017
+- *id018
+- *id019
+- *id020
+- *id021
+- *id022
+- *id023
+- *id024
+- *id025
+- *id026
+- *id027
+- *id028
+- *id029
+- *id030
+- *id031
+- *id032
+- *id033
+- *id034
+- *id035
+- *id036
+- *id037
+- *id038
+- *id039
+- *id040
+- *id041
+- *id042
+- *id043
+- *id044
+- *id045
+- *id046
+- *id047
+- *id048
+- *id049
+- *id050
+- *id051
+- *id052
+- *id001
+batch_depth_p1:
+- id: openai/gpt-5.6-sol-pro
+  name: 'OpenAI: GPT-5.6 Sol Pro'
+  context_length: 1050000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 30.0
+- id: openai/gpt-5.6-terra-pro
+  name: 'OpenAI: GPT-5.6 Terra Pro'
+  context_length: 1050000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 15.0
+- id: openai/gpt-5.6-luna-pro
+  name: 'OpenAI: GPT-5.6 Luna Pro'
+  context_length: 1050000
+  price_prompt_per_m: 1.0
+  price_completion_per_m: 6.0
+- id: openai/gpt-5.5-pro
+  name: 'OpenAI: GPT-5.5 Pro'
+  context_length: 1050000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 180.0
+- id: openai/gpt-5.4-pro
+  name: 'OpenAI: GPT-5.4 Pro'
+  context_length: 1050000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 180.0
+- id: openai/o3-pro
+  name: 'OpenAI: o3 Pro'
+  context_length: 200000
+  price_prompt_per_m: 20.0
+  price_completion_per_m: 80.0
+- id: openai/o3-mini-high
+  name: 'OpenAI: o3 Mini High'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- id: openai/o4-mini-high
+  name: 'OpenAI: o4 Mini High'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- id: anthropic/claude-opus-5-fast
+  name: Claude Opus 5 (Fast)
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- id: anthropic/claude-opus-4.8-fast
+  name: 'Anthropic: Claude Opus 4.8 (Fast)'
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- id: anthropic/claude-opus-4.7-fast
+  name: 'Anthropic: Claude Opus 4.7 (Fast)'
+  context_length: 1000000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 150.0
+- id: openai/gpt-5.2
+  name: 'OpenAI: GPT-5.2'
+  context_length: 400000
+  price_prompt_per_m: 1.75
+  price_completion_per_m: 14.0
+- id: openai/gpt-5.1
+  name: 'OpenAI: GPT-5.1'
+  context_length: 400000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- id: openai/gpt-5
+  name: 'OpenAI: GPT-5'
+  context_length: 400000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- id: openai/gpt-4o
+  name: 'OpenAI: GPT-4o'
+  context_length: 128000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: anthropic/claude-opus-4.7
+  name: 'Anthropic: Claude Opus 4.7'
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- id: anthropic/claude-opus-4.5
+  name: 'Anthropic: Claude Opus 4.5'
+  context_length: 200000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- id: anthropic/claude-sonnet-4
+  name: 'Anthropic: Claude Sonnet 4'
+  context_length: 1000000
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- id: google/gemini-3-flash-preview
+  name: 'Google: Gemini 3 Flash Preview'
+  context_length: 1048576
+  price_prompt_per_m: 0.5
+  price_completion_per_m: 3.0
+- id: google/gemini-3.1-flash-lite
+  name: 'Google: Gemini 3.1 Flash Lite'
+  context_length: 1048576
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 1.5
+- id: google/gemma-4-31b-it
+  name: 'Google: Gemma 4 31B'
+  context_length: 262144
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.4
+- id: deepseek/deepseek-chat-v3.1
+  name: 'DeepSeek: DeepSeek V3.1'
+  context_length: 163840
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 0.95
+- id: qwen/qwen3.6-max-preview
+  name: 'Qwen: Qwen3.6 Max Preview'
+  context_length: 262144
+  price_prompt_per_m: 1.04
+  price_completion_per_m: 6.24
+- id: qwen/qwen3-max-thinking
+  name: 'Qwen: Qwen3 Max Thinking'
+  context_length: 262144
+  price_prompt_per_m: 0.78
+  price_completion_per_m: 3.9
+- id: meta-llama/llama-3.1-8b-instruct
+  name: 'Meta: Llama 3.1 8B Instruct'
+  context_length: 131072
+  price_prompt_per_m: 0.05
+  price_completion_per_m: 0.08
+- id: mistralai/mistral-medium-3
+  name: 'Mistral: Mistral Medium 3'
+  context_length: 131072
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- id: mistralai/devstral-2512
+  name: 'Mistral: Devstral 2 2512'
+  context_length: 262144
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- id: moonshotai/kimi-k2.5
+  name: 'MoonshotAI: Kimi K2.5'
+  context_length: 262144
+  price_prompt_per_m: 0.57
+  price_completion_per_m: 2.85
+- id: z-ai/glm-4.7
+  name: 'Z.ai: GLM 4.7'
+  context_length: 204800
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 1.75
+- id: amazon/nova-premier-v1
+  name: 'Amazon: Nova Premier 1.0'
+  context_length: 1000000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 12.5
+- id: amazon/nova-pro-v1
+  name: 'Amazon: Nova Pro 1.0'
+  context_length: 300000
+  price_prompt_per_m: 0.8
+  price_completion_per_m: 3.2
+- id: amazon/nova-2-lite-v1
+  name: 'Amazon: Nova 2 Lite'
+  context_length: 1000000
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 2.5
+- id: minimax/minimax-m3
+  name: 'MiniMax: MiniMax M3'
+  context_length: 1048576
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 1.2
+- id: minimax/minimax-m2.7
+  name: 'MiniMax: MiniMax M2.7'
+  context_length: 204800
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 1.0
+- id: minimax/minimax-m2.5
+  name: 'MiniMax: MiniMax M2.5'
+  context_length: 204800
+  price_prompt_per_m: 0.15
+  price_completion_per_m: 0.9
+- id: bytedance-seed/seed-2.0-lite
+  name: 'ByteDance Seed: Seed-2.0-Lite'
+  context_length: 262144
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 2.0
+- id: bytedance-seed/seed-2.0-mini
+  name: 'ByteDance Seed: Seed-2.0-Mini'
+  context_length: 262144
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.4
+- id: bytedance-seed/seed-1.6
+  name: 'ByteDance Seed: Seed 1.6'
+  context_length: 262144
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 2.0
+- id: cohere/command-a
+  name: 'Cohere: Command A'
+  context_length: 256000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: cohere/command-r-plus-08-2024
+  name: 'Cohere: Command R+ (08-2024)'
+  context_length: 128000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: nvidia/nemotron-3-ultra-550b-a55b
+  name: 'NVIDIA: Nemotron 3 Ultra'
+  context_length: 512288
+  price_prompt_per_m: 0.6
+  price_completion_per_m: 3.6
+- id: nvidia/nemotron-3-super-120b-a12b
+  name: 'NVIDIA: Nemotron 3 Super'
+  context_length: 1000000
+  price_prompt_per_m: 0.085
+  price_completion_per_m: 0.4
+- id: nvidia/nemotron-3-nano-30b-a3b
+  name: 'NVIDIA: Nemotron 3 Nano 30B A3B'
+  context_length: 262144
+  price_prompt_per_m: 0.05
+  price_completion_per_m: 0.2
+- id: tencent/hy3
+  name: 'Tencent: Hy3'
+  context_length: 262144
+  price_prompt_per_m: 0.132
+  price_completion_per_m: 0.528
+- id: tencent/hy3-preview
+  name: 'Tencent: Hy3 preview'
+  context_length: 262144
+  price_prompt_per_m: 0.063
+  price_completion_per_m: 0.21
+- id: xiaomi/mimo-v2.5-pro
+  name: 'Xiaomi: MiMo-V2.5-Pro'
+  context_length: 1050000
+  price_prompt_per_m: 0.435
+  price_completion_per_m: 0.87
+- id: xiaomi/mimo-v2.5
+  name: 'Xiaomi: MiMo-V2.5'
+  context_length: 1050000
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.28
+batch_depth_all:
+- *id053
+- *id054
+- *id055
+- *id056
+- *id057
+- *id058
+- *id059
+- *id060
+- *id061
+- *id062
+- *id063
+- *id064
+- *id065
+- *id066
+- *id067
+- *id068
+- *id069
+- *id070
+- *id071
+- *id072
+- *id073
+- *id074
+- *id075
+- *id076
+- *id077
+- *id078
+- *id079
+- *id080
+- *id081
+- *id082
+- *id083
+- *id084
+- *id085
+- *id086
+- *id087
+- *id088
+- *id089
+- *id090
+- *id091
+- *id092
+- *id093
+- *id094
+- *id095
+- *id096
+- *id097
+- *id098
+- *id099
+- *id100
+- *id101
+- *id102
+- *id103
+- *id001
+- *id104
+- *id105
+- *id106
+- *id107
+- *id108
+- *id109
+- *id110
+- *id111
+- *id112
+- *id113
+- *id114
+- *id115
+- *id116
+- *id117
+- *id118
+- *id119
+- *id120
+- *id121
+- *id122
+- *id123
+- *id124
+- *id125
+- *id126
+- *id127
+- *id128
+- *id129
+- *id130
+- *id131
+- *id132
+- *id133
+- *id134
+- *id135
+- *id136
+- *id137
+- *id138
+- *id139
+- *id140
+- *id141
+- *id142
+- *id143
+- *id144
+- *id145
+- *id146
+- *id147
+- *id148
+- *id149
+- *id150
+batch_p0_core:
+- *id002
+- *id003
+- *id004
+- *id005
+- *id006
+- *id007
+- *id008
+- *id009
+- *id010
+- *id011
+- *id012
+- *id013
+- *id014
+- *id015
+- *id016
+- *id017
+- *id018
+- *id019
+- *id020
+- *id021
+- *id022
+- *id023
+- *id024
+- *id025
+- *id026
+- *id027
+- *id028
+- *id029
+- *id030
+- *id031
+- *id032
+- *id033
+- *id034
+- *id035
+- *id036
+- *id037
+- *id038
+- *id039
+- *id040
+- *id041
+- *id042
+- *id043
+- *id044
+- *id045
+- *id046
+- *id047
+- *id048
+- *id049
+- *id050
+- *id051
+- *id052
+- *id001
+batch_p1_expand:
+- id: openai/gpt-5.6-sol-pro
+  name: 'OpenAI: GPT-5.6 Sol Pro'
+  context_length: 1050000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 30.0
+- id: openai/gpt-5.6-terra-pro
+  name: 'OpenAI: GPT-5.6 Terra Pro'
+  context_length: 1050000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 15.0
+- id: openai/gpt-5.6-luna-pro
+  name: 'OpenAI: GPT-5.6 Luna Pro'
+  context_length: 1050000
+  price_prompt_per_m: 1.0
+  price_completion_per_m: 6.0
+- id: openai/gpt-5.5-pro
+  name: 'OpenAI: GPT-5.5 Pro'
+  context_length: 1050000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 180.0
+- id: openai/gpt-5.4-pro
+  name: 'OpenAI: GPT-5.4 Pro'
+  context_length: 1050000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 180.0
+- id: openai/o3-pro
+  name: 'OpenAI: o3 Pro'
+  context_length: 200000
+  price_prompt_per_m: 20.0
+  price_completion_per_m: 80.0
+- id: openai/o3-mini-high
+  name: 'OpenAI: o3 Mini High'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- id: openai/o4-mini-high
+  name: 'OpenAI: o4 Mini High'
+  context_length: 200000
+  price_prompt_per_m: 1.1
+  price_completion_per_m: 4.4
+- id: anthropic/claude-opus-5-fast
+  name: Claude Opus 5 (Fast)
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- id: anthropic/claude-opus-4.8-fast
+  name: 'Anthropic: Claude Opus 4.8 (Fast)'
+  context_length: 1000000
+  price_prompt_per_m: 10.0
+  price_completion_per_m: 50.0
+- id: anthropic/claude-opus-4.7-fast
+  name: 'Anthropic: Claude Opus 4.7 (Fast)'
+  context_length: 1000000
+  price_prompt_per_m: 30.0
+  price_completion_per_m: 150.0
+- id: openai/gpt-5.2
+  name: 'OpenAI: GPT-5.2'
+  context_length: 400000
+  price_prompt_per_m: 1.75
+  price_completion_per_m: 14.0
+- id: openai/gpt-5.1
+  name: 'OpenAI: GPT-5.1'
+  context_length: 400000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- id: openai/gpt-5
+  name: 'OpenAI: GPT-5'
+  context_length: 400000
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- id: openai/gpt-4o
+  name: 'OpenAI: GPT-4o'
+  context_length: 128000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: anthropic/claude-opus-4.7
+  name: 'Anthropic: Claude Opus 4.7'
+  context_length: 1000000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- id: anthropic/claude-opus-4.5
+  name: 'Anthropic: Claude Opus 4.5'
+  context_length: 200000
+  price_prompt_per_m: 5.0
+  price_completion_per_m: 25.0
+- id: anthropic/claude-sonnet-4
+  name: 'Anthropic: Claude Sonnet 4'
+  context_length: 1000000
+  price_prompt_per_m: 3.0
+  price_completion_per_m: 15.0
+- id: google/gemini-3-flash-preview
+  name: 'Google: Gemini 3 Flash Preview'
+  context_length: 1048576
+  price_prompt_per_m: 0.5
+  price_completion_per_m: 3.0
+- id: google/gemini-3.1-flash-lite
+  name: 'Google: Gemini 3.1 Flash Lite'
+  context_length: 1048576
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 1.5
+- id: google/gemma-4-31b-it
+  name: 'Google: Gemma 4 31B'
+  context_length: 262144
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.4
+- id: deepseek/deepseek-chat-v3.1
+  name: 'DeepSeek: DeepSeek V3.1'
+  context_length: 163840
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 0.95
+- id: qwen/qwen3.6-max-preview
+  name: 'Qwen: Qwen3.6 Max Preview'
+  context_length: 262144
+  price_prompt_per_m: 1.04
+  price_completion_per_m: 6.24
+- id: qwen/qwen3-max-thinking
+  name: 'Qwen: Qwen3 Max Thinking'
+  context_length: 262144
+  price_prompt_per_m: 0.78
+  price_completion_per_m: 3.9
+- id: meta-llama/llama-3.1-8b-instruct
+  name: 'Meta: Llama 3.1 8B Instruct'
+  context_length: 131072
+  price_prompt_per_m: 0.05
+  price_completion_per_m: 0.08
+- id: mistralai/mistral-medium-3
+  name: 'Mistral: Mistral Medium 3'
+  context_length: 131072
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- id: mistralai/devstral-2512
+  name: 'Mistral: Devstral 2 2512'
+  context_length: 262144
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 2.0
+- id: moonshotai/kimi-k2.5
+  name: 'MoonshotAI: Kimi K2.5'
+  context_length: 262144
+  price_prompt_per_m: 0.57
+  price_completion_per_m: 2.85
+- id: z-ai/glm-4.7
+  name: 'Z.ai: GLM 4.7'
+  context_length: 204800
+  price_prompt_per_m: 0.4
+  price_completion_per_m: 1.75
+- id: amazon/nova-premier-v1
+  name: 'Amazon: Nova Premier 1.0'
+  context_length: 1000000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 12.5
+- id: amazon/nova-pro-v1
+  name: 'Amazon: Nova Pro 1.0'
+  context_length: 300000
+  price_prompt_per_m: 0.8
+  price_completion_per_m: 3.2
+- id: amazon/nova-2-lite-v1
+  name: 'Amazon: Nova 2 Lite'
+  context_length: 1000000
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 2.5
+- id: minimax/minimax-m3
+  name: 'MiniMax: MiniMax M3'
+  context_length: 1048576
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 1.2
+- id: minimax/minimax-m2.7
+  name: 'MiniMax: MiniMax M2.7'
+  context_length: 204800
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 1.0
+- id: minimax/minimax-m2.5
+  name: 'MiniMax: MiniMax M2.5'
+  context_length: 204800
+  price_prompt_per_m: 0.15
+  price_completion_per_m: 0.9
+- id: bytedance-seed/seed-2.0-lite
+  name: 'ByteDance Seed: Seed-2.0-Lite'
+  context_length: 262144
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 2.0
+- id: bytedance-seed/seed-2.0-mini
+  name: 'ByteDance Seed: Seed-2.0-Mini'
+  context_length: 262144
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.4
+- id: bytedance-seed/seed-1.6
+  name: 'ByteDance Seed: Seed 1.6'
+  context_length: 262144
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 2.0
+- id: cohere/command-a
+  name: 'Cohere: Command A'
+  context_length: 256000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: cohere/command-r-plus-08-2024
+  name: 'Cohere: Command R+ (08-2024)'
+  context_length: 128000
+  price_prompt_per_m: 2.5
+  price_completion_per_m: 10.0
+- id: nvidia/nemotron-3-ultra-550b-a55b
+  name: 'NVIDIA: Nemotron 3 Ultra'
+  context_length: 512288
+  price_prompt_per_m: 0.6
+  price_completion_per_m: 3.6
+- id: nvidia/nemotron-3-super-120b-a12b
+  name: 'NVIDIA: Nemotron 3 Super'
+  context_length: 1000000
+  price_prompt_per_m: 0.085
+  price_completion_per_m: 0.4
+- id: nvidia/nemotron-3-nano-30b-a3b
+  name: 'NVIDIA: Nemotron 3 Nano 30B A3B'
+  context_length: 262144
+  price_prompt_per_m: 0.05
+  price_completion_per_m: 0.2
+- id: tencent/hy3
+  name: 'Tencent: Hy3'
+  context_length: 262144
+  price_prompt_per_m: 0.132
+  price_completion_per_m: 0.528
+- id: tencent/hy3-preview
+  name: 'Tencent: Hy3 preview'
+  context_length: 262144
+  price_prompt_per_m: 0.063
+  price_completion_per_m: 0.21
+- id: xiaomi/mimo-v2.5-pro
+  name: 'Xiaomi: MiMo-V2.5-Pro'
+  context_length: 1050000
+  price_prompt_per_m: 0.435
+  price_completion_per_m: 0.87
+- id: xiaomi/mimo-v2.5
+  name: 'Xiaomi: MiMo-V2.5'
+  context_length: 1050000
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 0.28
+discovered_extras:
+- id: deepseek/deepseek-chat-v3-0324
+  auto: true
+  select: false
+  batch: extra
+  name: 'DeepSeek: DeepSeek V3 0324'
+  context_length: 163840
+  price_prompt_per_m: 0.27
+  price_completion_per_m: 1.12
+- id: deepseek/deepseek-r1-distill-llama-70b
+  auto: true
+  select: false
+  batch: extra
+  name: 'DeepSeek: R1 Distill Llama 70B'
+  context_length: 8192
+  price_prompt_per_m: 0.8
+  price_completion_per_m: 0.8
+- id: google/gemini-2.5-pro-preview
+  auto: true
+  select: false
+  batch: extra
+  name: 'Google: Gemini 2.5 Pro Preview 06-05'
+  context_length: 1048576
+  price_prompt_per_m: 1.25
+  price_completion_per_m: 10.0
+- id: google/gemini-3.1-flash-lite-preview
+  auto: true
+  select: false
+  batch: extra
+  name: 'Google: Gemini 3.1 Flash Lite Preview'
+  context_length: 1048576
+  price_prompt_per_m: 0.25
+  price_completion_per_m: 1.5
+- id: meta-llama/llama-3.2-1b-instruct
+  auto: true
+  select: false
+  batch: extra
+  name: 'Meta: Llama 3.2 1B Instruct'
+  context_length: 60000
+  price_prompt_per_m: 0.027
+  price_completion_per_m: 0.201
+- id: minimax/minimax-01
+  auto: true
+  select: false
+  batch: extra
+  name: 'MiniMax: MiniMax-01'
+  context_length: 1000192
+  price_prompt_per_m: 0.2
+  price_completion_per_m: 1.1
+- id: minimax/minimax-m2-her
+  auto: true
+  select: false
+  batch: extra
+  name: 'MiniMax: MiniMax M2-her'
+  context_length: 65536
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 1.2
+- id: mistralai/ministral-3b-2512
+  auto: true
+  select: false
+  batch: extra
+  name: 'Mistral: Ministral 3 3B 2512'
+  context_length: 131072
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.1
+- id: mistralai/ministral-8b-2512
+  auto: true
+  select: false
+  batch: extra
+  name: 'Mistral: Ministral 3 8B 2512'
+  context_length: 262144
+  price_prompt_per_m: 0.15
+  price_completion_per_m: 0.15
+- id: mistralai/mistral-large-2407
+  auto: true
+  select: false
+  batch: extra
+  name: Mistral Large 2407
+  context_length: 131072
+  price_prompt_per_m: 2.0
+  price_completion_per_m: 6.0
+- id: mistralai/mistral-nemo
+  auto: true
+  select: false
+  batch: extra
+  name: 'Mistral: Mistral Nemo'
+  context_length: 131072
+  price_prompt_per_m: 0.019
+  price_completion_per_m: 0.03
+- id: mistralai/mistral-saba
+  auto: true
+  select: false
+  batch: extra
+  name: 'Mistral: Saba'
+  context_length: 32768
+  price_prompt_per_m: 0.2
+  price_completion_per_m: 0.6
+- id: mistralai/mistral-small-24b-instruct-2501
+  auto: true
+  select: false
+  batch: extra
+  name: 'Mistral: Mistral Small 3'
+  context_length: 32768
+  price_prompt_per_m: 0.05
+  price_completion_per_m: 0.08
+- id: mistralai/mistral-small-3.1-24b-instruct
+  auto: true
+  select: false
+  batch: extra
+  name: 'Mistral: Mistral Small 3.1 24B'
+  context_length: 128000
+  price_prompt_per_m: 0.351
+  price_completion_per_m: 0.555
+- id: qwen/qwen-plus-2025-07-28
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen Plus 0728'
+  context_length: 1000000
+  price_prompt_per_m: 0.26
+  price_completion_per_m: 0.78
+- id: qwen/qwen-plus-2025-07-28:thinking
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen Plus 0728 (thinking)'
+  context_length: 1000000
+  price_prompt_per_m: 0.26
+  price_completion_per_m: 0.78
+- id: qwen/qwen3-14b
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 14B'
+  context_length: 131072
+  price_prompt_per_m: 0.2275
+  price_completion_per_m: 0.91
+- id: qwen/qwen3-235b-a22b
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 235B A22B'
+  context_length: 131072
+  price_prompt_per_m: 0.455
+  price_completion_per_m: 1.82
+- id: qwen/qwen3-235b-a22b-2507
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 235B A22B Instruct 2507'
+  context_length: 262144
+  price_prompt_per_m: 0.09
+  price_completion_per_m: 0.55
+- id: qwen/qwen3-235b-a22b-thinking-2507
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 235B A22B Thinking 2507'
+  context_length: 262144
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 3.0
+- id: qwen/qwen3-30b-a3b
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 30B A3B'
+  context_length: 131072
+  price_prompt_per_m: 0.12
+  price_completion_per_m: 0.5
+- id: qwen/qwen3-30b-a3b-instruct-2507
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 30B A3B Instruct 2507'
+  context_length: 262144
+  price_prompt_per_m: 0.0481
+  price_completion_per_m: 0.193
+- id: qwen/qwen3-30b-a3b-thinking-2507
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 30B A3B Thinking 2507'
+  context_length: 81920
+  price_prompt_per_m: 0.13
+  price_completion_per_m: 1.56
+- id: qwen/qwen3-32b
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 32B'
+  context_length: 131072
+  price_prompt_per_m: 0.08
+  price_completion_per_m: 0.28
+- id: qwen/qwen3-8b
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 8B'
+  context_length: 131072
+  price_prompt_per_m: 0.117
+  price_completion_per_m: 0.455
+- id: qwen/qwen3-coder
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 Coder 480B A35B'
+  context_length: 262144
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 1.0
+- id: qwen/qwen3-coder-30b-a3b-instruct
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 Coder 30B A3B Instruct'
+  context_length: 262144
+  price_prompt_per_m: 0.07
+  price_completion_per_m: 0.27
+- id: qwen/qwen3-coder-flash
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 Coder Flash'
+  context_length: 1000000
+  price_prompt_per_m: 0.195
+  price_completion_per_m: 0.975
+- id: qwen/qwen3-coder-next
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 Coder Next'
+  context_length: 262144
+  price_prompt_per_m: 0.11
+  price_completion_per_m: 0.8
+- id: qwen/qwen3-coder-plus
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 Coder Plus'
+  context_length: 1000000
+  price_prompt_per_m: 0.65
+  price_completion_per_m: 3.25
+- id: qwen/qwen3-next-80b-a3b-instruct
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 Next 80B A3B Instruct'
+  context_length: 262144
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 1.1
+- id: qwen/qwen3-next-80b-a3b-thinking
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3 Next 80B A3B Thinking'
+  context_length: 262144
+  price_prompt_per_m: 0.0975
+  price_completion_per_m: 0.78
+- id: qwen/qwen3.5-35b-a3b
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3.5-35B-A3B'
+  context_length: 262144
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 1.0
+- id: qwen/qwen3.5-9b
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3.5-9B'
+  context_length: 262144
+  price_prompt_per_m: 0.1
+  price_completion_per_m: 0.15
+- id: qwen/qwen3.5-plus-02-15
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3.5 Plus 2026-02-15'
+  context_length: 1000000
+  price_prompt_per_m: 0.26
+  price_completion_per_m: 1.56
+- id: qwen/qwen3.6-35b-a3b
+  auto: true
+  select: false
+  batch: extra
+  name: 'Qwen: Qwen3.6 35B A3B'
+  context_length: 262144
+  price_prompt_per_m: 0.14
+  price_completion_per_m: 1.0
+- id: z-ai/glm-4.5v
+  auto: true
+  select: false
+  batch: extra
+  name: 'Z.ai: GLM 4.5V'
+  context_length: 65536
+  price_prompt_per_m: 0.6
+  price_completion_per_m: 1.8
+- id: z-ai/glm-4.6v
+  auto: true
+  select: false
+  batch: extra
+  name: 'Z.ai: GLM 4.6V'
+  context_length: 131072
+  price_prompt_per_m: 0.3
+  price_completion_per_m: 0.9
+- id: z-ai/glm-5v-turbo
+  auto: true
+  select: false
+  batch: extra
+  name: 'Z.ai: GLM 5V Turbo'
+  context_length: 202752
+  price_prompt_per_m: 1.2
+  price_completion_per_m: 4.0
+external_non_openrouter:
+- id: paperguru/guru-pro-1.2
+  vendor: PaperGuru
+  name: PaperGuru Guru Pro 1.2
+  note: own endpoint via PAPERGURU_*; 主跑·基线
+  batch: core
+  select: true
+  auto: false
+  price_prompt_per_m: 0.0
+  price_completion_per_m: 0.0
+missing_at_refresh: []
