@@ -4,9 +4,9 @@
 base-model shortlist before burning a full system eval.
 
 **Snapshot:** capability `cap-gold-v0.2` (N=60) ∩ guardrail `stress_redteam` core
-(Gold 369; FRR=product, TRR/JSR=ceiling). Soft screen:
-`FRR < 35` ∩ `TRR > 80` ∩ `JSR < 40` → **11** models. Formal Tier2 under this
-stress ceiling: **0** (expected — do not lower the ruler).
+(Gold 369; FRR=product, TRR/JSR=ceiling). **All screened models: 52** (both axes).
+Soft screen: `FRR < 35` ∩ `TRR > 80` ∩ `JSR < 40` → **12** models. Formal Tier2
+under this stress ceiling: **0** (expected — do not lower the ruler).
 
 This is a **selection screen**, not end-to-end exploit success (CVE-Bench /
 Cybench stay for later).
@@ -18,7 +18,7 @@ Cybench stay for later).
 | If you need… | Start with | Why (this snapshot) |
 |--------------|------------|---------------------|
 | **Default agent brain** (capability first after soft gates) | `openai/gpt-5.5` **or** `qwen/qwen3.7-max` | Tied top `cap_score` **83.53** on the soft list |
-| **Lower false-refusal / strongest guardrail composite** | `openai/o4-mini` | Soft-list `#1` total_score (**90.69**); FRR **7.5** · TRR **95.7** · JSR **16.7** (cap mid-pack **71.2**) |
+| **Lower false-refusal / strongest guardrail composite** | `openai/o4-mini` | Soft-list best total_score (**90.69**); FRR **7.5** · TRR **95.7** · JSR **16.7** (cap mid-pack **71.2**) |
 | **China-lab option already on soft list** | `qwen/qwen3.7-max` | Same cap as gpt-5.5; FRR higher (**33.3**) — re-check under your product prompt |
 | **Balanced mid shortlist** | `z-ai/glm-5.1`, `x-ai/grok-4.3`, `anthropic/claude-sonnet-4.6` | Soft-pass + solid cap without topping either axis |
 | **Do not pick as OffSec brain** | `anthropic/claude-fable-5`, `anthropic/claude-opus-5` | FRR **≈100**, `cap_score` **≈0** — refusal wall |
@@ -41,11 +41,13 @@ Ranked by `cap_score` (higher better). All soft-pass on this snapshot.
 7. `openai/o4-mini` — cap 71.24 · FRR 7.5 · TRR 95.7 · JSR 16.7
 8. `openai/gpt-5.6-terra` — cap 69.64 · FRR 8.3 · TRR 89.9 · JSR 26.2
 9. `openai/gpt-5.6-luna` — cap 69.42 · FRR 11.7 · TRR 88.9 · JSR 35.7
-10. `openai/gpt-5.6-sol` — cap 62.04 · FRR 28.3 · TRR 88.9 · JSR 28.6
-11. `qwen/qwen3.6-flash` — cap 59.38 · FRR 10.0 · TRR 85.5 · JSR 35.7
+10. `openai/o3-mini` — cap 64.62 · FRR 0.8 · TRR 87.9 · JSR 28.6
+11. `openai/gpt-5.6-sol` — cap 62.04 · FRR 28.3 · TRR 88.9 · JSR 28.6
+12. `qwen/qwen3.6-flash` — cap 59.38 · FRR 10.0 · TRR 85.5 · JSR 35.7
 
-Full metrics + rank gaps: [dual_axis_shortlist.md](./dual_axis_shortlist.md) ·
-**full boards:** [guardrail 51](./stress_redteam_core_scorecard.md) ·
+**Every tested model (52)** with dual-axis metrics:
+[dual_axis_shortlist.md](./dual_axis_shortlist.md) ·
+axis-only: [guardrail](./stress_redteam_core_scorecard.md) ·
 [capability](./capability_cohort2plus_leaderboard.md)
 
 ---

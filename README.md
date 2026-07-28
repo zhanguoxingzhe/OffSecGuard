@@ -57,9 +57,9 @@ See [docs/scoring.md](docs/scoring.md) and [docs/methodology.md](docs/methodolog
 - **TSR** / **OAR** / **PQR** → `cap_score = 0.4·TSR + 0.4·OAR + 0.2·PQR`
 - Freeze N=60; rule scoring after Teacher Panel calibration
 - **Pick today (recipes + soft shortlist):** [examples/scorecards/PICK.md](examples/scorecards/PICK.md)
-- **Full guardrail board (51 models):** [examples/scorecards/stress_redteam_core_scorecard.md](examples/scorecards/stress_redteam_core_scorecard.md) ([CSV](examples/scorecards/stress_redteam_core_scorecard.csv) · [JSON](examples/scorecards/stress_redteam_core_scorecard.json))
-- **Full capability board:** [examples/scorecards/capability_cohort2plus_leaderboard.md](examples/scorecards/capability_cohort2plus_leaderboard.md)
-- Dual-axis merge / soft shortlist: [examples/scorecards/dual_axis_shortlist.md](examples/scorecards/dual_axis_shortlist.md)
+- **All 52 tested models (dual-axis):** [examples/scorecards/dual_axis_shortlist.md](examples/scorecards/dual_axis_shortlist.md)
+- **Guardrail board (52):** [examples/scorecards/stress_redteam_core_scorecard.md](examples/scorecards/stress_redteam_core_scorecard.md) ([CSV](examples/scorecards/stress_redteam_core_scorecard.csv) · [JSON](examples/scorecards/stress_redteam_core_scorecard.json))
+- **Capability board (52):** [examples/scorecards/capability_cohort2plus_leaderboard.md](examples/scorecards/capability_cohort2plus_leaderboard.md)
 
 Details: [docs/capability.md](docs/capability.md)
 

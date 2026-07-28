@@ -1,7 +1,7 @@
 {
   "gold": "cap-gold-v0.2",
   "min_cohort": 1,
-  "n_models": 51,
+  "n_models": 52,
   "ranking": [
     {
       "catalog_id": "anthropic/claude-sonnet-4.5",
@@ -388,6 +388,18 @@
       "rank": 32
     },
     {
+      "catalog_id": "paperguru/guru-pro-1.2",
+      "model": "guru-pro-1.2",
+      "cohort_ord": 2,
+      "cohort_label": "二代 · 过渡波",
+      "tsr": 72.0,
+      "oar": 59.09,
+      "pqr": 69.23,
+      "cap_score": 66.28,
+      "n_samples": 60,
+      "rank": 33
+    },
+    {
       "catalog_id": "openai/o3-mini",
       "model": "openai/o3-mini",
       "cohort_ord": 1,
@@ -397,7 +409,7 @@
       "pqr": 76.92,
       "cap_score": 64.62,
       "n_samples": 60,
-      "rank": 33
+      "rank": 34
     },
     {
       "catalog_id": "mistralai/mistral-small-2603",
@@ -409,7 +421,7 @@
       "pqr": 76.92,
       "cap_score": 64.18,
       "n_samples": 60,
-      "rank": 34
+      "rank": 35
     },
     {
       "catalog_id": "moonshotai/kimi-k2.6",
@@ -421,7 +433,7 @@
       "pqr": 76.92,
       "cap_score": 63.02,
       "n_samples": 60,
-      "rank": 35
+      "rank": 36
     },
     {
       "catalog_id": "google/gemini-3.5-flash-lite",
@@ -433,7 +445,7 @@
       "pqr": 76.92,
       "cap_score": 62.8,
       "n_samples": 60,
-      "rank": 36
+      "rank": 37
     },
     {
       "catalog_id": "openai/gpt-5.4-nano",
@@ -445,7 +457,7 @@
       "pqr": 76.92,
       "cap_score": 62.8,
       "n_samples": 60,
-      "rank": 37
+      "rank": 38
     },
     {
       "catalog_id": "google/gemini-2.5-pro",
@@ -457,7 +469,7 @@
       "pqr": 76.92,
       "cap_score": 62.36,
       "n_samples": 60,
-      "rank": 38
+      "rank": 39
     },
     {
       "catalog_id": "openai/gpt-5.6-sol",
@@ -469,7 +481,7 @@
       "pqr": 53.85,
       "cap_score": 62.04,
       "n_samples": 60,
-      "rank": 39
+      "rank": 40
     },
     {
       "catalog_id": "deepseek/deepseek-v4-flash",
@@ -481,7 +493,7 @@
       "pqr": 46.15,
       "cap_score": 61.89,
       "n_samples": 60,
-      "rank": 40
+      "rank": 41
     },
     {
       "catalog_id": "google/gemini-3.1-pro-preview",
@@ -493,7 +505,7 @@
       "pqr": 76.92,
       "cap_score": 59.38,
       "n_samples": 60,
-      "rank": 41
+      "rank": 42
     },
     {
       "catalog_id": "qwen/qwen3.6-flash",
@@ -505,7 +517,7 @@
       "pqr": 76.92,
       "cap_score": 59.38,
       "n_samples": 60,
-      "rank": 42
+      "rank": 43
     },
     {
       "catalog_id": "meta-llama/llama-4-scout",
@@ -517,7 +529,7 @@
       "pqr": 46.15,
       "cap_score": 54.61,
       "n_samples": 60,
-      "rank": 43
+      "rank": 44
     },
     {
       "catalog_id": "google/gemini-2.5-flash-lite",
@@ -529,7 +541,7 @@
       "pqr": 38.46,
       "cap_score": 46.46,
       "n_samples": 60,
-      "rank": 44
+      "rank": 45
     },
     {
       "catalog_id": "meta-llama/llama-4-maverick",
@@ -541,7 +553,7 @@
       "pqr": 76.92,
       "cap_score": 46.15,
       "n_samples": 60,
-      "rank": 45
+      "rank": 46
     },
     {
       "catalog_id": "deepseek/deepseek-r1-0528",
@@ -553,7 +565,7 @@
       "pqr": 8.33,
       "cap_score": 41.97,
       "n_samples": 60,
-      "rank": 46
+      "rank": 47
     },
     {
       "catalog_id": "google/gemini-3.5-flash",
@@ -565,7 +577,7 @@
       "pqr": 53.85,
       "cap_score": 41.53,
       "n_samples": 60,
-      "rank": 47
+      "rank": 48
     },
     {
       "catalog_id": "deepseek/deepseek-r1",
@@ -577,7 +589,7 @@
       "pqr": 30.77,
       "cap_score": 29.86,
       "n_samples": 60,
-      "rank": 48
+      "rank": 49
     },
     {
       "catalog_id": "google/gemini-3.6-flash",
@@ -589,7 +601,7 @@
       "pqr": 15.38,
       "cap_score": 18.35,
       "n_samples": 60,
-      "rank": 49
+      "rank": 50
     },
     {
       "catalog_id": "anthropic/claude-fable-5",
@@ -601,7 +613,7 @@
       "pqr": 0.0,
       "cap_score": 0.0,
       "n_samples": 60,
-      "rank": 50
+      "rank": 51
     },
     {
       "catalog_id": "anthropic/claude-opus-5",
@@ -613,7 +625,7 @@
       "pqr": 0.0,
       "cap_score": 0.0,
       "n_samples": 60,
-      "rank": 51
+      "rank": 52
     }
   ]
 }
