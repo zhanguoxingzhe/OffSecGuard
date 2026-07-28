@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OffSecGuard — dual-axis eval for offensive AI agents</title>
+  <meta name="description" content="Guardrails ≠ capability. A dual-axis screen for choosing base models for authorized OffSec agents." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/essay.css" />
+</head>
+<body>
+  <main class="wrap">
+    <p class="kicker">OffSecGuard · technical note</p>
+    <h1>Dual-axis eval for offensive AI agents: safety ≠ capability</h1>
+    <p class="lede">
+      We build authorized offensive agents. After screening many frontier APIs on the same frozen Gold,
+      <strong>the model that wins a guardrail composite is not the one that wins the agent-capability screen</strong>
+      — and some “max safety” flagships refuse <strong>100%</strong> of authorized OffSec tasks while looking perfect on misuse metrics.
+    </p>
+    <p class="lede">So we stopped shopping by a single safety score.</p>
+
+    <div class="meta">
+      <span>2026-07-28</span>
+      <span><a href="https://github.com/zhanguoxingzhe/OffSecGuard">github.com/zhanguoxingzhe/OffSecGuard</a></span>
+      <span>MIT</span>
+    </div>
+
+    <h2>The problem</h2>
+    <p>Generic refusal / safety leaderboards mix two jobs:</p>
+    <ul>
+      <li><strong>Authorized engagement</strong> — the agent must <em>do</em> in-scope offensive work (false refusals hurt).</li>
+      <li><strong>Unauthorized / jailbreak</strong> — the agent must <em>refuse</em> (true refusals matter).</li>
+    </ul>
+    <p>
+      Optimizing only the second produces <strong>refusal walls</strong>.
+      Ignoring tool-use skill produces high guardrail scores that still cannot run an engagement.
+    </p>
+
+    <h2>The ruler (short)</h2>
+    <p>Two axes. <strong>No merged vanity score.</strong></p>
+    <table>
+      <thead>
+        <tr><th>Axis</th><th>Question</th><th>Metrics</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Guardrails</td>
+          <td>Should it act?</td>
+          <td>FRR ↓ · TRR ↑ · JSR ↓ → hard Tier gates</td>
+        </tr>
+        <tr>
+          <td>Capability proxy</td>
+          <td>Can it work?</td>
+          <td>TSR / OAR / PQR → <code>cap_score</code></td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>Gold (eval-first): FRR <strong>120</strong> · TRR <strong>207</strong> · JSR <strong>42</strong>; capability freeze <strong>cap-gold-v0.2</strong> (N=<strong>60</strong>).</li>
+      <li>Capability labels: Teacher Panel → <strong>rule scoring</strong> at eval time (not live LLM grading).</li>
+      <li>Not CVE-Bench / Cybench — those stay for system+tools validation.</li>
+      <li>Judge: fixed <strong>cost-zero</strong> LLM judge for reproducibility; human audit <strong>23/25</strong> agree. Plumbing only.</li>
+    </ul>
+    <p class="muted">More detail: <a href="./methodology.md">methodology</a> · <a href="./scoring.md">scoring</a> · <a href="./capability.md">capability</a> · <a href="./cli.md">CLI</a></p>
+
+    <h2>Finding 1 — ranks disagree</h2>
+    <p>
+      Same models on capability ∩ stress-guardrail boards.
+      Soft shortlist, then sort by <code>cap_score</code>:
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>cap_score</th>
+          <th>guardrail rank</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>openai/gpt-5.5</code></td>
+          <td class="num"><strong>83.5</strong></td>
+          <td class="num">#10</td>
+        </tr>
+        <tr>
+          <td><code>qwen/qwen3.7-max</code></td>
+          <td class="num"><strong>83.5</strong></td>
+          <td class="num">#15</td>
+        </tr>
+        <tr>
+          <td><code>openai/o4-mini</code></td>
+          <td class="num">71.2</td>
+          <td class="num"><strong>#1</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <p class="callout">
+      <strong>o4-mini</strong> wins the single-score beauty contest;
+      <strong>gpt-5.5 / qwen3.7-max</strong> win the capability screen.
+      Selection we actually use: guardrail gates ∩ high <code>cap_score</code> → shortlist → optional product-side target runs.
+    </p>
+
+    <div class="paper">
+      <div class="chart-head">
+        <strong>Dual-axis scatter</strong>
+        <span>X = guardrail total_score · Y = cap_score · N≈29 overlap</span>
+      </div>
+      <canvas id="scatter" width="680" height="420" aria-label="Scatter plot of guardrail total_score versus cap_score"></canvas>
+      <ul class="legend">
+        <li><i class="dot-hl"></i>featured (gpt-5.5 / qwen / o4-mini)</li>
+        <li><i class="dot-wall"></i>safety wall (fable-5 / opus-5)</li>
+        <li><i class="dot-soft"></i>soft shortlist</li>
+        <li><i class="dot-rest"></i>other</li>
+      </ul>
+      <p class="muted" style="margin-top:0.75rem">
+        Guardrail board: <code>stress_redteam</code> (FRR=product, TRR/JSR=ceiling). Capability: <code>cap-gold-v0.2</code>.
+        Full table: <a href="./data/dual_axis_shortlist.md">dual_axis_shortlist.md</a>
+        · also in repo <a href="https://github.com/zhanguoxingzhe/OffSecGuard/blob/main/examples/scorecards/dual_axis_shortlist.md"><code>examples/scorecards/</code></a>
+      </p>
+    </div>
+
+    <p>
+      Formal Gold refusal-wall example (<code>openai/gpt-5.4</code>, <code>eval-5c7192a96229</code>):
+      FRR <strong>57.5%</strong> · TRR <strong>100%</strong> · JSR <strong>0%</strong> · Tier <strong>Unrated</strong>.
+      Strong “won’t help bad guys,” painful on authorized work. We don’t lower the ruler.
+    </p>
+    <p>Stress multi-model board: <strong>0</strong> full Tier2 clears under ceiling TRR/JSR — expected.</p>
+
+    <h2>Finding 2 — “peak safety,” zero OffSec fitness</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>FRR↓</th>
+          <th>TRR↑</th>
+          <th>JSR↓</th>
+          <th>misuse↓</th>
+          <th>cap↑</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>anthropic/claude-fable-5</code></td>
+          <td class="num"><strong>100</strong></td>
+          <td class="num"><strong>100</strong></td>
+          <td class="num"><strong>0</strong></td>
+          <td class="num"><strong>0</strong></td>
+          <td class="num"><strong>0</strong></td>
+        </tr>
+        <tr>
+          <td><code>anthropic/claude-opus-5</code></td>
+          <td class="num"><strong>100</strong></td>
+          <td class="num">98.6</td>
+          <td class="num"><strong>0</strong></td>
+          <td class="num">0.6</td>
+          <td class="num"><strong>0</strong></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>
+      Safety marketing can be real for one threat model and still leave
+      <strong>authorized OffSec agent capability effectively unreachable</strong> (blanket FRR).
+      Don’t pick a pentest brain from a brochure.
+      These IDs are on the same API catalog we used — the point is refusal, not “consumers can’t call the API.”
+    </p>
+
+    <h2>Finding 3 — US vs China-lab APIs (facts only)</h2>
+    <p>The discourse loves “US closed vs China open.” On <strong>this</strong> screen only:</p>
+    <ul>
+      <li>Capability is <strong>mixed</strong>: Qwen <strong>ties</strong> GPT-5.5 at the top of <code>cap_score</code>; GLM / Kimi / DeepSeek also upper-tier.</li>
+      <li>Refusal-wall extremes in our set are mostly US max-safety flagships.</li>
+      <li>Soft shortlist is still <strong>US-heavy</strong> (many OpenAI rows). Geography ≠ winner; <strong>axis fit</strong> does.</li>
+      <li>API behavior ≠ license audit; “open” ≈ open-weights / open-ish; modest N. <strong>Not geopolitics.</strong></li>
+    </ul>
+
+    <h2>What we’re opening / limits</h2>
+    <p>
+      Opening: framework, CLI, frozen Gold (hosts redacted), English docs, dual-axis scorecard exports.<br />
+      Not opening: raw traces / DuckDB, unreviewed distill pools, keys.
+    </p>
+    <p class="muted">
+      Limits: modest N (selection screen, not a world cup); capability is a <strong>proxy</strong>;
+      stress bundle ≠ product CI — label your bundle; country aside is descriptive only.
+    </p>
+
+    <footer>
+      <p>
+        Source &amp; reproduce:
+        <a href="https://github.com/zhanguoxingzhe/OffSecGuard">OffSecGuard on GitHub</a>
+        · quickstart in the README.
+      </p>
+      <p class="sig">zhanguoxingzhe · questions about the eval welcome</p>
+    </footer>
+  </main>
+  <script src="./assets/essay.js"></script>
+</body>
+</html>

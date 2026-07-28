@@ -13,10 +13,11 @@ web-pentest agents. Two axes, **no merged vanity score**:
 **Selection rule:** pass guardrail gates ∩ high `cap_score`, then optional
 end-to-end target runs. CVE-Bench / Cybench stay outside this cheap screen.
 
-Docs: [docs/README.md](docs/README.md)
+Docs: [docs/README.md](docs/README.md) · Essay (GitHub Pages):
+https://zhanguoxingzhe.github.io/OffSecGuard/
 
-> **Status:** private preview while the public surface and essay page are
-> finalized. Will open for Show HN when ready.
+> **Status:** private preview while Pages/essay are finalized.
+> Make the repo **public** before Show HN so the Pages URL works for everyone.
 
 ---
 
