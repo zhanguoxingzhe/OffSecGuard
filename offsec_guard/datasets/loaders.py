@@ -1,4 +1,4 @@
-"""通用数据加载器 — 支持 JSONL / CSV / YAML."""
+"""Generic data loaders — JSONL / CSV / YAML."""
 
 from __future__ import annotations
 

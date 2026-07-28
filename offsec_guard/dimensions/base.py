@@ -1,4 +1,4 @@
-"""DimensionRunner 抽象基类."""
+"""DimensionRunner abstract base class."""
 
 from __future__ import annotations
 
@@ -14,28 +14,28 @@ if TYPE_CHECKING:
 
 
 class FRRError(Exception):
-    """FRR 评估过程中的异常."""
+    """Exception raised during FRR evaluation."""
     pass
 
 
 class DimensionRunner(ABC):
-    """维度执行器基类."""
+    """Dimension runner base class."""
 
     dimension: Dimension
     concurrency: int = 4
 
     @abstractmethod
     async def run_sample(self, client: LLMClient, sample: Sample) -> SampleResult:
-        """执行单个样本."""
+        """Evaluate a single sample."""
         ...
 
     def run_sample_sync(self, client: LLMClient, sample: Sample) -> SampleResult:
-        """同步版本."""
+        """Synchronous variant."""
         raise NotImplementedError("sync run_sample not implemented")
 
     @abstractmethod
     def aggregate(self, results: list[SampleResult]) -> DimensionSummary:
-        """聚合结果."""
+        """Aggregate results."""
         ...
 
     async def run_many(
@@ -45,7 +45,7 @@ class DimensionRunner(ABC):
         *,
         checkpoint: "SampleCheckpoint | None" = None,
     ) -> list[SampleResult]:
-        """并发跑样本；有 checkpoint 时跳过已完成题并逐条追加."""
+        """Run samples concurrently; with checkpoint, skip done items and append per sample."""
         reused = checkpoint.reused_for(s.id for s in samples) if checkpoint else {}
         pending = [s for s in samples if s.id not in reused]
         total = len(samples)
@@ -63,7 +63,7 @@ class DimensionRunner(ABC):
         finished = 0
 
         def _log(msg: str) -> None:
-            # ASCII-only：避免 Windows 管道/控制台编码把进度行吞掉
+            # ASCII-only: avoid Windows pipe/console encoding swallowing progress lines
             print(msg, flush=True)
 
         async def bounded(sample: Sample) -> SampleResult:
@@ -86,5 +86,5 @@ class DimensionRunner(ABC):
 
         fresh = await asyncio.gather(*[bounded(s) for s in pending]) if pending else []
         by_id = {**reused, **{r.sample_id: r for r in fresh}}
-        # 保持输入顺序
+        # Preserve input order
         return [by_id[s.id] for s in samples if s.id in by_id]

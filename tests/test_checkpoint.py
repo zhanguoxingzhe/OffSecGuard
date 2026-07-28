@@ -1,4 +1,4 @@
-"""逐条 checkpoint 续跑单测."""
+"""Per-sample checkpoint resume unit tests."""
 
 from __future__ import annotations
 
@@ -48,7 +48,7 @@ def test_checkpoint_append_and_reuse(tmp_path: Path):
 
     ck2 = SampleCheckpoint(path, retry_errors=True, load=True)
     reused = ck2.reused_for(["a", "b", "c"])
-    assert set(reused) == {"a"}  # error 默认重试，不计入 reuse
+    assert set(reused) == {"a"}  # errors retry by default; not counted as reuse
 
 
 def test_fingerprint_stable():

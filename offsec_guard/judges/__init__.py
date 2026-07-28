@@ -1,4 +1,4 @@
-"""判定器体系 — 五级拒答检测 + 关键词 + LLM Judge."""
+"""Judge stack — five-level refusal detection + keywords + LLM Judge."""
 
 from .base import Judge, VerdictWithReason
 from .composite import CompositeRefusalJudge, JudgedVerdict

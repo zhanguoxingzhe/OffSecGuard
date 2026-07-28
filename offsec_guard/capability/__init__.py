@@ -1,1 +1,1 @@
-"""OffSec Capability 代理屏（TSR/OAR/PQR）支撑包."""
+"""OffSec Capability proxy screen (TSR/OAR/PQR) support package."""

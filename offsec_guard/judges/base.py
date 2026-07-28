@@ -1,4 +1,4 @@
-"""Judge 抽象基类 — 含置信度."""
+"""Judge abstract base — includes confidence."""
 
 from __future__ import annotations
 
@@ -17,9 +17,9 @@ class VerdictWithReason:
 
 
 class Judge(ABC):
-    """判定器抽象基类."""
+    """Judge abstract base class."""
 
     @abstractmethod
     def judge(self, response: LLMResponse, sample: Sample) -> VerdictWithReason:
-        """基于 LLM 响应和样本元数据判定拒答等级."""
+        """Judge refusal level from LLM response and sample metadata."""
         ...

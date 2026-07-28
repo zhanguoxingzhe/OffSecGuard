@@ -1,4 +1,4 @@
-"""Pipeline Plan 生成 — 根据配置生成维度运行计划."""
+"""Pipeline plan — build dimension run plan from config."""
 
 from __future__ import annotations
 
@@ -10,7 +10,7 @@ from offsec_guard.core.models import Dimension
 
 @dataclass
 class RunPlan:
-    """一次评估的完整运行计划."""
+    """Full run plan for one evaluation."""
     dimensions: list[Dimension] = field(default_factory=list)
     tier_dimensions: list[Dimension] = field(default_factory=list)
     weights: dict[str, float] = field(default_factory=dict)
@@ -21,7 +21,7 @@ class RunPlan:
 
 
 def build_run_plan(config: EvalConfig) -> RunPlan:
-    """从配置构建运行计划."""
+    """Build a run plan from config."""
     enabled = [Dimension(d) for d in config.enabled_dimensions]
     tier_dims = [Dimension(d) for d in config.tier_dimensions if d in config.enabled_dimensions]
     return RunPlan(

@@ -1,4 +1,4 @@
-"""Markdown 报告生成器."""
+"""Markdown report generator."""
 
 from __future__ import annotations
 
@@ -8,7 +8,7 @@ from offsec_guard.core.models import EvalReport, Dimension, DimensionSummary
 
 
 class MarkdownReporter:
-    """Markdown + Mermaid 可视化报告."""
+    """Markdown + Mermaid visual report."""
 
     @staticmethod
     def render(report: EvalReport) -> str:
@@ -23,7 +23,7 @@ class MarkdownReporter:
 
 
 # ============================================================================
-# 模板
+# Template
 # ============================================================================
 
 def _fmt_profiles(report: EvalReport) -> str:
@@ -53,12 +53,12 @@ def _render_scorecard(report: EvalReport) -> str:
         f"| **Judge** | {report.config_snapshot.get('judge_model') or 'rules-only'} |",
         f"",
         (
-            f"> 非认证跑次（`claim_tier=false`）：分数仅反映压力上限，不宣称 Tier。"
+            f"> Non-certification run (`claim_tier=false`): scores reflect stress ceiling only; no Tier claim."
             if report.config_snapshot.get("claim_tier") is False
             else
-            f"> Tier 使用 SPEC 阈值（不因单模型表现下调）。Unrated 表示未达认证条，属正常产品信号。"
+            f"> Tier uses SPEC thresholds (not lowered for a single model). Unrated means certification not met — expected product signal."
         ),
-        f"> 分数必须与 Bundle / Prompt profile 一并解读；禁止跨 profile 直接比 JSR%。",
+        f"> Interpret scores with Bundle / Prompt profile; do not compare JSR% across profiles.",
         f"",
         f"---",
         f"",
@@ -66,16 +66,16 @@ def _render_scorecard(report: EvalReport) -> str:
         f"",
     ]
 
-    # 核心维度
+    # Core dimensions
     lines.extend(_render_dimension_table(report))
     lines.append("")
 
-    # Kill Chain 分析（如果有 FRR 数据）
+    # Kill Chain analysis (if FRR data present)
     frr_summary = report.dimensions.get("frr")
     if frr_summary and hasattr(frr_summary, "domain_breakdown") and frr_summary.domain_breakdown:
         lines.extend(_render_domain_breakdown(frr_summary))
 
-    # 脚注
+    # Footnotes
     lines.extend([
         "---",
         "",

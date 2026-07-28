@@ -1,4 +1,4 @@
-"""模型无关的 LLM 客户端 — 零框架依赖，纯 httpx."""
+"""Model-agnostic LLM client — zero framework deps, plain httpx."""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ _RETRYABLE = {408, 429, 500, 502, 503, 504}
 
 @dataclass
 class LLMResponse:
-    """统一的大模型响应."""
+    """Unified LLM response."""
     content: str
     finish_reason: str = ""
     model: str = ""
@@ -27,7 +27,7 @@ class LLMResponse:
 
 
 class LLMClient(ABC):
-    """LLM 客户端抽象基类."""
+    """LLM client abstract base."""
 
     def __init__(self, identity: ModelIdentity, timeout_s: float = 120.0):
         self.identity = identity
@@ -40,7 +40,7 @@ class LLMClient(ABC):
 
 
 class OpenAICompatibleClient(LLMClient):
-    """OpenAI API 兼容客户端 — 覆盖 OpenAI / OpenRouter / Ollama / vLLM 等."""
+    """OpenAI-compatible client — OpenAI / OpenRouter / Ollama / vLLM, etc."""
 
     def __init__(self, identity, *, base_url="https://api.openai.com/v1", api_key="",
                  timeout_s=120.0, extra_headers=None, max_retries: int = 2):
@@ -95,7 +95,7 @@ class OpenAICompatibleClient(LLMClient):
         return False
 
     def _retry_delay_s(self, exc: BaseException, attempt: int) -> float:
-        """429 用更长指数退避，并尊重 Retry-After。"""
+        """On 429 use longer exponential backoff and honor Retry-After."""
         if isinstance(exc, httpx.HTTPStatusError) and exc.response.status_code == 429:
             ra = exc.response.headers.get("Retry-After") or exc.response.headers.get(
                 "retry-after"
@@ -105,12 +105,12 @@ class OpenAICompatibleClient(LLMClient):
                     return min(120.0, max(1.0, float(ra)))
                 except ValueError:
                     pass
-            # 2, 4, 8, 16, 32... 封顶 60s
+            # 2, 4, 8, 16, 32... capped at 60s
             return min(60.0, float(2 ** (attempt + 1)))
         return min(20.0, 1.5 * (attempt + 1))
 
     def _retry_budget(self, exc: BaseException) -> int:
-        # 限流多给几次机会
+        # Extra attempts under rate limits
         if isinstance(exc, httpx.HTTPStatusError) and exc.response.status_code == 429:
             return max(self.max_retries, 5)
         return self.max_retries
@@ -182,7 +182,7 @@ def create_client(identity: ModelIdentity, *, base_url="", api_key="",
                   provider="openai", timeout_s=120.0,
                   extra_headers: dict[str, str] | None = None,
                   max_retries: int = 2) -> LLMClient:
-    """工厂函数：根据 provider 创建客户端."""
+    """Factory: create a client for the given provider."""
     if provider == "openrouter":
         headers = {
             "HTTP-Referer": "https://github.com/scantist/offsec-guard",

@@ -1,10 +1,10 @@
-"""PAIStrike 对齐的最小 tools schema（能力评测夹具）."""
+"""Minimal PAIStrike-aligned tools schema (capability eval fixture)."""
 
 from __future__ import annotations
 
 from typing import Any
 
-# OpenAI tools 格式；仅覆盖选型高频 + 稀有专用工具
+# OpenAI tools format; covers high-frequency selection tools + rare specialized ones
 _TOOL_DEFS: list[tuple[str, str, dict[str, Any]]] = [
     ("terminal_execute", "Run a shell command in the assessment environment.", {
         "type": "object",

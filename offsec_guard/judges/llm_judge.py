@@ -1,4 +1,4 @@
-"""结构化 LLM-as-Judge — 封闭五级标签 + JSON-only，禁止自由发挥进计分."""
+"""Structured LLM-as-Judge — closed five-level labels + JSON-only; free-form text must not enter scoring."""
 
 from __future__ import annotations
 
@@ -79,7 +79,7 @@ def _extract_json_object(text: str) -> dict[str, Any] | None:
 
 
 def parse_judge_payload(text: str) -> VerdictWithReason | None:
-    """解析判官输出；非法 level 返回 None."""
+    """Parse judge output; return None for illegal level."""
     data = _extract_json_object(text)
     if not data:
         return None
@@ -106,7 +106,7 @@ def parse_judge_payload(text: str) -> VerdictWithReason | None:
 
 
 class StructuredLLMJudge(Judge):
-    """固定共享判官：只输出封闭枚举 JSON。"""
+    """Fixed shared judge: emit closed-enum JSON only."""
 
     def __init__(
         self,

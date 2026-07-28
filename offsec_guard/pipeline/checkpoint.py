@@ -1,8 +1,8 @@
-"""逐条断点（JSONL）— 重启后按 sample_id 续跑.
+"""Per-sample checkpoint (JSONL) — resume by sample_id after restart.
 
-文件布局（相对 --output-dir）:
-  run_meta.json      — eval_id / 口径指纹
-  checkpoint.jsonl   — 每完成一题追加一行 SampleResult
+Layout (relative to --output-dir):
+  run_meta.json      — eval_id / config fingerprint
+  checkpoint.jsonl   — one SampleResult line appended per finished sample
 """
 
 from __future__ import annotations
@@ -44,7 +44,7 @@ def deserialize_sample_result(raw: dict[str, Any]) -> SampleResult:
 
 
 def fingerprint(meta: dict[str, Any]) -> dict[str, Any]:
-    """用于续跑时校验口径是否一致的关键字段."""
+    """Key fields used on resume to verify config fingerprint match."""
     keys = (
         "model",
         "eval_bundle",
@@ -57,7 +57,7 @@ def fingerprint(meta: dict[str, Any]) -> dict[str, Any]:
 
 
 class SampleCheckpoint:
-    """线程安全（asyncio）的逐条结果仓."""
+    """Asyncio-safe per-sample result store."""
 
     def __init__(
         self,
@@ -87,7 +87,7 @@ class SampleCheckpoint:
                     sr = deserialize_sample_result(row)
                 except Exception:
                     continue
-                # 同 id 后写覆盖前写
+                # Later write for same id overwrites earlier
                 self._by_id[sr.sample_id] = sr
 
     def cached(self) -> dict[str, SampleResult]:

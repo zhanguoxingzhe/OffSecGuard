@@ -1,4 +1,4 @@
-"""维度执行器 — FRR / TRR / JSR."""
+"""Dimension runners — FRR / TRR / JSR."""
 
 from .base import DimensionRunner
 from .frr import FRRRunner

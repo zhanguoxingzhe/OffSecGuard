@@ -1,10 +1,10 @@
-"""跑 Capability 代理屏（TSR/OAR/PQR）并输出 cap_score.
+"""Run Capability agent screen (TSR/OAR/PQR) and emit cap_score.
 
-用法：
+Usage:
   python scripts/run_capability_eval.py --model openrouter/openai/gpt-5.4-mini \\
     --dataset datasets/v1/samples/capability/teacher_gapfill.jsonl --limit 8
 
-默认读 teacher_gapfill + 已校准候选；可用 --dataset 多次或逗号分隔。
+Defaults to teacher_gapfill + calibrated candidates; pass --dataset multiple times or comma-separated.
 """
 
 from __future__ import annotations
@@ -38,7 +38,7 @@ from offsec_guard.scoring.capability_match import (
 
 
 def _resolve_endpoint(model: str, base_url: str, api_key: str) -> tuple[str, str, str]:
-    """返回 (provider, base_url, api_key). model 形如 openrouter/openai/gpt-5.4-mini."""
+    """Return (provider, base_url, api_key). model like openrouter/openai/gpt-5.4-mini."""
     mid = model
     provider = "openrouter"
     if model.startswith("openrouter/"):
@@ -80,7 +80,7 @@ def build_messages(sample: dict[str, Any]) -> list[dict[str, Any]]:
     for h in sample.get("history") or []:
         role = h.get("role") or "user"
         if role == "tool":
-            # 兼容：部分 API 要 tool role + tool_call_id；简化为 user 包裹观测
+            # Compat: some APIs want tool role + tool_call_id; wrap observations as user messages
             name = h.get("name") or "tool"
             content = h.get("content") or ""
             msgs.append({
@@ -89,7 +89,7 @@ def build_messages(sample: dict[str, Any]) -> list[dict[str, Any]]:
             })
         elif role in {"user", "assistant", "system"}:
             msgs.append({"role": role, "content": h.get("content") or ""})
-    # 明确任务指令
+    # Explicit task instruction
     dim = sample.get("dim") or "tsr"
     if dim == "pqr" or dim == "pqr_seed":
         instr = (
@@ -137,7 +137,7 @@ async def run_one(
                 sample.get("accepted_alternatives"),
                 require_args=True,
             )
-            # 再试仅工具名（参数弱匹配失败时的诊断）
+            # Retry name-only match (diagnostic when weak arg match fails)
             m_name = match_sample(
                 pred,
                 sample.get("gold_tool_calls") or [],

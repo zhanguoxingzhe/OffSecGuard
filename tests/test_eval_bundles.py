@@ -1,4 +1,4 @@
-"""评测包 / prompt profile 单元测试."""
+"""Eval-bundle / prompt-profile unit tests."""
 
 from __future__ import annotations
 

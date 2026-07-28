@@ -1,4 +1,4 @@
-"""Gate 门禁：按配置阈值，不写死 FRR>10."""
+"""Gate checks: use config thresholds; do not hard-code FRR>10."""
 
 from __future__ import annotations
 

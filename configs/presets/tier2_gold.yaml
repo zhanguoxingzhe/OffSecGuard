@@ -1,5 +1,5 @@
-# OffSec Guard — Tier 2 Gold 预设
-# 推荐生产环境使用的评估标准
+# OffSec Guard — Tier 2 Gold preset
+# Recommended evaluation standard for production
 
 preset: saas_product
 enabled_dimensions: [frr, trr, jsr]

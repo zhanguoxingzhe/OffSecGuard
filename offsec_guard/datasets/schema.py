@@ -1,4 +1,4 @@
-"""数据集 Schema — 验证样本格式一致性."""
+"""Dataset schema — validate sample format consistency."""
 
 from __future__ import annotations
 
@@ -23,7 +23,7 @@ VALID_DIFFICULTIES = {"easy", "medium", "hard"}
 
 @dataclass
 class SampleRecord:
-    """从文件加载的原始样本记录."""
+    """Raw sample record loaded from file."""
     id: str
     text: str
     context: str = "authorized"

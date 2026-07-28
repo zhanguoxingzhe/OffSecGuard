@@ -1,4 +1,4 @@
-"""Pipeline 执行器 — 编排维度运行 + Gate 判定."""
+"""Pipeline executor — orchestrate dimension runs + gate decisions."""
 
 from __future__ import annotations
 
@@ -20,7 +20,7 @@ from .plan import RunPlan
 
 @dataclass
 class ExecutionContext:
-    """评估执行上下文."""
+    """Evaluation execution context."""
     config: EvalConfig
     plan: RunPlan
     client: LLMClient
@@ -29,7 +29,7 @@ class ExecutionContext:
 
 
 class PipelineExecutor:
-    """Pipeline 执行编排器."""
+    """Pipeline execution orchestrator."""
 
     def __init__(self, ctx: ExecutionContext):
         self.ctx = ctx
@@ -41,7 +41,8 @@ class PipelineExecutor:
     def _open_checkpoint(self) -> SampleCheckpoint | None:
         cfg = self.ctx.config
         path = cfg.checkpoint_path or str(checkpoint_path(cfg.output_dir))
-        # 始终写盘；resume=False 时不加载旧进度（调用方应已清空文件）
+        # Always write to disk; resume=False skips loading prior progress
+        # (caller should have cleared the file)
         return SampleCheckpoint(
             path,
             retry_errors=cfg.retry_checkpoint_errors,
@@ -49,7 +50,7 @@ class PipelineExecutor:
         )
 
     async def run(self, samples: list[Sample]) -> EvalReport:
-        """执行完整评估流水线."""
+        """Run the full evaluation pipeline."""
         dim_results: dict[str, DimensionSummary] = {}
         dim_samples: dict[str, list[SampleResult]] = {}
         checkpoint = self._open_checkpoint()
@@ -61,7 +62,7 @@ class PipelineExecutor:
                     f"(cached usable={n_cached}, retry_errors={checkpoint.retry_errors})"
                 )
 
-        # 按维度分发样本
+        # Route samples by dimension
         grouped = self._group_by_dimension(samples)
 
         for dim in self.ctx.plan.dimensions:
@@ -73,17 +74,17 @@ class PipelineExecutor:
             sample_rows = await runner.run(
                 self.ctx.client, hsamples, checkpoint=checkpoint
             )
-            # runners 返回 list[SampleResult]；兼容旧版直接返回 DimensionSummary
+            # Runners return list[SampleResult]; tolerate legacy DimensionSummary
             if isinstance(sample_rows, DimensionSummary):
                 dim_results[dim.value] = sample_rows
             else:
                 dim_samples[dim.value] = list(sample_rows)
                 dim_results[dim.value] = runner.aggregate(sample_rows)
 
-        # 综合评分 — 与 classify_tier / scorecard 对齐：
-        #   frr = fail_rate（假拒答率，越低越好）
-        #   trr = pass_rate（应拒答率，越高越好）
-        #   jsr = fail_rate（越狱成功率近似，越低越好）
+        # Composite scoring — aligned with classify_tier / scorecard:
+        #   frr = fail_rate (false-refusal rate; lower is better)
+        #   trr = pass_rate (should-refuse rate; higher is better)
+        #   jsr = fail_rate (jailbreak success approx; lower is better)
         scores: dict[str, float] = {}
         for dim in self.ctx.plan.tier_dimensions:
             key = dim.value
@@ -98,13 +99,13 @@ class PipelineExecutor:
                 scores[key] = summary.pass_rate
 
         tier = classify_tier(scores)
-        # 压力包等非认证跑次：仍计算分数，但不宣称 Tier
+        # Non-certification runs (e.g. stress packs): still score, but do not claim Tier
         if not self.ctx.config.claim_tier:
             from offsec_guard.core.models import Tier
 
             tier = Tier.UNRATED
 
-        # 加权综合分 (0-100)：FRR/JSR 用 (100-rate)，TRR 用 rate
+        # Weighted total (0-100): FRR/JSR use (100-rate); TRR uses rate
         total = 0.0
         ws = self.ctx.plan.weights
         for key in self.ctx.plan.tier_dimensions:
@@ -142,7 +143,7 @@ class PipelineExecutor:
         )
 
     def run_sync(self, samples: list[Sample]) -> EvalReport:
-        """同步入口 — 内部使用 asyncio 并发执行."""
+        """Sync entrypoint — runs asyncio concurrency internally."""
         return asyncio.run(self.run(samples))
 
     # ------------------------------------------------------------------
@@ -178,7 +179,7 @@ class PipelineExecutor:
 
     @staticmethod
     def _group_by_dimension(samples: list[Sample]) -> dict[Dimension, list[Sample]]:
-        """按 expected_action / id 前缀将样本路由到对应维度."""
+        """Route samples to dimensions by expected_action / id prefix."""
         groups: dict[Dimension, list[Sample]] = {}
         for s in samples:
             if s.expected_action == "execute":

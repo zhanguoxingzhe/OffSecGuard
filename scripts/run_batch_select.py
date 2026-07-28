@@ -1,19 +1,20 @@
-"""跑 batch_select_*（按厂商互斥并行 + DeepSeek/OpenRouter 双引擎）.
+"""Run batch_select_* (vendor-mutex parallelism + DeepSeek/OpenRouter dual engines).
 
-续跑两级:
-  1) 模型级：已有完整 summary.json → 跳过该模型
-  2) 样本级：cli 默认写 output-dir/checkpoint.jsonl，中断后同命令续跑未完成题
+Two-level resume:
+  1) Model-level: skip models that already have a complete summary.json
+  2) Sample-level: cli writes output-dir/checkpoint.jsonl by default; re-run
+     the same command to finish remaining samples after interrupt
 
-调度（默认 --by-vendor）:
-  - 同一厂商（openai/anthropic/qwen/...）同时只跑 1 个型号
-  - 不同厂商可并行，上限 --workers（= 同时跑几个平台）
+Scheduling (default --by-vendor):
+  - At most one model per vendor (openai/anthropic/qwen/...) at a time
+  - Different vendors may run in parallel, capped by --workers (= concurrent platforms)
 
-双引擎 (--split-engines):
-  - DeepSeek 车道：deepseek/*（v4→官方 API；r1/v3.2→OpenRouter）
-  - OpenRouter 车道：其它厂
-  两车道并行；各车道内部仍遵守「一厂一线程」
+Dual engines (--split-engines):
+  - DeepSeek lane: deepseek/* (v4 → official API; r1/v3.2 → OpenRouter)
+  - OpenRouter lane: all other vendors
+  Both lanes run in parallel; each lane still enforces one-thread-per-vendor
 
-示例:
+Example:
   python scripts/run_batch_select.py --eval-bundle stress_redteam \\
     --output-root results/batch_select_stress --split-engines \\
     --by-vendor --workers 4 --concurrency 2 --concurrency-deepseek 1
@@ -41,7 +42,7 @@ CATALOG = ROOT / "configs" / "batch" / "openrouter_mainstream_models.yaml"
 DEFAULT_OUT = ROOT / "results" / "batch_select"
 _PRINT_LOCK = threading.Lock()
 
-# 官方 DeepSeek /models 当前仅有这两款（2026-07）
+# Official DeepSeek /models currently lists only these two (2026-07)
 DEEPSEEK_NATIVE: dict[str, str] = {
     "deepseek/deepseek-v4-pro": "deepseek-v4-pro",
     "deepseek/deepseek-v4-flash": "deepseek-v4-flash",
@@ -265,7 +266,7 @@ def run_lane_by_vendor(
     max_vendors: int,
     conc: int,
 ) -> tuple[int, int]:
-    """同一厂商同时只跑 1 个型号；不同厂商最多 max_vendors 路并行."""
+    """At most one model per vendor; up to max_vendors vendors in parallel."""
     if not routes:
         log_line(mf, f"[lane:{lane}] empty, skip\n")
         return 0, 0
@@ -287,7 +288,7 @@ def run_lane_by_vendor(
 
     with ThreadPoolExecutor(max_workers=max_vendors) as pool:
         while waiting or in_flight:
-            # 尽量提交：厂商空闲且未达并行上限
+            # Submit while a vendor is free and under the parallel cap
             deferred: deque[tuple[int, Route]] = deque()
             while waiting and len(active_vendors) < max_vendors:
                 idx, route = waiting.popleft()
@@ -319,11 +320,11 @@ def run_lane_by_vendor(
                     f"[lane:{lane}] start {route.mid} "
                     f"(active_vendors={sorted(active_vendors)})\n",
                 )
-            # 本轮因厂商占用跳过的放回队列尾部
+            # Re-queue items deferred due to a busy vendor
             waiting.extend(deferred)
 
             if not in_flight:
-                # 死锁保护：waiting 非空但都因 vendor 占用 — 不应发生
+                # Deadlock guard: waiting non-empty but all blocked by vendor — should not happen
                 if waiting:
                     log_line(mf, f"[lane:{lane}] WARN scheduler stall, force serial one\n")
                     idx, route = waiting.popleft()
@@ -360,7 +361,7 @@ def run_lane_by_vendor(
                 else:
                     fail += 1
                     if args.stop_on_error:
-                        # 取消未完成：不再提交新的
+                        # Cancel remaining: stop submitting new work
                         waiting.clear()
     return ok, fail
 
@@ -400,7 +401,7 @@ def run_lane(
             max_vendors=workers if args.by_vendor else 1,
             conc=conc,
         )
-    # --no-by-vendor 且 workers>1：允许同厂多版本（不推荐）
+    # --no-by-vendor with workers>1: allow multiple models per vendor (not recommended)
     log_line(
         mf,
         f"[lane:{lane}] WARN --no-by-vendor: may run multiple versions of same vendor\n",
@@ -459,52 +460,52 @@ def main() -> int:
     ap.add_argument(
         "--split-engines",
         action="store_true",
-        help="DeepSeek 队列与 OpenRouter 队列并行（官方 DS key + OR key）",
+        help="Run DeepSeek and OpenRouter queues in parallel (official DS key + OR key)",
     )
     ap.add_argument(
         "--no-native-deepseek",
         action="store_true",
-        help="deepseek/* 全部仍走 OpenRouter（仅分队列，不用官方 API）",
+        help="Route all deepseek/* via OpenRouter (split queues only; no official API)",
     )
     ap.add_argument(
         "--by-vendor",
         action=argparse.BooleanOptionalAction,
         default=True,
-        help="同一厂商同时只跑 1 个型号（默认开；--no-by-vendor 关闭）",
+        help="At most one model per vendor at a time (default on; --no-by-vendor to disable)",
     )
     ap.add_argument(
         "--workers",
         type=int,
         default=4,
-        help="最多同时跑几个厂商/平台（默认 4；配合 --by-vendor）",
+        help="Max concurrent vendors/platforms (default 4; with --by-vendor)",
     )
     ap.add_argument(
         "--workers-deepseek",
         type=int,
         default=1,
-        help="DeepSeek 车道并行厂商数（deepseek 只有一家，保持 1）",
+        help="DeepSeek-lane parallel vendors (deepseek is one vendor; keep 1)",
     )
     ap.add_argument(
         "--concurrency",
         type=int,
         default=2,
-        help="单模型样本并发（OpenRouter 车道）",
+        help="Per-model sample concurrency (OpenRouter lane)",
     )
     ap.add_argument(
         "--concurrency-deepseek",
         type=int,
         default=4,
-        help="单模型样本并发（DeepSeek 车道）",
+        help="Per-model sample concurrency (DeepSeek lane)",
     )
     ap.add_argument("--concurrency-paperguru", type=int, default=1)
-    ap.add_argument("--only", default="", help="逗号分隔模型 ID 子集")
-    ap.add_argument("--limit", type=int, default=0, help="最多跑 N 个未完成模型")
+    ap.add_argument("--only", default="", help="Comma-separated model ID subset")
+    ap.add_argument("--limit", type=int, default=0, help="Max unfinished models to run")
     ap.add_argument("--dry-run", action="store_true")
-    ap.add_argument("--force", action="store_true", help="忽略已完成，强制重跑")
+    ap.add_argument("--force", action="store_true", help="Ignore completed models; force re-run")
     ap.add_argument(
         "--retry-errors",
         action="store_true",
-        help="只重跑 checkpoint 中仍有 verdict=error 的模型（配合默认 resume 只补 error 题）",
+        help="Only re-run models with verdict=error in checkpoint (default resume fills errors only)",
     )
     ap.add_argument("--stop-on-error", action="store_true")
     args = ap.parse_args()
@@ -517,7 +518,7 @@ def main() -> int:
         ids = [i for i in ids if i in want]
         missing = want - set(ids)
         if missing:
-            print(f"WARN: --only 未命中: {sorted(missing)}")
+            print(f"WARN: --only unmatched: {sorted(missing)}")
 
     args.output_root.mkdir(parents=True, exist_ok=True)
     log_dir = args.output_root / "_logs"
@@ -595,7 +596,7 @@ def main() -> int:
         if env_file.exists():
             has = "DEEPSEEK_API_KEY=" in env_file.read_text(encoding="utf-8")
         if not has:
-            print("WARN: DEEPSEEK_API_KEY 未设置；native deepseek 会失败，可加 --no-native-deepseek")
+            print("WARN: DEEPSEEK_API_KEY not set; native deepseek will fail; use --no-native-deepseek")
 
     if args.dry_run:
         for r in routes:

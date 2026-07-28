@@ -1,4 +1,4 @@
-"""汇总 batch_capability 结果为 leaderboard JSON/MD."""
+"""Aggregate batch_capability results into leaderboard JSON/MD."""
 
 from __future__ import annotations
 
@@ -57,7 +57,7 @@ def main() -> None:
         "# Capability Leaderboard (cap-gold-v0.2)",
         "",
         f"- Gold: **cap-gold-v0.2** (60)",
-        f"- Models: **{len(rows)}**（含一代–三代；min_cohort={manifest.get('min_cohort')}）",
+        f"- Models: **{len(rows)}** (Gen 1–3; min_cohort={manifest.get('min_cohort')})",
         "",
         "| # | cap_score | TSR | OAR | PQR | Model | Cohort |",
         "|--:|--:|--:|--:|--:|:---|:---|",

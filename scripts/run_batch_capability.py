@@ -1,6 +1,6 @@
-"""批量跑 Capability Gold（默认只跑护栏 scorecard 中 cohort≥2 的模型）.
+"""Batch-run Capability Gold (default: models with cohort≥2 on guardrail scorecard).
 
-示例:
+Example:
   python scripts/run_batch_capability.py \\
     --scorecard results/batch_select_stress/_scorecard/stress_redteam_core_scorecard.json \\
     --min-cohort 2 --workers 4 --concurrency 3
@@ -109,9 +109,9 @@ def main() -> None:
     ap.add_argument("--scorecard", type=Path, default=DEFAULT_SCORECARD)
     ap.add_argument("--dataset", type=Path, default=DEFAULT_DATASET)
     ap.add_argument("--output-root", type=Path, default=DEFAULT_OUT)
-    ap.add_argument("--min-cohort", type=int, default=2, help="1=一代起, 2=二代以上, 3=仅三代")
-    ap.add_argument("--workers", type=int, default=4, help="同时跑几个厂商")
-    ap.add_argument("--concurrency", type=int, default=3, help="单模型题并发")
+    ap.add_argument("--min-cohort", type=int, default=2, help="1=gen1+, 2=gen2+, 3=gen3 only")
+    ap.add_argument("--workers", type=int, default=4, help="Concurrent vendors")
+    ap.add_argument("--concurrency", type=int, default=3, help="Per-model sample concurrency")
     ap.add_argument("--force", action="store_true")
     ap.add_argument("--include-pending", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
@@ -135,7 +135,7 @@ def main() -> None:
     if args.dry_run:
         return
 
-    # 一厂一线程 + 跨厂并行
+    # One thread per vendor + cross-vendor parallelism
     by_vendor: dict[str, deque[str]] = defaultdict(deque)
     for m in models:
         by_vendor[vendor_of(m["catalog_id"])].append(m["catalog_id"])

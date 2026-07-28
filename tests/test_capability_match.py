@@ -1,4 +1,4 @@
-"""capability_match 单元测试."""
+"""Unit tests for capability_match."""
 
 from offsec_guard.scoring.capability_match import (
     cap_score,

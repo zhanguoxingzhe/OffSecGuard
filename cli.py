@@ -1,4 +1,4 @@
-"""OffSec Guard CLI — 命令行入口."""
+"""OffSec Guard CLI — command-line entry point."""
 
 from __future__ import annotations
 
@@ -9,10 +9,10 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 
-# 加载仓库根目录 .env（不覆盖已有环境变量）
+# Load repo-root .env (does not override existing env vars)
 load_dotenv(Path(__file__).resolve().parent / ".env")
 
-# Windows 管道场景下避免进度日志因编码失败静默卡住
+# Avoid silent stalls when progress logs fail encoding on Windows pipes
 try:
     sys.stdout.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)  # type: ignore[attr-defined]
     sys.stderr.reconfigure(encoding="utf-8", errors="replace", line_buffering=True)  # type: ignore[attr-defined]
@@ -32,7 +32,7 @@ from offsec_guard.reporters.markdown_reporter import MarkdownReporter
 
 
 def _resolve_endpoint(provider: str, model_id: str, cli_base_url: str, cli_api_key: str) -> tuple[str, str]:
-    """按 provider / 模型前缀选择 base_url 与 api_key。"""
+    """Pick base_url and api_key from provider / model prefix."""
     prov = (provider or "").lower()
     mid = (model_id or "").lower()
     use_paperguru = (
@@ -51,7 +51,7 @@ def _resolve_endpoint(provider: str, model_id: str, cli_base_url: str, cli_api_k
         key = cli_api_key or os.getenv("PAPERGURU_API_KEY", "")
         return base.rstrip("/"), key
 
-    # 官方 DeepSeek（与 OpenRouter 上的 deepseek/* 分流）
+    # Official DeepSeek (split from deepseek/* on OpenRouter)
     if prov == "deepseek":
         base = (
             cli_base_url
@@ -73,95 +73,95 @@ def _resolve_endpoint(provider: str, model_id: str, cli_base_url: str, cli_api_k
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="pentestai-eval",
-        description="OffSec Guard — 攻击性安全 AI Agent 护栏评估框架",
+        description="OffSec Guard — offensive security AI agent guardrail evaluation framework",
     )
     sub = parser.add_subparsers(dest="command")
 
     # ---- run ----
-    run_p = sub.add_parser("run", help="运行模型评估")
-    run_p.add_argument("--model", required=True, help="模型 ID，如 openrouter/anthropic/claude-sonnet-4.6")
+    run_p = sub.add_parser("run", help="Run model evaluation")
+    run_p.add_argument("--model", required=True, help="Model ID, e.g. openrouter/anthropic/claude-sonnet-4.6")
     run_p.add_argument("--provider", default="openrouter")
     run_p.add_argument("--base-url", default="https://openrouter.ai/api/v1")
     run_p.add_argument("--api-key", default="")
-    run_p.add_argument("--dims", default="frr", help="评估维度，逗号分隔")
+    run_p.add_argument("--dims", default="frr", help="Evaluation dimensions, comma-separated")
     run_p.add_argument("--preset", default="", choices=["internal_research", "saas_product", "model_comparison"])
     run_p.add_argument(
         "--eval-bundle",
         default="",
         choices=["", "agent_product", "assistant_safety", "stress_redteam", "paper_main"],
         help=(
-            "命名评测包（推荐）：绑定各维 prompt profile + 权重 + 门禁阈值。"
-            "见 docs/EVAL_BUNDLES.md"
+            "Named eval bundle (recommended): binds per-dim prompt profile + weights + gate thresholds. "
+            "See docs/EVAL_BUNDLES.md"
         ),
     )
     run_p.add_argument(
         "--prompt-profile-frr",
         default="",
         choices=["", "floor", "product", "ceiling"],
-        help="覆盖 FRR system 压力档（一般用 --eval-bundle）",
+        help="Override FRR system pressure tier (prefer --eval-bundle)",
     )
     run_p.add_argument(
         "--prompt-profile-trr",
         default="",
         choices=["", "floor", "product", "ceiling"],
-        help="覆盖 TRR system 压力档",
+        help="Override TRR system pressure tier",
     )
     run_p.add_argument(
         "--prompt-profile-jsr",
         default="",
         choices=["", "floor", "product", "ceiling"],
-        help="覆盖 JSR system 压力档",
+        help="Override JSR system pressure tier",
     )
-    run_p.add_argument("--samples", type=int, default=0, help="最大样本数，0=全部")
+    run_p.add_argument("--samples", type=int, default=0, help="Max samples, 0=all")
     run_p.add_argument("--concurrency", type=int, default=4)
     run_p.add_argument("--output-dir", default="results")
     run_p.add_argument(
         "--no-resume",
         action="store_true",
-        help="忽略 output-dir 下 checkpoint.jsonl，清空后重跑",
+        help="Ignore checkpoint.jsonl under output-dir; clear and rerun",
     )
     run_p.add_argument(
         "--keep-errors",
         action="store_true",
-        help="续跑时保留 verdict=error 的题，不重试",
+        help="On resume, keep verdict=error rows and do not retry",
     )
-    run_p.add_argument("--exit-code", action="store_true", help="CI 模式：按配置 Gate 阈值失败则 exit 1")
-    run_p.add_argument("--config", default="", help="YAML 配置文件路径")
-    run_p.add_argument("--dataset", default="", help="自定义数据集路径 (.jsonl)，留空使用内置")
+    run_p.add_argument("--exit-code", action="store_true", help="CI mode: exit 1 when configured gate thresholds fail")
+    run_p.add_argument("--config", default="", help="Path to YAML config file")
+    run_p.add_argument("--dataset", default="", help="Custom dataset path (.jsonl); empty uses built-in")
     run_p.add_argument(
         "--tier",
         default="",
         choices=["", "gold", "all"],
-        help="gold=使用 datasets/v1/gold（FRR 正式口径）；all/默认=samples 全量",
+        help="gold=use datasets/v1/gold (formal FRR protocol); all/default=full samples",
     )
     run_p.add_argument(
         "--judge",
         action="store_true",
-        help="启用结构化 LLM Judge（规则低置信时二次判定；固定共享判官）",
+        help="Enable structured LLM Judge (second pass when rules are low-confidence; fixed shared judge)",
     )
     run_p.add_argument(
         "--no-judge",
         action="store_true",
-        help="禁用 LLM Judge（仅规则判定）",
+        help="Disable LLM Judge (rules only)",
     )
     run_p.add_argument(
         "--judge-model",
         default="",
-        help="判官模型，如 paperguru/guru-pro-1.2（默认读 JUDGE_MODEL / 配置）",
+        help="Judge model, e.g. paperguru/guru-pro-1.2 (default: JUDGE_MODEL / config)",
     )
-    run_p.add_argument("--judge-base-url", default="", help="判官 API base URL")
-    run_p.add_argument("--judge-api-key", default="", help="判官 API key")
+    run_p.add_argument("--judge-base-url", default="", help="Judge API base URL")
+    run_p.add_argument("--judge-api-key", default="", help="Judge API key")
 
     # ---- report ----
-    rep_p = sub.add_parser("report", help="从已有 JSON 结果重新生成报告")
-    rep_p.add_argument("input", help="eval JSON 文件路径")
-    rep_p.add_argument("--format", default="md", help="输出格式: md, json, html")
+    rep_p = sub.add_parser("report", help="Regenerate report from existing JSON results")
+    rep_p.add_argument("input", help="Path to eval JSON file")
+    rep_p.add_argument("--format", default="md", help="Output format: md, json, html")
 
     return parser
 
 
 def parse_model(raw: str) -> tuple[str, str]:
-    """解析 'provider/model-id' 格式."""
+    """Parse 'provider/model-id' format."""
     if "/" in raw:
         provider, model_id = raw.split("/", 1)
         return provider, model_id
@@ -169,10 +169,10 @@ def parse_model(raw: str) -> tuple[str, str]:
 
 
 def _load_samples(args) -> list[dict]:
-    """加载样本 — 自定义路径优先；--tier gold 用正式评测口径."""
+    """Load samples — custom path first; --tier gold uses formal eval protocol."""
     import sys
 
-    # 用户指定了自定义文件
+    # User-specified custom file
     if args.dataset:
         p = Path(args.dataset)
         if not p.exists():
@@ -184,7 +184,7 @@ def _load_samples(args) -> list[dict]:
     dims = [d.strip() for d in (getattr(args, "dims", "frr") or "frr").split(",") if d.strip()]
     tier = getattr(args, "tier", "") or ""
 
-    # Gold：各维优先 gold/<dim>.jsonl；缺失时回退 samples/<dim>/
+    # Gold: prefer gold/<dim>.jsonl per dimension; fallback to samples/<dim>/
     if tier == "gold":
         samples: list = []
         gold_root = root / "gold"
@@ -203,7 +203,7 @@ def _load_samples(args) -> list[dict]:
                 samples.extend(load_jsonl(str(f), limit=args.samples or 0))
         return samples
 
-    # 默认：samples 全量（由 pipeline 按 expected_action 路由维度）
+    # Default: full samples (pipeline routes by expected_action)
     builtin_root = root / "samples"
     if not builtin_root.exists():
         print(f"Builtin datasets not found at {builtin_root}")
@@ -240,7 +240,7 @@ def _cmd_run(args):
         config = EvalConfig.from_env()
 
     provider, model_id = parse_model(args.model)
-    # 若用户写 paperguru/xxx，provider 取 paperguru
+    # If user writes paperguru/xxx, provider becomes paperguru
     if provider.lower() in {"paperguru", "guru", "paper"}:
         config.provider = "paperguru"
     elif provider.lower() == "deepseek":
@@ -248,7 +248,7 @@ def _cmd_run(args):
     else:
         config.provider = provider
     config.model_id = model_id
-    # 默认 --base-url 是 openrouter；官方 deepseek 时忽略该默认，改走 DEEPSEEK_*
+    # Default --base-url is openrouter; for official deepseek ignore it and use DEEPSEEK_*
     cli_base = args.base_url
     if config.provider == "deepseek" and "openrouter.ai" in (cli_base or ""):
         cli_base = ""
@@ -266,7 +266,7 @@ def _cmd_run(args):
         from offsec_guard.core.config import PRESET_WEIGHTS
         config.weights = PRESET_WEIGHTS[args.preset]
 
-    # 评测包：锁定各维 prompt profile / 权重 / Gate（可被单维 --prompt-profile-* 微调）
+    # Eval bundle: lock per-dim prompt profile / weights / gates (overridable via --prompt-profile-*)
     dims_explicit = bool(args.dims and args.dims != "frr")
     if getattr(args, "eval_bundle", "") or "":
         from offsec_guard.core.eval_bundles import apply_eval_bundle
@@ -276,7 +276,7 @@ def _cmd_run(args):
             config.enabled_dimensions = [d.strip() for d in args.dims.split(",") if d.strip()]
             config.tier_dimensions = list(config.enabled_dimensions)
         else:
-            # 默认 --dims=frr 时改用 bundle 维度，并同步加载样本
+            # Default --dims=frr uses bundle dimensions and loads matching samples
             args.dims = ",".join(config.enabled_dimensions)
     else:
         config.enabled_dimensions = [d.strip() for d in args.dims.split(",") if d.strip()]
@@ -343,7 +343,7 @@ def _cmd_run(args):
 
     sample_objs = [SampleRecord.from_dict(s).to_sample() for s in samples]
 
-    # ── 逐条断点（output_dir/checkpoint.jsonl）──
+    # ── Per-sample checkpoint (output_dir/checkpoint.jsonl) ──
     from offsec_guard.pipeline.checkpoint import (
         checkpoint_path,
         clear_checkpoint,
@@ -380,10 +380,10 @@ def _cmd_run(args):
             prev_fp = fingerprint(prev)
             cur_fp = fingerprint(run_fp)
             if prev_fp != cur_fp:
-                print("Error: checkpoint 口径与当前 CLI 不一致，拒绝续跑。")
+                print("Error: checkpoint protocol does not match current CLI; refusing resume.")
                 print(f"  saved: {prev_fp}")
                 print(f"  now:   {cur_fp}")
-                print("  使用 --no-resume 清空后重跑，或对齐 bundle/profile/judge/tier。")
+                print("  Use --no-resume to clear and rerun, or align bundle/profile/judge/tier.")
                 sys.exit(2)
             if prev.get("eval_id"):
                 config.eval_id = prev["eval_id"]
@@ -422,7 +422,7 @@ def _cmd_run(args):
     report.config_snapshot["gate_passed"] = gate.passed
     report.config_snapshot["gate_failures"] = gate.failures
 
-    # summary 不含逐条正文；逐条单独落盘（避免大文件写盘失败）
+    # summary excludes per-row bodies; rows written separately (avoid huge write failures)
     JSONReporter.save(report, out_dir / "summary.json", include_samples=False)
     MarkdownReporter.save(report, out_dir / "scorecard.md")
     n_rows = sum(len(v) for v in report.sample_results.values())
@@ -433,13 +433,13 @@ def _cmd_run(args):
             encoding="utf-8",
         )
 
-    # 终端输出
+    # Terminal output
     print()
     print(f"═══ OffSec Guard: {identity.display_name}")
     if config.eval_bundle:
         print(f"Bundle: {config.eval_bundle}")
     if not config.claim_tier:
-        print(f"Tier: {report.tier.value}  (非认证跑次 / stress — 不宣称 Tier)")
+        print(f"Tier: {report.tier.value}  (non-cert run / stress — no Tier claim)")
     else:
         print(f"Tier: {report.tier.value}  (SPEC bar; Unrated = not meeting Tier thresholds)")
     print(f"Total Score: {report.total_score}/100")
@@ -471,7 +471,7 @@ def _cmd_run(args):
         )
     print(f"Reports: {out_dir}/")
 
-    # CI / 发布门禁：按配置阈值（D1）
+    # CI / release gate: configured thresholds (D1)
     if args.exit_code and not gate.passed:
         sys.exit(1)
 
@@ -479,15 +479,15 @@ def _cmd_run(args):
 
 
 def _apply_judge_config(args, config: EvalConfig) -> None:
-    """合并 CLI / ENV / YAML 的判官配置。"""
+    """Merge judge config from CLI / ENV / YAML."""
     if args.no_judge:
         config.judge_enabled = False
     elif args.judge or os.getenv("OFFSEC_GUARD_JUDGE", "").lower() in {"1", "true", "yes"}:
         config.judge_enabled = True
 
-    # 默认：自有 PaperGuru 作固定共享判官（零边际成本）
+    # Default: in-house PaperGuru as fixed shared judge (zero marginal cost)
     default_judge = "paperguru/guru-pro-1.2"
-    # YAML 已写 provider+model_id 时，拼成可解析形式
+    # When YAML already has provider+model_id, form a parseable string
     if (
         not args.judge_model
         and not os.getenv("JUDGE_MODEL")
@@ -508,7 +508,7 @@ def _apply_judge_config(args, config: EvalConfig) -> None:
             or default_judge
         )
 
-    # 支持 paperguru/guru-pro-1.2、openrouter/openai/...、openai/...
+    # Supports paperguru/guru-pro-1.2, openrouter/openai/..., openai/...
     if judge_model_raw.startswith("openrouter/"):
         config.judge_provider = "openrouter"
         config.judge_model_id = judge_model_raw.split("/", 1)[1]
@@ -546,7 +546,7 @@ def _apply_judge_config(args, config: EvalConfig) -> None:
     if not config.judge_enabled:
         return
 
-    # 未单独配置判官凭证时：PaperGuru → PAPERGURU_*；否则 OpenRouter
+    # When judge credentials are not set separately: PaperGuru → PAPERGURU_*; else OpenRouter
     if not config.judge_api_key:
         if config.judge_provider == "paperguru":
             config.judge_api_key = (
@@ -585,7 +585,7 @@ def _build_judge_client(config: EvalConfig):
         model_id=config.judge_model_id,
         display_name=f"judge:{config.judge_provider}/{config.judge_model_id}",
     )
-    # 判官始终走显式 base_url，避免 openrouter 工厂硬编码干扰
+    # Judge always uses explicit base_url to avoid openrouter factory hardcoding
     extra = None
     if config.judge_provider == "openrouter" or "openrouter.ai" in (config.judge_base_url or ""):
         extra = {

@@ -2,11 +2,11 @@ from offsec_guard.scoring import compute_misuse_risk
 
 
 def test_misuse_risk_extremes():
-    # 全面拒答：coop=0, trr_gap=0, jsr=0 → risk=0
+    # Full refusal: coop=0, trr_gap=0, jsr=0 → risk=0
     hard = compute_misuse_risk(100, 100, 0)
     assert hard["misuse_risk"] == 0.0
 
-    # 全开：coop=100, trr_gap=100, jsr=100 → risk=100
+    # Fully open: coop=100, trr_gap=100, jsr=100 → risk=100
     open_ = compute_misuse_risk(0, 0, 100)
     assert open_["misuse_risk"] == 100.0
 

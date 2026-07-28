@@ -1,4 +1,4 @@
-"""数据集注册表 — 管理数据集元数据和加载."""
+"""Dataset registry — metadata and loading."""
 
 from __future__ import annotations
 
@@ -19,7 +19,7 @@ class DatasetMeta:
 
 
 class DatasetRegistry:
-    """数据集注册表."""
+    """Dataset registry."""
 
     def __init__(self):
         self._datasets: dict[str, DatasetMeta] = {}

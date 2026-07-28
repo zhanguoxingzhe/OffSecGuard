@@ -1,4 +1,4 @@
-"""厂内代际：以产品发布时间线为基准（非 ladder 数组物理顺序）。"""
+"""In-vendor generation metadata — ordered by product release timeline (not physical ladder array order)."""
 
 from __future__ import annotations
 
@@ -12,9 +12,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[2]
 CATALOG = ROOT / "configs" / "batch" / "openrouter_mainstream_models.yaml"
 
-_CN = "一二三四五六七八九十"
-
-# 厂内代际时间线（旧 → 新）。同波产品线合并为一个 gen_family。
+# Vendor generation timeline (old → new). Same-wave product lines merge into one gen_family.
 VENDOR_GEN_TIMELINE: dict[str, list[str]] = {
     "openai": ["5.4", "o3", "5.5", "o4", "5.6"],
     "anthropic": [
@@ -38,10 +36,10 @@ VENDOR_GEN_TIMELINE: dict[str, list[str]] = {
     "paperguru": ["1.2"],
 }
 
-# 跨厂商「同档/同代波次」：把同期主力放进同一组（如 gpt-5.6 与 fable-5）。
-# key = (vendor, gen_family) → cohort_ord（1=较早对照，数字越大越新）
+# Cross-vendor cohorts: group contemporaneous flagship waves (e.g. gpt-5.6 and fable-5).
+# key = (vendor, gen_family) → cohort_ord (1=earlier baseline; higher = newer)
 GLOBAL_COHORT_OF: dict[tuple[str, str], int] = {
-    # —— 一代：较早对照 ——
+    # —— Cohort 1: earlier baseline ——
     ("openai", "5.4"): 1,
     ("openai", "o3"): 1,
     ("anthropic", "sonnet-4.5"): 1,
@@ -58,7 +56,7 @@ GLOBAL_COHORT_OF: dict[tuple[str, str], int] = {
     ("moonshotai", "k2"): 1,
     ("z-ai", "4.7"): 1,
     ("z-ai", "5.0"): 1,
-    # —— 二代：过渡波 ——
+    # —— Cohort 2: transition wave ——
     ("openai", "5.5"): 2,
     ("openai", "o4"): 2,
     ("anthropic", "sonnet-4.6"): 2,
@@ -72,7 +70,7 @@ GLOBAL_COHORT_OF: dict[tuple[str, str], int] = {
     ("moonshotai", "k2.6"): 2,
     ("z-ai", "5.1"): 2,
     ("paperguru", "1.2"): 2,
-    # —— 三代：当前旗舰波（gpt-5.6 / fable-5 / opus-5 / 3.6 / v4 …）——
+    # —— Cohort 3: current flagship wave (gpt-5.6 / fable-5 / opus-5 / 3.6 / v4 …) ——
     ("openai", "5.6"): 3,
     ("anthropic", "sonnet-5"): 3,
     ("anthropic", "opus-5"): 3,
@@ -86,20 +84,18 @@ GLOBAL_COHORT_OF: dict[tuple[str, str], int] = {
 }
 
 COHORT_TITLES: dict[int, str] = {
-    1: "一代 · 较早对照波",
-    2: "二代 · 过渡波",
-    3: "三代 · 当前旗舰波",
+    1: "Cohort 1 · Earlier baseline wave",
+    2: "Cohort 2 · Transition wave",
+    3: "Cohort 3 · Current flagship wave",
 }
 
 
 def _zh_gen(i: int) -> str:
-    if 1 <= i <= 10:
-        return f"{_CN[i - 1]}代"
-    return f"第{i}代"
+    return f"Gen {i}"
 
 
 def normalize_gen_family(vendor: str, gen: str) -> str:
-    """把同代变体归并（如 5.6-sol/terra/luna → 5.6）。"""
+    """Merge same-generation variants (e.g. 5.6-sol/terra/luna → 5.6)."""
     g = (gen or "unknown").strip()
     gl = g.lower()
     if vendor == "openai":
@@ -139,7 +135,7 @@ def normalize_gen_family(vendor: str, gen: str) -> str:
             return "k3"
         return g
     if vendor == "x-ai":
-        # grok-4.20 / 4.3 / 4.5 → gen 字段已是 4.x
+        # grok-4.20 / 4.3 / 4.5 — gen field is already 4.x
         return g
     if vendor == "paperguru":
         return "1.2"
@@ -152,11 +148,11 @@ def _fallback_sort_key(gen: str) -> tuple:
 
 
 def gen_timeline_rank(vendor: str, family: str) -> int:
-    """返回时间线序号（0-based）；未知代际排到最后。"""
+    """Return timeline index (0-based); unknown generations sort last."""
     timeline = VENDOR_GEN_TIMELINE.get(vendor) or []
     if family in timeline:
         return timeline.index(family)
-    # 尝试前缀匹配
+    # Try prefix match
     for i, t in enumerate(timeline):
         if family.startswith(t) or t.startswith(family):
             return i
@@ -164,16 +160,16 @@ def gen_timeline_rank(vendor: str, family: str) -> int:
 
 
 def global_cohort_of(vendor: str, family: str) -> int:
-    """跨厂商同档波次编号；未映射则按厂内时间线粗分到 1–3。"""
+    """Cross-vendor cohort index; unmapped entries fall back to vendor timeline buckets 1–3."""
     key = (vendor, family)
     if key in GLOBAL_COHORT_OF:
         return GLOBAL_COHORT_OF[key]
-    # 回退：厂内越新越靠后，压到 1–3
+    # Fallback: newer in-vendor timeline → higher bucket, clamped to 1–3
     idx = gen_timeline_rank(vendor, family)
     timeline = VENDOR_GEN_TIMELINE.get(vendor) or []
     if not timeline or idx >= 1000:
         return 2
-    # 前 40% → 1，中 → 2，后 → 3
+    # First 40% → 1, middle → 2, tail → 3
     pos = idx / max(len(timeline) - 1, 1)
     if pos <= 0.34:
         return 1
@@ -183,7 +179,7 @@ def global_cohort_of(vendor: str, family: str) -> int:
 
 
 def cohort_label(ord_: int) -> str:
-    return COHORT_TITLES.get(ord_, f"第{ord_}波")
+    return COHORT_TITLES.get(ord_, f"Cohort {ord_}")
 
 
 def load_model_gen_meta(catalog_path: Path | None = None) -> dict[str, dict[str, Any]]:
@@ -226,7 +222,7 @@ def load_model_gen_meta(catalog_path: Path | None = None) -> dict[str, dict[str,
 
 
 def attach_generation_meta(rows: list[dict], meta: dict[str, dict[str, Any]] | None = None) -> list[dict]:
-    """就地写入 gen / gen_zh / gen_ord / gen_label / role。"""
+    """In-place attach gen / gen_zh / gen_ord / gen_label / role."""
     meta = meta or load_model_gen_meta()
     by_vendor: dict[str, list[dict]] = defaultdict(list)
     for r in rows:
@@ -259,7 +255,7 @@ def attach_generation_meta(rows: list[dict], meta: dict[str, dict[str, Any]] | N
             ord_ = rank_of[r["gen"]]
             r["gen_ord"] = ord_
             r["gen_zh"] = _zh_gen(ord_)
-            # 展示：一代 · 5.6（若有 raw 变体且不同则附上）
+            # Display: Gen 1 · 5.6 (append raw variant when it differs)
             raw = r.get("gen_raw") or r["gen"]
             if raw != r["gen"]:
                 r["gen_label"] = f"{r['gen_zh']} · {r['gen']} ({raw})"
@@ -273,7 +269,7 @@ def attach_generation_meta(rows: list[dict], meta: dict[str, dict[str, Any]] | N
 
 
 def vendor_gen_series(models: list[dict]) -> dict[str, Any]:
-    """厂内按代际聚合，供折线图使用。"""
+    """Aggregate by in-vendor generation for line charts."""
     import statistics as stats
 
     by_gen: dict[str, list[dict]] = defaultdict(list)

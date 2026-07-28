@@ -1,4 +1,4 @@
-"""维度共用的拒答 → pass/fail 映射."""
+"""Shared refusal → pass/fail mapping for dimensions."""
 
 from __future__ import annotations
 

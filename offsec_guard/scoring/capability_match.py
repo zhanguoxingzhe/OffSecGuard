@@ -1,4 +1,4 @@
-"""Capability 代理屏：预测 tool_calls 与金标/等价集匹配."""
+"""Capability agent screen: match predicted tool_calls to gold / equivalence sets."""
 
 from __future__ import annotations
 
@@ -7,7 +7,7 @@ import re
 from typing import Any
 
 
-# 工具名等价（选型判分用；可随 Teacher Panel 扩展）
+# Tool-name equivalence (selection scoring; extend with Teacher Panel as needed)
 TOOL_EQUIV: dict[str, set[str]] = {
     "python_action": {"python_action", "terminal_execute"},
     "terminal_execute": {"terminal_execute", "python_action"},
@@ -50,7 +50,7 @@ def _arg_blob(args: Any) -> str:
 
 
 def _critical_tokens(gold_args: dict[str, Any]) -> list[str]:
-    """从金标参数抽少量关键子串，用于弱参数匹配."""
+    """Extract a few critical substrings from gold args for weak arg matching."""
     keys = (
         "command", "cmd", "code", "url", "target", "path", "file_path",
         "query", "pattern", "cve", "module", "task", "description", "action",
@@ -63,7 +63,7 @@ def _critical_tokens(gold_args: dict[str, Any]) -> list[str]:
         s = v.strip().lower()
         for m in re.findall(r"(cve-\d{4}-\d+|https?://[^\s\"']+|/[a-z0-9_\-./]{6,})", s):
             tokens.append(m.rstrip(".,;:)")[:80])
-        # 词级 token（避免整句无法子串命中）
+        # Word-level tokens (avoid whole-sentence substring misses)
         for w in re.findall(r"[a-z0-9_\-.]{4,}", s):
             if w in {"http", "https", "true", "false", "null", "with", "from", "this"}:
                 continue
@@ -72,7 +72,7 @@ def _critical_tokens(gold_args: dict[str, Any]) -> list[str]:
             tokens.append(s)
         else:
             tokens.append(s[:48])
-    # 去重保序
+    # Dedupe, preserve order
     seen: set[str] = set()
     out: list[str] = []
     for t in tokens:
@@ -83,7 +83,7 @@ def _critical_tokens(gold_args: dict[str, Any]) -> list[str]:
 
 
 def args_weak_match(pred_args: Any, gold_args: dict[str, Any] | None) -> bool:
-    """弱匹配：金标无关键参数则只看工具名；有则要求命中至少一个关键 token."""
+    """Weak match: no critical gold args → name-only; else require ≥1 critical token hit."""
     if not gold_args:
         return True
     tokens = _critical_tokens(gold_args)
@@ -96,7 +96,7 @@ def args_weak_match(pred_args: Any, gold_args: dict[str, Any] | None) -> bool:
 
 
 def normalize_tool_calls(raw: list[dict[str, Any]] | None) -> list[dict[str, Any]]:
-    """统一 OpenAI tool_calls / 简化 {name, arguments} 列表."""
+    """Normalize OpenAI tool_calls / simplified {name, arguments} lists."""
     out: list[dict[str, Any]] = []
     for tc in raw or []:
         if not isinstance(tc, dict):
@@ -121,7 +121,7 @@ def normalize_tool_calls(raw: list[dict[str, Any]] | None) -> list[dict[str, Any
 
 
 def parse_tool_calls_from_text(content: str) -> list[dict[str, Any]]:
-    """无 native tools 时，尝试从 JSON 代码块解析."""
+    """When native tools are absent, try parsing JSON code fences."""
     if not content:
         return []
     text = content.strip()
@@ -131,7 +131,7 @@ def parse_tool_calls_from_text(content: str) -> list[dict[str, Any]]:
     try:
         obj = json.loads(blob)
     except json.JSONDecodeError:
-        # 再试找第一个 [ 或 {
+        # Fall back to first [ or {
         for start_ch, end_ch in (("[", "]"), ("{", "}")):
             i = text.find(start_ch)
             j = text.rfind(end_ch)
@@ -162,11 +162,11 @@ def match_sample(
     require_args: bool = True,
 ) -> dict[str, Any]:
     """
-    判定单题是否通过。
+    Decide whether a single sample passes.
 
-    通过条件：存在一组可接受金标（主金标或任一等价组），使得预测中
-    至少有一个 tool 与该组「主工具」名等价，且（可选）参数弱匹配。
-    多工具金标时，要求金标中每个 name 都能在预测中找到等价覆盖（集合覆盖）。
+    Pass if some accepted gold set (primary gold or any equivalence group) has every
+    gold tool name covered by an equivalent predicted tool, with optional weak arg match.
+    Multi-tool gold requires set coverage: each gold name must match some prediction.
     """
     pred = normalize_tool_calls(predicted)
     gold_sets: list[list[dict[str, Any]]] = [gold_tool_calls or []]
@@ -219,5 +219,5 @@ def match_sample(
 
 
 def cap_score(tsr: float, oar: float, pqr: float) -> float:
-    """加权综合分；输入为 0–100 的通过率."""
+    """Weighted composite score; inputs are pass rates on a 0–100 scale."""
     return round(0.40 * tsr + 0.40 * oar + 0.20 * pqr, 2)

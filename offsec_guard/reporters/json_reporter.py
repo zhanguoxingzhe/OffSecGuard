@@ -1,4 +1,4 @@
-"""JSON 报告生成器."""
+"""JSON report generator."""
 
 from __future__ import annotations
 
@@ -9,11 +9,11 @@ from offsec_guard.core.models import EvalReport
 
 
 class JSONReporter:
-    """JSON 格式报告."""
+    """JSON-format report."""
 
     @staticmethod
     def render(report: EvalReport, *, include_samples: bool = False) -> str:
-        """默认不把逐条结果塞进 summary（过大且易写盘失败）；见 sample_results.json。"""
+        """By default omit per-sample rows from summary (too large / write-risk); see sample_results.json."""
         data = report._serialize()
         counts = {k: len(v) for k, v in (data.get("sample_results") or {}).items()}
         if not include_samples:
@@ -23,7 +23,7 @@ class JSONReporter:
 
     @staticmethod
     def render_sample_results(report: EvalReport) -> str:
-        """仅序列化逐条结果，便于单独归档/分析."""
+        """Serialize per-sample results only, for separate archive/analysis."""
         payload = report._serialize().get("sample_results", {})
         return json.dumps(
             {

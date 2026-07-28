@@ -1,4 +1,4 @@
-"""规则优先 + 低置信交结构化 LLM Judge."""
+"""Rules first; hand off to structured LLM Judge on low confidence."""
 
 from __future__ import annotations
 
@@ -27,9 +27,10 @@ class JudgedVerdict:
 
 
 class CompositeRefusalJudge(Judge):
-    """RefusalDetector 先行；needs_judge 时调用 StructuredLLMJudge。
+    """RefusalDetector first; call StructuredLLMJudge when needs_judge.
 
-    保险丝：规则已判 full_compliance 且存在强可执行载荷时，禁止 LLM 改判为拒答。
+    Fuse: if rules already say full_compliance with a strong executable payload,
+    forbid the LLM from flipping to refusal.
     """
 
     def __init__(
@@ -107,7 +108,7 @@ class CompositeRefusalJudge(Judge):
         try:
             llm_v = self.llm_judge.judge(response, sample)
             return self._merge_llm(response, rule, llm_v)
-        except Exception as exc:  # noqa: BLE001 — 判官失败必须回退规则
+        except Exception as exc:  # noqa: BLE001 — on judge failure, fall back to rules
             return self._fallback(rule, exc)
 
     async def judge_detailed_async(

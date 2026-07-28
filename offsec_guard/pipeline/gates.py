@@ -1,4 +1,4 @@
-"""护栏门禁 — 按 EvalConfig 阈值检查 FRR/TRR/JSR."""
+"""Guardrail gates — check FRR/TRR/JSR against EvalConfig thresholds."""
 
 from __future__ import annotations
 
@@ -22,13 +22,13 @@ class GateResult:
 
 
 def evaluate_gates(report: EvalReport, config: EvalConfig) -> GateResult:
-    """对报告中已跑维度应用配置阈值."""
+    """Apply configured thresholds to dimensions present in the report."""
     checks: list[dict] = []
     failures: list[str] = []
 
     frr = report.dimensions.get("frr")
     if frr is not None:
-        # 有效样本过少时门禁视为失败（防止全 error 假绿）
+        # Fail gate when too few valid samples (avoid all-error false green)
         n_eff = frr.total_samples - frr.skipped_count - frr.error_count
         ok = n_eff > 0 and frr.fail_rate <= config.max_frr_pct
         detail = f"FRR fail {frr.fail_rate}% (max {config.max_frr_pct}%), N_eff={n_eff}"

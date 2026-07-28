@@ -1,4 +1,4 @@
-"""从 results/batch_select_stress 导出 Gold+stress_redteam 主表（CSV/JSON/MD）."""
+"""Export Gold+stress_redteam main table (CSV/JSON/MD) from results/batch_select_stress."""
 
 from __future__ import annotations
 
@@ -75,7 +75,7 @@ def main() -> int:
         profiles = snap.get("prompt_profiles") or {}
         provider = model.get("provider", "")
         model_id = model.get("model_id", "")
-        # 统一 catalog id
+        # Normalize catalog id
         if provider == "paperguru":
             catalog = f"paperguru/{model_id}" if not str(model_id).startswith("paperguru/") else model_id
         elif provider == "deepseek" and not str(model_id).startswith("deepseek/"):
@@ -109,11 +109,11 @@ def main() -> int:
         }
         for dim in ("frr", "trr", "jsr"):
             row.update(dim_rates(data, dim))
-        # 主解读列（与 scorecard 一致）
+        # Primary interpretation columns (aligned with scorecard)
         row["frr_fail_pct"] = row["frr_fail_rate"]  # lower better
         row["trr_refuse_pct"] = row["trr_pass_rate"]  # higher better
         row["jsr_jailbreak_pct"] = row["jsr_fail_rate"]  # lower better
-        # 滥用易感（护栏侧；越高越危险；不含进攻能力）
+        # Misuse risk (guardrail side; higher = more dangerous; excludes offensive capability)
         row.update(
             compute_misuse_risk(
                 row["frr_fail_pct"],
@@ -125,7 +125,7 @@ def main() -> int:
 
     attach_generation_meta(rows)
 
-    # 排名：选型分降序 / 滥用易感降序
+    # Rank: selection score desc / misuse risk desc
     by_score = sorted(rows, key=lambda r: (-(r.get("total_score") or 0), r["catalog_id"]))
     by_misuse = sorted(rows, key=lambda r: (-(r.get("misuse_risk") or 0), r["catalog_id"]))
     score_rank = {r["catalog_id"]: i for i, r in enumerate(by_score, 1)}
@@ -133,7 +133,7 @@ def main() -> int:
     for r in rows:
         r["score_rank"] = score_rank[r["catalog_id"]]
         r["misuse_rank"] = misuse_rank[r["catalog_id"]]
-        # CSV 友好：去掉过重字段
+        # CSV-friendly: drop heavy fields
         r.pop("ladder_idx", None)
 
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -168,14 +168,14 @@ def main() -> int:
     }
     json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
-    # 可读主表：按 total_score 降序 + 滥用易感附表
+    # Readable main table: total_score desc + misuse-risk appendix
     ranked = by_score
     lines = [
-        "# stress_redteam · batch_select_core 主表",
+        "# stress_redteam · batch_select_core main table",
         "",
         f"- bundle: `stress_redteam`（FRR=product, TRR=ceiling, JSR=ceiling）",
         f"- dataset: Gold 369 · judge: PaperGuru · n={len(rows)}",
-        f"- 机器可读: [`{csv_path.relative_to(ROOT).as_posix()}`]({csv_path.relative_to(ROOT).as_posix()}) · [`{json_path.relative_to(ROOT).as_posix()}`]({json_path.relative_to(ROOT).as_posix()})",
+        f"- Machine-readable: [`{csv_path.relative_to(ROOT).as_posix()}`]({csv_path.relative_to(ROOT).as_posix()}) · [`{json_path.relative_to(ROOT).as_posix()}`]({json_path.relative_to(ROOT).as_posix()})",
         f"- misuse_risk: `{payload['misuse_risk_formula']}`",
         "",
         "| rank | vendor | model | FRR fail% ↓ | TRR refuse% ↑ | JSR jb% ↓ | score | misuse↑ | gate | N_eff F/T/J |",
@@ -191,7 +191,7 @@ def main() -> int:
     lines.extend(
         [
             "",
-            "## 滥用易感榜（misuse_risk 降序）",
+            "## Misuse-risk board (misuse_risk descending)",
             "",
             "| misuse_rank | model | misuse↑ | coop=100−FRR | trr_gap=100−TRR | JSR | score_rank |",
             "|------------:|-------|--------:|-------------:|----------------:|----:|-----------:|",
