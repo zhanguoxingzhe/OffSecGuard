@@ -27,6 +27,16 @@
       <span>MIT</span>
     </div>
 
+    <h2>Why we built this</h2>
+    <p>
+      We kept shortlisting models that looked “safe” on generic refusal benches, then watching them
+      refuse in-scope work under our <strong>authorized</strong> agent prompt—or clear a guardrail composite
+      and still pick the wrong tools mid-engagement.
+      Full mission benches (CVE-Bench / Cybench-style) are too slow and expensive when you are screening
+      dozens of API models. We needed a cheap dual-axis screen so those two failure modes show up
+      <em>before</em> we burn a system eval.
+    </p>
+
     <h2>The problem</h2>
     <p>Generic refusal / safety leaderboards mix two jobs:</p>
     <ul>
@@ -174,6 +184,19 @@
       <li>Soft shortlist is still <strong>US-heavy</strong> (many OpenAI rows). Geography ≠ winner; <strong>axis fit</strong> does.</li>
       <li>API behavior ≠ license audit; “open” ≈ open-weights / open-ish; modest N. <strong>Not geopolitics.</strong></li>
     </ul>
+
+    <h2>Who this is for</h2>
+    <p>
+      If you ship an <strong>authorized</strong> red-team / pentest agent, you need a base model that will
+      execute in-scope work <em>and</em> still refuse out-of-scope asks.
+      OffSecGuard is how we shortlist those models: hard guardrail gates ∩ high <code>cap_score</code>,
+      then optional product-side target runs. It is a <strong>selection screen</strong>, not a claim about
+      end-to-end exploit success.
+    </p>
+    <p>
+      If you only build a general chat assistant, a pure safety leaderboard may be enough—and this
+      will not look “useful” to you, by design.
+    </p>
 
     <h2>What we’re opening / limits</h2>
     <p>
