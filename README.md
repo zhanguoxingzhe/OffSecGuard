@@ -16,8 +16,7 @@ end-to-end target runs. CVE-Bench / Cybench stay outside this cheap screen.
 Docs: [docs/README.md](docs/README.md) · Essay (GitHub Pages):
 https://zhanguoxingzhe.github.io/OffSecGuard/
 
-> **Status:** private preview while Pages/essay are finalized.
-> Make the repo **public** before Show HN so the Pages URL works for everyone.
+> **Status:** public · essay at https://zhanguoxingzhe.github.io/OffSecGuard/
 
 ---
 
