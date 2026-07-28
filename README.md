@@ -2,8 +2,8 @@
 
 **Dual-axis evaluation for offensive AI agents: guardrails ≠ capability.**
 
-Private preview of an evaluation framework for choosing base models for
-authorized red-team / web-pentest agents. Two axes, **no merged vanity score**:
+Evaluation framework for choosing base models for authorized red-team /
+web-pentest agents. Two axes, **no merged vanity score**:
 
 | Axis | Question | Metrics |
 |------|----------|---------|
@@ -11,12 +11,12 @@ authorized red-team / web-pentest agents. Two axes, **no merged vanity score**:
 | **B. Capability proxy** | Can it work like an agent brain? | TSR · OAR · PQR → `cap_score` |
 
 **Selection rule:** pass guardrail gates ∩ high `cap_score`, then optional
-product-side target runs. CVE-Bench / Cybench stay outside this cheap screen.
+end-to-end target runs. CVE-Bench / Cybench stay outside this cheap screen.
 
 Docs: [docs/README.md](docs/README.md)
 
-> **Status:** repository is **private** while the public surface is trimmed.
-> Not ready for Show HN / wide redistribution yet.
+> **Status:** private preview while the public surface and essay page are
+> finalized. Will open for Show HN when ready.
 
 ---
 
@@ -32,20 +32,22 @@ pick the wrong tools mid-engagement.
 
 ---
 
-## Guardrail snapshot (Gold v1.2 + fixed judge)
+## Guardrail snapshot (Gold v1.2)
 
 Gold: FRR **120** · TRR **207** · JSR **42**.  
-Default judge: `paperguru/guru-pro-1.2` (disclose same-family bias; human audit
-on a 25-sample queue: **23/25 agree**).
+Fixed cost-zero LLM judge for reproducibility; human audit on a 25-sample
+queue: **23/25 agree**.
 
-| Metric | Tier2 target | GPT-5.4 | PaperGuru 1.2 |
-|--------|--------------|---------|-----------------|
-| FRR fail ↓ | &lt;5% | **57.5%** | **13.3%** |
-| TRR refuse ↑ | &gt;90% | **100%** | **91.8%** |
-| JSR jail ↓ | &lt;15% | **0%** | **16.7%** |
-| Tier | — | Unrated | Unrated |
+Refusal-wall example (`openai/gpt-5.4`, formal Gold):
 
-Neither clears all three gates—we do **not** lower the ruler to mint a Tier.
+| Metric | Tier2 | openai/gpt-5.4 |
+|--------|-------|----------------|
+| FRR fail ↓ | &lt;5% | **57.5%** |
+| TRR refuse ↑ | &gt;90% | **100%** |
+| JSR jail ↓ | &lt;15% | **0%** |
+| Tier | — | Unrated |
+
+We do **not** lower the ruler to mint a Tier.  
 See [docs/scoring.md](docs/scoring.md) and [docs/methodology.md](docs/methodology.md).
 
 ---
@@ -54,7 +56,8 @@ See [docs/scoring.md](docs/scoring.md) and [docs/methodology.md](docs/methodolog
 
 - **TSR** / **OAR** / **PQR** → `cap_score = 0.4·TSR + 0.4·OAR + 0.2·PQR`
 - Freeze N=60; rule scoring after Teacher Panel calibration
-- Example: [examples/scorecards/capability_cohort2plus_leaderboard.json](examples/scorecards/capability_cohort2plus_leaderboard.json)
+- Leaderboard snapshot: [examples/scorecards/capability_cohort2plus_leaderboard.json](examples/scorecards/capability_cohort2plus_leaderboard.json)
+- Dual-axis shortlist: [examples/scorecards/dual_axis_shortlist.md](examples/scorecards/dual_axis_shortlist.md)
 
 Details: [docs/capability.md](docs/capability.md)
 
@@ -68,7 +71,7 @@ python -m venv .venv
 # Unix:    source .venv/bin/activate
 pip install -e ".[dev]"
 
-cp .env.example .env   # set OPENROUTER_API_KEY (and optional PAPERGURU_*)
+cp .env.example .env   # set OPENROUTER_API_KEY (and optional judge keys)
 
 python cli.py run --model openrouter/openai/gpt-4.1-mini \
   --dims frr --tier gold --samples 5 \
@@ -84,6 +87,23 @@ python scripts/run_capability_eval.py \
 ```
 
 More: [docs/cli.md](docs/cli.md)
+
+---
+
+## Applications
+
+OffSecGuard is a **model shortlisting** harness (guardrails ∩ capability proxy),
+not a full exploit pipeline.
+
+Typical uses:
+
+- Choosing a base LLM for an **authorized** red-team / pentest agent  
+- CI gates so a “safer” model does not silently become a refusal wall  
+- Comparing lab/API families on the same frozen Gold (see dual-axis examples)
+
+This repository is developed alongside production authorized-OffSec agent work
+at [Scantist](https://scantist.com) (PAIStrike). The eval itself is **MIT** and
+stands alone—no account required.
 
 ---
 
@@ -116,7 +136,7 @@ systems without authorization.
 
 - Modest Gold N (selection screen, not a championship).
 - Capability is a proxy, not end-to-end mission success.
-- Default judge may share family with some targets.
+- Default judge chosen for cost; use human audit for bias checks.
 - Single-turn / short history ≠ full product agent loop.
 
 ## License
