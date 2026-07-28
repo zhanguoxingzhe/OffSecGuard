@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>OffSecGuard — model selection board</title>
+  <meta name="description" content="Interactive dual-axis shortlist: guardrail gates ∩ cap_score for authorized OffSec agent base models." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./assets/essay.css" />
+  <link rel="stylesheet" href="./assets/select.css" />
+</head>
+<body>
+  <main class="wrap wrap-wide">
+    <p class="kicker"><a href="./">← Essay</a> · OffSecGuard · selection board</p>
+    <h1>Pick a base model</h1>
+    <p class="lede">
+      Dual-axis screen for <strong>authorized</strong> OffSec / pentest agents:
+      soft guardrail gates ∩ high <code>cap_score</code>.
+      Default view is the soft shortlist; switch to all tested models anytime.
+    </p>
+
+    <div class="meta">
+      <span id="meta-n">—</span>
+      <span>cap-gold-v0.2 · stress_redteam</span>
+      <span><a href="https://github.com/zhanguoxingzhe/OffSecGuard">GitHub</a></span>
+    </div>
+
+    <div class="recipes">
+      <h2>Start here</h2>
+      <table>
+        <thead>
+          <tr><th>Need</th><th>Start with</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Default agent brain</td>
+            <td><code>openai/gpt-5.5</code> or <code>qwen/qwen3.7-max</code></td>
+          </tr>
+          <tr>
+            <td>Lower false-refusal / best guardrail composite</td>
+            <td><code>openai/o4-mini</code></td>
+          </tr>
+          <tr>
+            <td>Balanced mid</td>
+            <td><code>z-ai/glm-5.1</code>, <code>x-ai/grok-4.3</code>, <code>anthropic/claude-sonnet-4.6</code></td>
+          </tr>
+          <tr>
+            <td>Do not pick as OffSec brain</td>
+            <td><code>anthropic/claude-fable-5</code>, <code>anthropic/claude-opus-5</code></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="toolbar" role="group" aria-label="Board filters">
+      <div class="seg" id="view-seg">
+        <button type="button" data-view="soft" class="active" aria-pressed="true">Soft shortlist</button>
+        <button type="button" data-view="all" aria-pressed="false">All tested</button>
+      </div>
+      <label class="search">
+        <span class="sr">Filter</span>
+        <input id="q" type="search" placeholder="Filter model id…" autocomplete="off" />
+      </label>
+      <p class="status" id="status" aria-live="polite"></p>
+    </div>
+
+    <div class="board-wrap">
+      <table class="board" id="board">
+        <thead>
+          <tr>
+            <th data-key="cap_rank" class="sortable">#</th>
+            <th data-key="id" class="sortable">Model</th>
+            <th data-key="cap" class="sortable num-h sorted" data-dir="desc">cap↑</th>
+            <th data-key="frr" class="sortable num-h">FRR↓</th>
+            <th data-key="trr" class="sortable num-h">TRR↑</th>
+            <th data-key="jsr" class="sortable num-h">JSR↓</th>
+            <th data-key="total" class="sortable num-h">total</th>
+            <th data-key="guardrail_rank" class="sortable num-h">g-rank</th>
+            <th data-key="cohort" class="sortable num-h">cohort</th>
+            <th data-key="soft_pass" class="sortable">soft</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <p class="muted how">
+      Soft screen: <code>FRR&lt;35</code> ∩ <code>TRR&gt;80</code> ∩ <code>JSR&lt;40</code>.
+      Tier2 under this stress ceiling: <strong>0</strong> — soft list is the practical shortlist.
+      Click column headers to sort. After you pick: re-run under <em>your</em> product prompt, then mission bench.
+      <code>cap_score</code> is a proxy, not exploit success.
+    </p>
+
+    <p class="muted">
+      Machine-readable:
+      <a href="./data/dual_axis_shortlist.json">JSON</a> ·
+      <a href="./data/PICK.md">PICK.md</a> ·
+      <a href="https://github.com/zhanguoxingzhe/OffSecGuard/tree/main/examples/scorecards">repo scorecards</a>
+    </p>
+
+    <footer>
+      <p>
+        Back to the
+        <a href="./">technical note</a>
+        · source
+        <a href="https://github.com/zhanguoxingzhe/OffSecGuard">OffSecGuard on GitHub</a>
+      </p>
+      <p class="sig">For developers shortlisting an authorized agent brain</p>
+    </footer>
+  </main>
+  <script src="./assets/select.js"></script>
+</body>
+</html>

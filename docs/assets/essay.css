@@ -197,6 +197,39 @@ td code {
 
 .pick table { margin: 0 0 0.75rem; }
 
+.cta {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: 1rem 1.1rem 1.1rem;
+  margin: 2rem 0 0;
+}
+
+.cta h2 {
+  margin-top: 0;
+}
+
+.cta-row {
+  margin: 1rem 0 0.75rem;
+}
+
+.cta-btn {
+  display: inline-block;
+  font-family: var(--sans);
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #fff !important;
+  background: var(--accent);
+  text-decoration: none;
+  padding: 0.65rem 1rem;
+  border: 1px solid color-mix(in srgb, var(--accent) 80%, black);
+}
+
+.cta-btn:hover {
+  background: #095c42;
+  color: #fff !important;
+}
+
 footer {
   margin-top: 2.75rem;
   padding-top: 1.25rem;

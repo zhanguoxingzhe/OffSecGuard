@@ -1,0 +1,166 @@
+.wrap-wide {
+  width: min(1080px, calc(100% - 2.5rem));
+}
+
+.recipes {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-left: 3px solid var(--accent);
+  padding: 0.85rem 1rem 0.4rem;
+  margin: 0 0 1.5rem;
+}
+
+.recipes h2 {
+  font-family: var(--serif);
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+
+.recipes table {
+  margin: 0.25rem 0 0.5rem;
+}
+
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  align-items: center;
+  margin: 0 0 0.85rem;
+}
+
+.seg {
+  display: inline-flex;
+  border: 1px solid var(--line);
+  background: var(--paper);
+}
+
+.seg button {
+  appearance: none;
+  border: 0;
+  background: transparent;
+  font-family: var(--sans);
+  font-size: 0.88rem;
+  padding: 0.45rem 0.85rem;
+  color: var(--muted);
+  cursor: pointer;
+}
+
+.seg button + button {
+  border-left: 1px solid var(--line);
+}
+
+.seg button.active {
+  color: var(--ink);
+  background: #eef6f2;
+  font-weight: 600;
+}
+
+.search input {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  padding: 0.45rem 0.65rem;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  min-width: min(240px, 70vw);
+}
+
+.search input:focus {
+  outline: 2px solid color-mix(in srgb, var(--accent) 35%, white);
+  outline-offset: 1px;
+}
+
+.status {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+  margin-left: auto;
+}
+
+.board-wrap {
+  overflow-x: auto;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  margin: 0 0 1rem;
+}
+
+.board {
+  margin: 0;
+  font-size: 0.84rem;
+}
+
+.board th,
+.board td {
+  padding: 0.5rem 0.55rem;
+  white-space: nowrap;
+}
+
+.board th.sortable {
+  cursor: pointer;
+  user-select: none;
+}
+
+.board th.sortable:hover {
+  color: var(--ink);
+}
+
+.board th.sorted::after {
+  content: " ▾";
+  font-size: 0.65rem;
+}
+
+.board th.sorted.asc::after {
+  content: " ▴";
+}
+
+.board th.num-h,
+.board td.num {
+  text-align: right;
+}
+
+.board tbody tr:hover {
+  background: #f3f7f5;
+}
+
+.board tr.soft-row td:first-of-type code,
+.board .soft-badge {
+  color: var(--accent);
+}
+
+.soft-badge {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+}
+
+.wall-row {
+  color: var(--warn);
+}
+
+.how code {
+  font-family: var(--mono);
+  font-size: 0.8em;
+}
+
+.sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+@media (max-width: 720px) {
+  .wrap-wide {
+    width: min(100% - 1.5rem, 1080px);
+  }
+
+  .status {
+    margin-left: 0;
+    width: 100%;
+  }
+}

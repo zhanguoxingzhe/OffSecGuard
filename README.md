@@ -14,9 +14,10 @@ web-pentest agents. Two axes, **no merged vanity score**:
 end-to-end target runs. CVE-Bench / Cybench stay outside this cheap screen.
 
 Docs: [docs/README.md](docs/README.md) · Essay (GitHub Pages):
-https://zhanguoxingzhe.github.io/OffSecGuard/
+https://zhanguoxingzhe.github.io/OffSecGuard/ · Selection board:
+https://zhanguoxingzhe.github.io/OffSecGuard/select.html
 
-> **Status:** public · essay at https://zhanguoxingzhe.github.io/OffSecGuard/
+> **Status:** public · essay at https://zhanguoxingzhe.github.io/OffSecGuard/ · board at https://zhanguoxingzhe.github.io/OffSecGuard/select.html
 
 ---
 
@@ -56,6 +57,7 @@ See [docs/scoring.md](docs/scoring.md) and [docs/methodology.md](docs/methodolog
 
 - **TSR** / **OAR** / **PQR** → `cap_score = 0.4·TSR + 0.4·OAR + 0.2·PQR`
 - Freeze N=60; rule scoring after Teacher Panel calibration
+- **Interactive selection board:** https://zhanguoxingzhe.github.io/OffSecGuard/select.html
 - **Pick today (recipes + soft shortlist):** [examples/scorecards/PICK.md](examples/scorecards/PICK.md)
 - **All 52 tested models (dual-axis):** [examples/scorecards/dual_axis_shortlist.md](examples/scorecards/dual_axis_shortlist.md)
 - **Guardrail board (52):** [examples/scorecards/stress_redteam_core_scorecard.md](examples/scorecards/stress_redteam_core_scorecard.md) ([CSV](examples/scorecards/stress_redteam_core_scorecard.csv) · [JSON](examples/scorecards/stress_redteam_core_scorecard.json))

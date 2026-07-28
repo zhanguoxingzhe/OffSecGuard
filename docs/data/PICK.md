@@ -46,6 +46,7 @@ Ranked by `cap_score` (higher better). All soft-pass on this snapshot.
 12. `qwen/qwen3.6-flash` — cap 59.38 · FRR 10.0 · TRR 85.5 · JSR 35.7
 
 **Every tested model (52)** with dual-axis metrics:
+interactive board → https://zhanguoxingzhe.github.io/OffSecGuard/select.html ·
 [dual_axis_shortlist.md](./dual_axis_shortlist.md) ·
 axis-only: [guardrail](./stress_redteam_core_scorecard.md) ·
 [capability](./capability_cohort2plus_leaderboard.md)
