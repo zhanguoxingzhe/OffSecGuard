@@ -1,6 +1,7 @@
 # Dual-axis shortlist (capability ∩ guardrail)
 
-**Need a ready shortlist?** Start with [PICK.md](./PICK.md) (recipes + copy-paste IDs).
+**Need a ready shortlist?** Start with [PICK.md](./PICK.md).  
+**Want every screened model?** [Guardrail full board](./stress_redteam_core_scorecard.md) · [Capability full board](./capability_cohort2plus_leaderboard.md).
 
 ## Sources
 

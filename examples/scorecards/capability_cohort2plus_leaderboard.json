@@ -12,7 +12,8 @@
       "oar": 86.36,
       "pqr": 76.92,
       "cap_score": 85.13,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 1
     },
     {
       "catalog_id": "openai/gpt-5.5",
@@ -23,7 +24,8 @@
       "oar": 86.36,
       "pqr": 76.92,
       "cap_score": 83.53,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 2
     },
     {
       "catalog_id": "qwen/qwen3.7-max",
@@ -34,7 +36,8 @@
       "oar": 86.36,
       "pqr": 76.92,
       "cap_score": 83.53,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 3
     },
     {
       "catalog_id": "moonshotai/kimi-k2-thinking",
@@ -45,7 +48,8 @@
       "oar": 81.82,
       "pqr": 76.92,
       "cap_score": 81.71,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 4
     },
     {
       "catalog_id": "z-ai/glm-5.1",
@@ -56,7 +60,8 @@
       "oar": 81.82,
       "pqr": 76.92,
       "cap_score": 81.71,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 5
     },
     {
       "catalog_id": "mistralai/mistral-large-2512",
@@ -67,7 +72,8 @@
       "oar": 72.73,
       "pqr": 76.92,
       "cap_score": 78.08,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 6
     },
     {
       "catalog_id": "openai/gpt-5.4-mini",
@@ -78,7 +84,8 @@
       "oar": 63.64,
       "pqr": 76.92,
       "cap_score": 77.64,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 7
     },
     {
       "catalog_id": "anthropic/claude-haiku-4.5",
@@ -89,7 +96,8 @@
       "oar": 68.18,
       "pqr": 76.92,
       "cap_score": 76.26,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 8
     },
     {
       "catalog_id": "x-ai/grok-4.3",
@@ -100,7 +108,8 @@
       "oar": 68.18,
       "pqr": 76.92,
       "cap_score": 76.26,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 9
     },
     {
       "catalog_id": "google/gemini-2.5-flash",
@@ -111,7 +120,8 @@
       "oar": 63.64,
       "pqr": 76.92,
       "cap_score": 76.04,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 10
     },
     {
       "catalog_id": "moonshotai/kimi-k3",
@@ -122,7 +132,8 @@
       "oar": 86.36,
       "pqr": 76.92,
       "cap_score": 75.53,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 11
     },
     {
       "catalog_id": "anthropic/claude-sonnet-4.6",
@@ -133,7 +144,8 @@
       "oar": 77.27,
       "pqr": 76.92,
       "cap_score": 75.09,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 12
     },
     {
       "catalog_id": "z-ai/glm-5",
@@ -144,7 +156,8 @@
       "oar": 72.73,
       "pqr": 76.92,
       "cap_score": 74.88,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 13
     },
     {
       "catalog_id": "deepseek/deepseek-v4-pro",
@@ -155,7 +168,8 @@
       "oar": 68.18,
       "pqr": 76.92,
       "cap_score": 74.66,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 14
     },
     {
       "catalog_id": "qwen/qwen3.5-397b-a17b",
@@ -166,7 +180,8 @@
       "oar": 68.18,
       "pqr": 76.92,
       "cap_score": 73.06,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 15
     },
     {
       "catalog_id": "x-ai/grok-4.20",
@@ -177,7 +192,8 @@
       "oar": 50.0,
       "pqr": 76.92,
       "cap_score": 72.18,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 16
     },
     {
       "catalog_id": "deepseek/deepseek-v3.2",
@@ -188,7 +204,8 @@
       "oar": 66.67,
       "pqr": 76.92,
       "cap_score": 71.62,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 17
     },
     {
       "catalog_id": "anthropic/claude-opus-4.8",
@@ -199,7 +216,8 @@
       "oar": 68.18,
       "pqr": 61.54,
       "cap_score": 71.58,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 18
     },
     {
       "catalog_id": "qwen/qwen3.6-plus",
@@ -210,7 +228,8 @@
       "oar": 68.18,
       "pqr": 76.92,
       "cap_score": 71.46,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 19
     },
     {
       "catalog_id": "anthropic/claude-opus-4.6",
@@ -221,7 +240,8 @@
       "oar": 63.64,
       "pqr": 69.23,
       "cap_score": 71.3,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 20
     },
     {
       "catalog_id": "openai/o4-mini",
@@ -232,7 +252,8 @@
       "oar": 63.64,
       "pqr": 76.92,
       "cap_score": 71.24,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 21
     },
     {
       "catalog_id": "meta-llama/llama-3.3-70b-instruct",
@@ -243,7 +264,8 @@
       "oar": 54.55,
       "pqr": 76.92,
       "cap_score": 70.8,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 22
     },
     {
       "catalog_id": "qwen/qwen3.7-plus",
@@ -254,7 +276,8 @@
       "oar": 77.27,
       "pqr": 69.23,
       "cap_score": 70.35,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 23
     },
     {
       "catalog_id": "anthropic/claude-sonnet-5",
@@ -265,7 +288,8 @@
       "oar": 63.64,
       "pqr": 76.92,
       "cap_score": 69.64,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 24
     },
     {
       "catalog_id": "openai/gpt-5.6-terra",
@@ -276,7 +300,8 @@
       "oar": 63.64,
       "pqr": 76.92,
       "cap_score": 69.64,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 25
     },
     {
       "catalog_id": "openai/gpt-5.4",
@@ -287,7 +312,8 @@
       "oar": 59.09,
       "pqr": 76.92,
       "cap_score": 69.42,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 26
     },
     {
       "catalog_id": "openai/gpt-5.6-luna",
@@ -298,7 +324,8 @@
       "oar": 59.09,
       "pqr": 76.92,
       "cap_score": 69.42,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 27
     },
     {
       "catalog_id": "x-ai/grok-4.5",
@@ -309,7 +336,8 @@
       "oar": 54.55,
       "pqr": 76.92,
       "cap_score": 69.2,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 28
     },
     {
       "catalog_id": "mistralai/mistral-medium-3.1",
@@ -320,7 +348,8 @@
       "oar": 45.45,
       "pqr": 76.92,
       "cap_score": 68.76,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 29
     },
     {
       "catalog_id": "z-ai/glm-4.7-flash",
@@ -331,7 +360,8 @@
       "oar": 59.09,
       "pqr": 76.92,
       "cap_score": 67.82,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 30
     },
     {
       "catalog_id": "openai/o3",
@@ -342,7 +372,8 @@
       "oar": 54.55,
       "pqr": 76.92,
       "cap_score": 67.6,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 31
     },
     {
       "catalog_id": "z-ai/glm-5.2",
@@ -353,7 +384,8 @@
       "oar": 68.18,
       "pqr": 46.15,
       "cap_score": 66.9,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 32
     },
     {
       "catalog_id": "openai/o3-mini",
@@ -364,7 +396,8 @@
       "oar": 59.09,
       "pqr": 76.92,
       "cap_score": 64.62,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 33
     },
     {
       "catalog_id": "mistralai/mistral-small-2603",
@@ -375,7 +408,8 @@
       "oar": 50.0,
       "pqr": 76.92,
       "cap_score": 64.18,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 34
     },
     {
       "catalog_id": "moonshotai/kimi-k2.6",
@@ -386,7 +420,8 @@
       "oar": 59.09,
       "pqr": 76.92,
       "cap_score": 63.02,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 35
     },
     {
       "catalog_id": "google/gemini-3.5-flash-lite",
@@ -397,7 +432,8 @@
       "oar": 54.55,
       "pqr": 76.92,
       "cap_score": 62.8,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 36
     },
     {
       "catalog_id": "openai/gpt-5.4-nano",
@@ -408,7 +444,8 @@
       "oar": 54.55,
       "pqr": 76.92,
       "cap_score": 62.8,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 37
     },
     {
       "catalog_id": "google/gemini-2.5-pro",
@@ -419,7 +456,8 @@
       "oar": 45.45,
       "pqr": 76.92,
       "cap_score": 62.36,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 38
     },
     {
       "catalog_id": "openai/gpt-5.6-sol",
@@ -430,7 +468,8 @@
       "oar": 68.18,
       "pqr": 53.85,
       "cap_score": 62.04,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 39
     },
     {
       "catalog_id": "deepseek/deepseek-v4-flash",
@@ -441,7 +480,8 @@
       "oar": 63.64,
       "pqr": 46.15,
       "cap_score": 61.89,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 40
     },
     {
       "catalog_id": "google/gemini-3.1-pro-preview",
@@ -452,7 +492,8 @@
       "oar": 50.0,
       "pqr": 76.92,
       "cap_score": 59.38,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 41
     },
     {
       "catalog_id": "qwen/qwen3.6-flash",
@@ -463,7 +504,8 @@
       "oar": 50.0,
       "pqr": 76.92,
       "cap_score": 59.38,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 42
     },
     {
       "catalog_id": "meta-llama/llama-4-scout",
@@ -474,7 +516,8 @@
       "oar": 45.45,
       "pqr": 46.15,
       "cap_score": 54.61,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 43
     },
     {
       "catalog_id": "google/gemini-2.5-flash-lite",
@@ -485,7 +528,8 @@
       "oar": 40.91,
       "pqr": 38.46,
       "cap_score": 46.46,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 44
     },
     {
       "catalog_id": "meta-llama/llama-4-maverick",
@@ -496,7 +540,8 @@
       "oar": 40.91,
       "pqr": 76.92,
       "cap_score": 46.15,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 45
     },
     {
       "catalog_id": "deepseek/deepseek-r1-0528",
@@ -507,7 +552,8 @@
       "oar": 59.09,
       "pqr": 8.33,
       "cap_score": 41.97,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 46
     },
     {
       "catalog_id": "google/gemini-3.5-flash",
@@ -518,7 +564,8 @@
       "oar": 40.91,
       "pqr": 53.85,
       "cap_score": 41.53,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 47
     },
     {
       "catalog_id": "deepseek/deepseek-r1",
@@ -529,7 +576,8 @@
       "oar": 27.27,
       "pqr": 30.77,
       "cap_score": 29.86,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 48
     },
     {
       "catalog_id": "google/gemini-3.6-flash",
@@ -540,7 +588,8 @@
       "oar": 18.18,
       "pqr": 15.38,
       "cap_score": 18.35,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 49
     },
     {
       "catalog_id": "anthropic/claude-fable-5",
@@ -551,7 +600,8 @@
       "oar": 0.0,
       "pqr": 0.0,
       "cap_score": 0.0,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 50
     },
     {
       "catalog_id": "anthropic/claude-opus-5",
@@ -562,7 +612,8 @@
       "oar": 0.0,
       "pqr": 0.0,
       "cap_score": 0.0,
-      "n_samples": 60
+      "n_samples": 60,
+      "rank": 51
     }
   ]
 }

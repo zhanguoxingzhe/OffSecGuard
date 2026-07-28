@@ -45,7 +45,8 @@ Ranked by `cap_score` (higher better). All soft-pass on this snapshot.
 11. `qwen/qwen3.6-flash` — cap 59.38 · FRR 10.0 · TRR 85.5 · JSR 35.7
 
 Full metrics + rank gaps: [dual_axis_shortlist.md](./dual_axis_shortlist.md) ·
-capability board: [capability_cohort2plus_leaderboard.json](./capability_cohort2plus_leaderboard.json)
+**full boards:** [guardrail 51](./stress_redteam_core_scorecard.md) ·
+[capability](./capability_cohort2plus_leaderboard.md)
 
 ---
 
