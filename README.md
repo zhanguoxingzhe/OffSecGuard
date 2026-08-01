@@ -58,6 +58,7 @@ See [docs/scoring.md](docs/scoring.md) and [docs/methodology.md](docs/methodolog
 - **TSR** / **OAR** / **PQR** → `cap_score = 0.4·TSR + 0.4·OAR + 0.2·PQR`
 - Freeze N=60; rule scoring after Teacher Panel calibration
 - **Interactive selection board:** https://zhanguoxingzhe.github.io/OffSecGuard/select.html
+- **Merged selection JSON (v1, for product integrations):** [examples/scorecards/selection_board_v1.json](examples/scorecards/selection_board_v1.json) · [docs](docs/selection-board.md) · [中文说明](docs/SELECTION_BOARD.zh.md)
 - **Pick today (recipes + soft shortlist):** [examples/scorecards/PICK.md](examples/scorecards/PICK.md)
 - **All 52 tested models (dual-axis):** [examples/scorecards/dual_axis_shortlist.md](examples/scorecards/dual_axis_shortlist.md)
 - **Guardrail board (52):** [examples/scorecards/stress_redteam_core_scorecard.md](examples/scorecards/stress_redteam_core_scorecard.md) ([CSV](examples/scorecards/stress_redteam_core_scorecard.csv) · [JSON](examples/scorecards/stress_redteam_core_scorecard.json))
